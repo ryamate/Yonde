@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
     ports:
-      - "50080:80"
+      - "60080:80"
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -15,7 +15,7 @@ services:
   db:
     image: mysql:5.5.62
     ports:
-      - "53306:3306"
+      - "63306:3306"
     volumes:
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/db/mysql_data:/var/lib/mysql
