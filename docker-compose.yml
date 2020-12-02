@@ -18,6 +18,9 @@ services:
       - "63306:3306"
     volumes:
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./docker/db/mysql_yonde_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     env_file:
       - ./docker/db/db-variables.env
+
+volumes:
+  mysql_data:
