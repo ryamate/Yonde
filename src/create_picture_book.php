@@ -1,20 +1,22 @@
 <?php
 
-// 検索結果→絵本登録に利用
-
 require_once __DIR__ . '/lib/mysqli.php';
 
 function createPictureBook($link, $picture_book)
 {
     $sql = <<<EOT
-INSERT INTO companies (
+INSERT INTO picture_books (
+    picture_book_id,
     title,
-    author,
-    publisher
+    authors,
+    published_date,
+    thumbnail_uri
 )VALUES (
+    "{$picture_book['picture_book_id']}",
     "{$picture_book['title']}",
-    "{$picture_book['author']}",
-    "{$picture_book['publisher']}"
+    "{$picture_book['authors']}",
+    "{$picture_book['published_date']}",
+    "{$picture_book['thumbnail_uri']}"
 )
 EOT;
     $result = mysqli_query($link, $sql);
@@ -27,13 +29,18 @@ EOT;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // $picture_book = $_POST;
     $picture_book = [
+        'picture_book_id' => (int)$_POST['picture_book_id'],
         'title' => $_POST['title'],
-        'author' => $_POST['author'],
-        'publisher' => $_POST['publisher']
+        'authors' => $_POST['authors'],
+        'published_date' => $_POST['published_date'],
+        'thumbnail_uri' => $_POST['thumbnail_uri']
     ];
+    var_dump($picture_book);
     // バリデーションする
     $link = dbConnect();
     createPictureBook($link, $picture_book);
     mysqli_close($link);
+    // header("Location: register_details.php");
 }
