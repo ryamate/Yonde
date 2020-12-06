@@ -25,7 +25,7 @@ function dbConnect()
 
 function dropTable($link)
 {
-    $dropTableSql = 'DROP TABLE IF EXISTS picture_books;';
+    $dropTableSql = 'DROP TABLE IF EXISTS reading_record;';
     $result = mysqli_query($link, $dropTableSql);
     if ($result) {
         echo 'テーブルを削除しました' . PHP_EOL . PHP_EOL;
@@ -38,14 +38,13 @@ function dropTable($link)
 function createTable($link)
 {
     $createTableSql = <<<EOT
-CREATE TABLE picture_books (
-  picture_book_id INTEGER(13) NOT NULL PRIMARY KEY,
-  title VARCHAR(255),
-  authors VARCHAR(255),
-  published_date DATE,
-  thumbnail_uri VARCHAR(255),
+CREATE TABLE reading_record (
+  reading_record_id INTEGER NOT NULL PRIMARY KEY,
+  picture_book_id INTEGER NOT NULL,
+  read_date DATE,
   created_at TIMESTAMP NULL,
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (picture_book_id) REFERENCES picture_books(picture_book_id)
 ) DEFAULT CHARACTER SET=utf8mb4;
 EOT;
     $result = mysqli_query($link, $createTableSql);
