@@ -1,6 +1,7 @@
  <!-- ポイント３つ -->
  <div style="margin-top: 74px;">
      <div class="container d-none d-md-block mt-4">
+
          <div class="card-deck row">
              <div class="card border-0">
                  <a href=""><img src="image/point_1.png" width="100%" alt=""></a>
@@ -38,9 +39,9 @@
          <div class="card border-0">
              <a href=""><img src="image/point_1.png" width="100%" alt=""></a>
              <div class="card-body">
-                 <h5 class="card-title"><b>図解中心の動画で学ぶ</b></h5>
-                 <p class="card-text">図解を中心にした動画解説で、イメージをつかみながら理解できます。<br>
-                     動画は1本20分以内の長さで、集中力を切らさずに学習を進めていけます。
+                 <h5 class="card-title"><b>タイトル</b></h5>
+                 <p class="card-text">テキストテキストテキストテキストテキストテキスト<br>
+                     テキストテキストテキストテキストテキストテキスト
                  </p>
              </div>
          </div>
