@@ -39,14 +39,14 @@ function createTable($link)
 {
     $createTableSql = <<<EOT
 CREATE TABLE stored_picture_books (
-  stored_picture_book_id INTEGER NOT NULL PRIMARY KEY,
-  picture_book_id INTEGER NOT NULL,
+  stored_picture_book_id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  isbn_13 VARCHAR(100) UNIQUE NOT NULL,
   five_star_rating INTEGER,
-  read_status VARCHAR(10),
+  read_status VARCHAR(100),
   review VARCHAR(1000),
   created_at TIMESTAMP NULL,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (picture_book_id) REFERENCES picture_books(picture_book_id)
+  FOREIGN KEY (isbn_13) REFERENCES picture_books(isbn_13)
 ) DEFAULT CHARACTER SET=utf8mb4;
 EOT;
     $result = mysqli_query($link, $createTableSql);
