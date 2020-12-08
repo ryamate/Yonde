@@ -54,8 +54,8 @@
                         <div class="card border-0 d-flex align-items-center justify-content-center">
                             <form action="create_picture_book.php" method="POST">
                                 <button type="submit" class="btn btn-teal1 shadow mt-2 mb-2"><i class="fas fa-plus-square"></i> 絵本棚に登録</button>
-                                <?php $picture_book_id = @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"]; ?>
-                                <input type="hidden" name="picture_book_id" value="<?= $picture_book_id ?>" />
+                                <?php $isbn_13 = @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"]; ?>
+                                <input type="hidden" name="isbn_13" value="<?= $isbn_13 ?>" />
                                 <input type="hidden" name="title" value="<?= $book_title ?>" />
                                 <input type="hidden" name="authors" value="<?= $authors = implode(" ", $authors_array); ?>" />
 
