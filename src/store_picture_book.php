@@ -19,11 +19,13 @@ INSERT INTO stored_picture_books (
 EOT;
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo '登録が完了しました' . PHP_EOL;
-        var_dump($result);
+        // echo '登録が完了しました' . PHP_EOL;
+        // var_dump($result);
     } else {
         echo 'Error: データの追加に失敗しました' . PHP_EOL;
         echo 'Debugging Error:' . mysqli_error($link) . PHP_EOL;
+        // データが登録されている場合、変更に切り替える→それよりisbnが本棚登録ずみであることをバリデーションで弾く→弾くより入力変更に切り替える
+
     }
 }
 
@@ -40,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'read_status' => $read_status,
         'review' => $_POST['review'],
     ];
-    var_dump($stored_picture_book);
     // バリデーションする
     $link = dbConnect();
     storePictureBook($link, $stored_picture_book);
     mysqli_close($link);
+    include __DIR__ . '/index.php';
 }

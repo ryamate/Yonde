@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $searched_books = $searched_books_array["items"];
 }
-
 $title = '絵本検索';
 $content = __DIR__ . '/views/search_result.php';
 include __DIR__ . '/views/layout.php';
