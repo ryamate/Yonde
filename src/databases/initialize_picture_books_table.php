@@ -41,13 +41,13 @@ function createTable($link)
 {
     $createTableSql = <<<EOT
 CREATE TABLE picture_books (
-  isbn_13 VARCHAR(100) NOT NULL PRIMARY KEY,
-  title VARCHAR(255),
-  authors VARCHAR(255),
-  published_date VARCHAR(10),
-  thumbnail_uri VARCHAR(1000),
-  created_at TIMESTAMP NULL,
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    isbn_13 VARCHAR(100) NOT NULL PRIMARY KEY,
+    title VARCHAR(255),
+    authors VARCHAR(255),
+    published_date VARCHAR(10),
+    thumbnail_uri VARCHAR(1000),
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) DEFAULT CHARACTER SET=utf8mb4;
 EOT;
     $result = mysqli_query($link, $createTableSql);

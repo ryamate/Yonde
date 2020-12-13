@@ -22,5 +22,19 @@ services:
     env_file:
       - ./docker/db/db-variables.env
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=pass
+    links:
+      - db
+    ports:
+      - 61080:80
+    volumes:
+      - /sessions
+
 volumes:
   mysql_data:
