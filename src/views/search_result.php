@@ -34,6 +34,8 @@
                                     <?php if ($authors_array !== null) : ?>
                                         <?php $authors = implode(",", $authors_array); ?>
                                         <?= $authors; ?>
+                                    <?php else : ?>
+                                        <?= $authors = null; ?>
                                     <?php endif; ?>
 
                                     <?php $published_date = @$item["volumeInfo"]["publishedDate"]; ?>
@@ -57,11 +59,10 @@
                                 <?php $isbn_13 = @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"]; ?>
                                 <input type="hidden" name="isbn_13" value="<?= $isbn_13 ?>" />
                                 <input type="hidden" name="title" value="<?= $book_title ?>" />
-                                <input type="hidden" name="authors" value="<?= $authors = implode(" ", $authors_array); ?>" />
+                                <input type="hidden" name="authors" value="<?= $authors ?>" />
 
                                 <input type="hidden" name="published_date" value="<?= $published_date ?>" />
                                 <input type="hidden" name="thumbnail_uri" value="<?= $thumbnail_uri ?>" />
-
                             </form>
                         </div>
                     </section>
