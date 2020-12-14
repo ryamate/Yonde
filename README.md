@@ -23,7 +23,7 @@ PHPで制作予定のアプリです。
 ## ローカル環境へのインストール方法
 
 ## DB設計（ER図）
-
+![erd](https://user-images.githubusercontent.com/57904570/102063645-a52a4180-3e39-11eb-9834-8b2e4c5f95e2.png)
 ## その他
 
 ## 作者
