@@ -41,7 +41,8 @@ function createTable($link)
 {
     $createTableSql = <<<EOT
 CREATE TABLE picture_books (
-    isbn_13 VARCHAR(100) NOT NULL PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    isbn_13 VARCHAR(100) UNIQUE,
     title VARCHAR(255),
     authors VARCHAR(255),
     published_date VARCHAR(10),
