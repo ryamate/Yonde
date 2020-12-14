@@ -7,7 +7,7 @@ function listStoredPictureBooks($link)
 {
 
     $stored_picture_books = [];
-    $sql = "SELECT s.stored_picture_book_id, s.isbn_13, s.five_star_rating, s.read_status, s.review, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.isbn_13 = p.isbn_13";
+    $sql = "SELECT s.id, s.picture_book_id, s.five_star_rating, s.read_status, s.review, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id";
     $results = mysqli_query($link, $sql);
 
     while ($stored_picture_book = mysqli_fetch_assoc($results)) {
