@@ -39,7 +39,8 @@ function createTable($link)
 {
     $createTableSql = <<<EOT
 CREATE TABLE stored_picture_books (
-  stored_picture_book_id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  family_id
   isbn_13 VARCHAR(100) UNIQUE NOT NULL,
   five_star_rating INTEGER,
   read_status VARCHAR(100),
