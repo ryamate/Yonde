@@ -12,7 +12,7 @@
 <body>
     <nav class="fixed-top navbar navbar-expand-md shadow-sm" style="background: rgba(255,255,255,0.9);">
         <h1 class="h2">
-            <a class="text-teal1 text-decoration-none" href="bookshelf.php"><img src="/image/package_design.png" alt="yonde" height="45">よんで</a>
+            <a class="text-teal1 text-decoration-none" href="bookshelf.php"><img src="/images/package_design.png" alt="yonde" height="45">よんで</a>
         </h1>
     </nav>
     <header>
