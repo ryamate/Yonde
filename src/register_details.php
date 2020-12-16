@@ -1,6 +1,6 @@
 <?php
 
-$title = '詳細登録';
+$title = 'よんで-Yonde-詳細登録';
 
 $stored_picture_book = [
     'isbn_13' => $picture_book['isbn_13'],
