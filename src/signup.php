@@ -11,6 +11,6 @@ if (isset($_SESSION['EMAIL'])) {
     exit;
 }
 
-$title = '会員登録';
-$content = __DIR__ . '/views/sign_up.php';
-include __DIR__ . '/views/layout.php';
+$title = 'よんで-Yonde-新規登録';
+$content = __DIR__ . '/views/signup.php';
+include __DIR__ . '/views/layout_before_login.php';
