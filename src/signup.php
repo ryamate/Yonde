@@ -11,6 +11,14 @@ if (isset($_SESSION['EMAIL'])) {
     exit;
 }
 
+$user = [
+    'email' => '',
+    'user_name' => '',
+    'password' => ''
+];
+
+$errors = [];
+
 $title = 'よんで-Yonde-新規登録';
 $content = __DIR__ . '/views/signup.php';
 include __DIR__ . '/views/layout_before_login.php';

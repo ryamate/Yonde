@@ -1,35 +1,31 @@
 <main>
-    <div class="container">
-        <h1>Yondeの新規登録</h1>
-        <h2>ようこそ、Yondeへ。</h2>
+    <div class="container" style="margin-top: 90px;">
+        <h3>「よんで」の新規登録</h3>
+        <h4>　ようこそ、「よんで」へ。</h4>
         <form action="create_user.php" method="POST">
-            <!-- <?php if (count($errors)) : ?>
+            <?php if (count($errors)) : ?>
                 <div class="text-danger">
                     <ul>
                         <?php foreach ($errors as $error) : ?>
-                            <li><?php echo $error; ?></li>
+                            <li><?= $error; ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
-            <?php endif; ?> -->
+            <?php endif; ?>
             <div class="form-group">
-                <label for="email">email</label>
-                <input class="form-control" type="email" id="email" name="email">
-                <!-- <input class="form-control" type="email" id="email" name="email" value="<?= $anger['happened_date']; ?>"> -->
-
+                <label for="email">メールアドレス</label>
+                <input class="form-control" type="email" id="email" name="email" value="<?= $user['email']; ?>">
             </div>
-            <div>
-
-                <label for="user_name">user_name</label>
-                <input type="user_name" name="user_name">
+            <div class="form-group">
+                <label for="user_name">よんでID</label>
+                <input class="form-control" type="user_name" id="user_name" name="user_name" value="<?= $user['user_name']; ?>">
             </div>
-            <div>
-
-                <label for="password">password</label>
-                <input type="password" name="password">
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input class="form-control" type="password" id="password" name="password" value="<?= $user['password']; ?>">
+                <p class="text-dark">※パスワードは半角英数字をそれぞれ１文字以上含んだ、８文字以上で設定してください。</p>
             </div>
-            <button type="submit" class="btn btn-sm bg-warning text-decoration-none text-white font-weight-bold ml-2 mr2">新規登録する</button>
-            <p>※パスワードは半角英数字をそれぞれ１文字以上含んだ、８文字以上で設定してください。</p>
+            <button type="submit" class="btn bg-warning text-decoration-none text-white">新規登録する</button>
         </form>
     </div>
 </main>
