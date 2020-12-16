@@ -1,3 +1,4 @@
+<main>
     <h1>ログイン</h1>
     <form action="log_in.php" method="post">
         <div>
@@ -12,3 +13,4 @@
             <button type="submit">ログイン</button>
         </div>
     </form>
+</main>
