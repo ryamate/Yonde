@@ -11,6 +11,6 @@ if (isset($_SESSION['EMAIL'])) {
     exit;
 }
 
-$title = 'ログイン';
+$title = 'よんで-Yonde-ログイン';
 $content = __DIR__ . '/views/input_login.php';
-include __DIR__ . '/views/layout.php';
+include __DIR__ . '/views/layout_before_login.php';

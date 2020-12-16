@@ -44,5 +44,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $link = dbConnect();
     createUser($link, $user);
     mysqli_close($link);
-    include __DIR__ . '/index.php';
+    include __DIR__ . '/bookshelf.php';
 }
