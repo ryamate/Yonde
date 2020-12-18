@@ -17,15 +17,13 @@
         <div class="row collapse navbar-collapse mr-auto">
             <a class="text-white text-decoration-none mb-0 h3" href="/">よんで</a>
         </div>
-        <!-- </div> -->
         <div class="navbar-expand">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="btn btn-sm bg-warning text-decoration-none text-white font-weight-bold ml-2 mr2" href="signup.php" role="button">新規登録</a>
+                    <a class="btn btn-sm bg-warning text-decoration-none text-white font-weight-bold ml-2 mr-2" href="signup.php" role="button">新規登録</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold ml-2 mr2" href="input_login.php" role="button" disabled>ログイン</a>
-                    <!-- <button type="submit" class="btn btn-teal1 shadow">新規登録</button> -->
+                    <a class="btn btn-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold ml-2 mr-2" href="input_login.php" role="button" disabled>　ログイン　</a>
                 </li>
             </ul>
         </div>
