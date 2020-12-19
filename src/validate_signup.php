@@ -20,7 +20,7 @@ function validateUser($link, $user, $file_name, $entered_email)
     if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = '*メールアドレス：入力された値が正しくありません。';
     } elseif (isset($registered_email['email'])) {
-        $errors['email'] = '*メールアドレス：登録済みです。';
+        $errors['email'] = '*メールアドレス：登録済みのメールアドレスです。';
     }
 
     if (!strlen($user['user_name'])) {
@@ -28,7 +28,7 @@ function validateUser($link, $user, $file_name, $entered_email)
     } elseif (strlen($user['user_name']) > 16) {
         $errors['user_name'] = '*よんでID：16文字以内 で入力願います。';
     } elseif (isset($registered_user_name['user_name'])) {
-        $errors['user_name'] = '*よんでID：登録済みです。';
+        $errors['user_name'] = '*よんでID："' . $registered_user_name['user_name'] . '"は、使用されています。';
     }
 
     if (!preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $user['password'])) {
