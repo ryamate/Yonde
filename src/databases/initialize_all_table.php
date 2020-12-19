@@ -125,8 +125,8 @@ function createUsersTable($link)
     $createTableSql = <<<EOT
     CREATE TABLE users (
         id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        user_name VARCHAR(255),
-        email VARCHAR(128) UNIQUE,
+        user_name VARCHAR(100) UNIQUE,
+        email VARCHAR(100) UNIQUE,
         password VARCHAR(255),
         introduction VARCHAR(1000),
         user_image_path VARCHAR(1000),

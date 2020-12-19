@@ -1,18 +1,23 @@
 <?php
 session_start();
 require_once __DIR__ . '/lib/mysqli.php';
+require_once __DIR__ . '/lib/escape.php';
 
 function createUser($link, $user)
 {
     $sql = <<<EOT
 INSERT INTO users (
-    email,
     user_name,
-    password
+    email,
+    password,
+    user_image_path,
+    created_at
 )VALUES (
-    "{$user['email']}",
     "{$user['user_name']}",
-    "{$user['password']}"
+    "{$user['email']}",
+    "{$user['password']}",
+    "{$user['user_image_path']}",
+    NOW()
 )
 EOT;
     $result = mysqli_query($link, $sql);
@@ -24,22 +29,24 @@ EOT;
     }
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user = [
-        'email' => $_POST['email'],
-        'user_name' => $_POST['user_name'],
-        'password' => $_POST['password']
-    ];
-    if (!count($errors)) {
-        $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
-        $link = dbConnect();
-        createUser($link, $user);
-        mysqli_close($link);
-        header("Location: bookshelf.php");
+    if (!isset($_SESSION['join']['image'])) {
+        $_SESSION['join']['image'] = '';
     }
+    $user = [
+        'email' => $_SESSION['join']['email'],
+        'user_name' => $_SESSION['join']['user_name'],
+        'password' => password_hash($_SESSION['join']['password'], PASSWORD_DEFAULT),
+        'user_image_path' => $_SESSION['join']['image']
+    ];
+    $link = dbConnect();
+    createUser($link, $user);
+    unset($_SESSION['join']);
+    mysqli_close($link);
+    header("Location: complete_registration.php");
+    exit();
 }
 
 $title = 'よんで-Yonde-新規登録';
-$content = __DIR__ . '/views/create_user.php';
+$content = __DIR__ . '/views/check_signup.php';
 include __DIR__ . '/views/layout_before_login.php';

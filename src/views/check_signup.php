@@ -2,10 +2,17 @@
     <div class="container" style="margin-top: 90px;">
         <p>記入した内容を確認して、「新規登録する」ボタンをクリックしてください。</p>
         <form action="create_user.php" method="POST">
+            <input type="hidden" name="action" value="submit" />
             <dl>
                 <dt>メールアドレス</dt>
                 <dd>
                     <?= escape($_SESSION['join']['email']); ?>
+                    <?php if (isset($errors['email'])) : ?>
+                        <div class="text-danger">
+                            <p><?= $errors['email'] ?></p>
+                        </div>
+                    <?php endif; ?>
+
                 </dd>
                 <dt>よんでID</dt>
                 <dd>

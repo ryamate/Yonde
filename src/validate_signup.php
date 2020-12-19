@@ -3,18 +3,32 @@
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/mysqli.php';
 
-function validateUser($user, $file_name)
+function validateUser($link, $user, $file_name, $entered_email)
 {
+    $sql = "SELECT * FROM users WHERE email = '{$user['email']}'";
+    $result = mysqli_query($link, $sql);
+    $registered_email = mysqli_fetch_assoc($result);
+
+    $sql = "SELECT * from users where user_name = '{$user['user_name']}'";
+    $result = mysqli_query($link, $sql);
+    $registered_user_name = mysqli_fetch_assoc($result);
+
+    mysqli_free_result($result);
+
     $errors = [];
 
     if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = '*メールアドレス：入力された値が正しくありません。';
+    } elseif (isset($registered_email['email'])) {
+        $errors['email'] = '*メールアドレス：登録済みです。';
     }
 
     if (!strlen($user['user_name'])) {
         $errors['user_name'] = '*よんでID：入力願います。';
     } elseif (strlen($user['user_name']) > 16) {
         $errors['user_name'] = '*よんでID：16文字以内 で入力願います。';
+    } elseif (isset($registered_user_name['user_name'])) {
+        $errors['user_name'] = '*よんでID：登録済みです。';
     }
 
     if (!preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $user['password'])) {
@@ -38,8 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' => $_POST['password']
     ];
     $file_name = $_FILES['image']['name'];
-    $errors = validateUser($user, $file_name);
-    var_export($file_name);
+    $entered_email = $user['email'];
+    $link = dbConnect();
+    $errors = validateUser($link, $user, $file_name, $entered_email);
     if (!count($errors)) {
         session_start();
         $_SESSION['join'] = $_POST;
