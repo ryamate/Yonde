@@ -61,5 +61,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $link = dbConnect();
     storePictureBook($link, $stored_picture_book);
     mysqli_close($link);
-    include __DIR__ . '/index.php';
+    include __DIR__ . '/bookshelf.php';
 }
