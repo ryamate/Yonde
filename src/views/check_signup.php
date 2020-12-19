@@ -13,11 +13,17 @@
                 </dd>
                 <dt>パスワード</dt>
                 <dd>
-                    ※表示されません
+                    <?php for ($i = 0; $i < mb_strlen($_SESSION['join']['password']); $i++) : ?>
+                        *
+                    <?php endfor; ?>
                 </dd>
-                <dt>写真</dt>
+                <dt>プロフィール画像</dt>
                 <dd>
-
+                    <?php if (isset($_SESSION['join']['image'])) : ?>
+                        <img src="images/user_picture/<?= escape($_SESSION['join']['image']) ?>" alt="">
+                    <?php else : ?>
+                        未選択
+                    <?php endif; ?>
                 </dd>
             </dl>
             <div>
