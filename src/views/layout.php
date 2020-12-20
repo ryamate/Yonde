@@ -10,22 +10,58 @@
 </head>
 
 <body>
-    <nav class="fixed-top navbar navbar-expand-md shadow-sm" style="background: rgba(255,255,255,0.9);">
+    <nav class="navbar navbar-expand-md fixed-top shadow-sm" style="height: 60px; vertical-align: middle;background: rgba(255,255,255,0.9);">
+        <div class="navbar-brand p-0">
+            <a href="bookshelf.php"><img src="/images/package_design.png" alt="yonde" height="45"></a>
+        </div>
+        <div class="row collapse navbar-collapse mr-auto">
+            <a class="text-teal1 text-decoration-none mb-0 h3" href="bookshelf.php">よんで</a>
+        </div>
+        <div class="navbar-expand">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form action="search_result.php" method="POST">
+                        <div>
+                            <label for="search">検索</label>
+                            <input type="text" id="search" name="search">
+                            <button type="submit" class="btn btn-teal1 shadow mt-2 mb-2"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item">
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- <nav class="fixed-top navbar navbar-expand-md shadow-sm" style="background: rgba(255,255,255,0.9);">
         <h1 class="h2">
             <a class="text-teal1 text-decoration-none" href="bookshelf.php"><img src="/images/package_design.png" alt="yonde" height="45">よんで</a>
         </h1>
-    </nav>
-    <header>
-
-    </header>
-    <main>
-        <div class="container" style="margin-top: 90px;">
-            <?php include $content; ?>
-        </div>
-    </main>
-    <footer>
-
-    </footer>
+    </nav> -->
+    <?php include $content; ?>
 </body>
+<footer>
+    <div class=" bg-teal1 text-white" style="margin-top: 74px;">
+        <div class="container text-center pt-4 mb-4" style="font-size:x-small;">
+            <a class="btn btn-link">
+                <h6>利用規約</h6>
+            </a>
+            <a class="btn btn-link">
+                <h6>プライバシーポリシー</h6>
+            </a>
+            <a class="btn btn-link">
+                <h6> 特定商取引に関する表記</h6>
+            </a>
+            <a class="btn btn-link">
+                <h6> お問い合わせ</h6>
+            </a>
+        </div>
+        <div class="container text-center mt-4 pb-5">
+            <a class="" style="font-size:xx-small;">© 2020 Ryuzo Yamate
+            </a>
+        </div>
+    </div>
+</footer>
+
 
 </html>
