@@ -1,7 +1,20 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/mysqli.php';
+
+function getUser($link, $user)
+{
+    $sql = "SELECT * FROM users WHERE user_name = '{$user['user_name']}' ";
+    $result = mysqli_query($link, $sql);
+    $login_user = mysqli_fetch_assoc($result);
+
+    mysqli_free_result($result);
+
+    return $login_user;
+}
 
 function listStoredPictureBooks($link)
 {
@@ -19,8 +32,18 @@ function listStoredPictureBooks($link)
     return $stored_picture_books;
 }
 
-$link = dbConnect();
-$stored_picture_books = listStoredPictureBooks($link);
+if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
+    $_SESSION['time'] = time();
+    $user = [
+        'user_name' => $_SESSION['user_name'],
+    ];
+    $link = dbConnect();
+    $login_user = getUser($link, $user);
+    $stored_picture_books = listStoredPictureBooks($link);
+} else {
+    header('Location: login.php');
+    exit;
+}
 
 $title = 'よんで-Yonde-絵本棚';
 $content = __DIR__ . '/views/bookshelf.php';
