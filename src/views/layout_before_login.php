@@ -23,12 +23,34 @@
                     <a class="btn btn-sm bg-warning text-decoration-none text-white font-weight-bold ml-2 mr-2" href="signup.php" role="button">新規登録</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold ml-2 mr-2" href="input_login.php" role="button" disabled>　ログイン　</a>
+                    <a class="btn btn-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold ml-2 mr-2" href="login.php" role="button" disabled>　ログイン　</a>
                 </li>
             </ul>
         </div>
     </nav>
     <?php include $content; ?>
 </body>
+<footer>
+    <div style="margin-top: 74px;">
+        <div class="container text-center mt-5 mb-5" style="font-size:x-small;">
+            <a class="btn btn-link">
+                <h6>利用規約</h6>
+            </a>
+            <a class="btn btn-link">
+                <h6>プライバシーポリシー</h6>
+            </a>
+            <a class="btn btn-link">
+                <h6> 特定商取引に関する表記</h6>
+            </a>
+            <a class="btn btn-link">
+                <h6> お問い合わせ</h6>
+            </a>
+        </div>
+        <div class="container text-center mt-5 mb-5">
+            <a class="" style="font-size:xx-small;">© 2020 Ryuzo Yamate
+            </a>
+        </div>
+    </div>
+</footer>
 
 </html>
