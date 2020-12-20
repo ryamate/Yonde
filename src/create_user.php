@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
         'email' => $_SESSION['join']['email'],
         'user_name' => $_SESSION['join']['user_name'],
-        'password' => password_hash($_SESSION['join']['password'], PASSWORD_DEFAULT),
+        'password' => sha1($_SESSION['join']['password']),
         'user_image_path' => $_SESSION['join']['image']
     ];
     $link = dbConnect();
     createUser($link, $user);
     unset($_SESSION['join']);
     mysqli_close($link);
-    header("Location: complete_registration.php");
+    header("Location: complete_signup.php");
     exit();
 }
 
