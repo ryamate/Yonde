@@ -3,7 +3,7 @@
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/mysqli.php';
 
-function validateUser($link, $user, $file_name, $entered_email)
+function validateUser($link, $user, $file_name)
 {
     $sql = "SELECT * FROM users WHERE email = '{$user['email']}'";
     $result = mysqli_query($link, $sql);
@@ -52,9 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' => $_POST['password']
     ];
     $file_name = $_FILES['image']['name'];
-    $entered_email = $user['email'];
     $link = dbConnect();
-    $errors = validateUser($link, $user, $file_name, $entered_email);
+    $errors = validateUser($link, $user, $file_name);
     if (!count($errors)) {
         session_start();
         $_SESSION['join'] = $_POST;
