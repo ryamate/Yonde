@@ -10,7 +10,7 @@
                             </h1>
                             <div class="row d-none d-md-block">
                                 <a class="col-md-4 btn btn-teal1 font-weight-bold shadow mt-2 mb-2 ml-4" href="signup.php" role="button">新規登録する</a>
-                                <a class="col-md-4 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2" href="input_login.php" role="button">ログインする</a>
+                                <a class="col-md-4 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2" href="login.php" role="button">ログインする</a>
                             </div>
                         </div>
                         <!-- 中 -->
@@ -20,7 +20,7 @@
                             </h3>
                             <div class="row d-none d-md-block">
                                 <a class="col-md-5 btn btn-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="signup.php" role="button">新規登録する</a>
-                                <a class="col-md-5 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="input_login.php" role="button">ログインする</a>
+                                <a class="col-md-5 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="login.php" role="button">ログインする</a>
                             </div>
                         </div>
                         <div class="col-md-6 d-none d-md-block">
@@ -37,7 +37,7 @@
                             </h4>
                         </div>
                         <div class="container d-block d-md-none">
-                            <a class="btn btn-outline-teal1 btn-block shadow mt-2 mb-2" href="input_login.php" role="button">ログインする</a>
+                            <a class="btn btn-outline-teal1 btn-block shadow mt-2 mb-2" href="login.php" role="button">ログインする</a>
                         </div>
                         <div class="col-lg-3 col-md-12 d-block d-md-none">
                             <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="signup.php" role="button">新規登録する</a>
@@ -58,7 +58,7 @@
                         「Yonde（よんで）」</b>
                 </h2>
                 <p>「よんで」はこどもの絵本読み聞かせをおねだりするお決まりのセリフ。<br><br>
-                    こどもが絵本好きだと、たくさんの絵本を読む。同じ絵本を何度も読むこともある。<br>
+                    こどもは、たくさんの絵本を読む。こどもが絵本好きだと、同じ絵本をなんども読むこともある。<br>
                     でも、その絵本を読んだ記録をつけることはあまりない。<br>
                     子供は大きくなると、自分が読み聞かせてもらった本の大半は忘れてしまう。<br>
                     だから、記録として残して家族と共有しておくと、<br>
@@ -71,7 +71,7 @@
                         「Yonde（よんで）」</b>
                 </h5>
                 <p>「よんで」はこどもの絵本読み聞かせをおねだりするお決まりのセリフ。<br><br>
-                    こどもが絵本好きだと、たくさんの絵本を読む。同じ絵本を何度も読むこともある。<br>
+                    こどもは、たくさんの絵本を読む。こどもが絵本好きだと、同じ絵本をなんども読むこともある。<br>
                     でも、その絵本を読んだ記録をつけることはあまりない。<br>
                     子供は大きくなると、自分が読み聞かせてもらった本の大半は忘れてしまう。<br>
                     だから、記録として残して家族と共有しておくと、<br>
@@ -212,3 +212,25 @@
             </div>
         </div>
     </main>
+    <footer>
+        <div style="margin-top: 74px;">
+            <div class="container text-center mt-5 mb-5" style="font-size:x-small;">
+                <a class="btn btn-link">
+                    <h6>利用規約</h6>
+                </a>
+                <a class="btn btn-link">
+                    <h6>プライバシーポリシー</h6>
+                </a>
+                <a class="btn btn-link">
+                    <h6> 特定商取引に関する表記</h6>
+                </a>
+                <a class="btn btn-link">
+                    <h6> お問い合わせ</h6>
+                </a>
+            </div>
+            <div class="container text-center mt-5 mb-5">
+                <a class="" style="font-size:xx-small;">© 2020 Ryuzo Yamate
+                </a>
+            </div>
+        </div>
+    </footer>
