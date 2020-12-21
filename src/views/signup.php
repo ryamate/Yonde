@@ -52,6 +52,12 @@
                 <button type="submit" class="btn bg-warning text-decoration-none text-white">新規登録する</button>
             </form>
         </div>
+        <div class="card container mt-4 p-4">
+            <form action="validate_login.php?action=test_user_login" method="POST" enctype="multipart/form-data">
+                <p>* 新規登録せずに機能を試したい方はこちら</p>
+                <button type="submit" class="btn bg-white btn-outline-teal1 text-decoration-none text-teal1">テストユーザーログイン</button>
+            </form>
+        </div>
     </div>
 
     </div>
