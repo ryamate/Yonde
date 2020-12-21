@@ -212,25 +212,3 @@
             </div>
         </div>
     </main>
-    <footer>
-        <div style="margin-top: 74px;">
-            <div class="container text-center mt-5 mb-5" style="font-size:x-small;">
-                <a class="btn btn-link">
-                    <h6>利用規約</h6>
-                </a>
-                <a class="btn btn-link">
-                    <h6>プライバシーポリシー</h6>
-                </a>
-                <a class="btn btn-link">
-                    <h6> 特定商取引に関する表記</h6>
-                </a>
-                <a class="btn btn-link">
-                    <h6> お問い合わせ</h6>
-                </a>
-            </div>
-            <div class="container text-center mt-5 mb-5">
-                <a class="" style="font-size:xx-small;">© 2020 Ryuzo Yamate
-                </a>
-            </div>
-        </div>
-    </footer>
