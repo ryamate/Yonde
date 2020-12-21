@@ -234,7 +234,31 @@ function createReadRecordsTable($link)
     }
 }
 
-
+function createTestUser($link)
+{
+    $sql = <<<EOT
+INSERT INTO users (
+    user_name,
+    email,
+    password,
+    user_image_path,
+    created_at
+)VALUES (
+    "test_user",
+    "test@test",
+    "test_user",
+    "test_user_image.jpg",
+    NOW()
+)
+EOT;
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        echo 'test_user追加が完了しました' . PHP_EOL;
+    } else {
+        echo 'Error: test_user追加に失敗しました' . PHP_EOL;
+        echo 'Debugging Error:' . mysqli_error($link) . PHP_EOL;
+    }
+}
 
 $link = dbConnect();
 dropReadRecordsTable($link);
@@ -250,5 +274,6 @@ createFamiliesTable($link);
 createChildrenTable($link);
 createStoredPictureBooksTable($link);
 createReadRecordsTable($link);
+createTestUser($link);
 
 mysqli_close($link);

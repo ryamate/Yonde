@@ -3,8 +3,6 @@
         <h3>「よんで」へログイン</h3>
         <div>
             <p>メールアドレスとパスワードを記入して、ログインしてください。</p>
-            <p>*新規登録がまだの方はこちら
-                &raquo; <a href="signup.php" class="btn btn-sm bg-white btn-outline-warning text-decoration-none text-warning">新規登録する</a></p>
         </div>
         <?php if (isset($errors['user'])) : ?>
             <div class="text-danger">
@@ -40,5 +38,18 @@
                 <button type="submit" class="btn bg-teal1 text-decoration-none text-white">ログインする</button>
             </form>
         </div>
+        <div class="card container mt-4 p-4">
+            <form action="validate_login.php?action=test_user_login" method="POST" enctype="multipart/form-data">
+                <div>
+                    <p class="text-warning">* 新規登録がまだの方はこちら</p>
+                    <a href="signup.php" class="btn btn-sm bg-warning btn-outline-warning text-decoration-none text-white" role="button">新規登録する</a>
+                </div><br>
+                <div>
+                    <p class="text-teal1">* 新規登録せずに機能を試したい方はこちら</p>
+                    <button type="submit" class="btn btn-sm bg-white btn-outline-teal1 text-decoration-none text-teal1">テストユーザーログイン</button>
+                </div>
+            </form>
+        </div>
+
     </div>
 </main>
