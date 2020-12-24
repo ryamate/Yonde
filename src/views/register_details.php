@@ -44,8 +44,8 @@
                 <input type="number" name="five_star_rating" id="five_star_rating" class="form-control" value="<?= $stored_picture_book['five_star_rating'] ?>">
             </div>
             <div class="form-group">
-                <label for="review">レビュー</label>
-                <textarea type="text" name="review" id="review" rows="5" class="form-control" value="<?= $stored_picture_book['review'] ?>"></textarea>
+                <label for="summary">感想</label>
+                <textarea type="text" name="summary" id="summary" rows="5" class="form-control" value="<?= $stored_picture_book['summary'] ?>"></textarea>
             </div>
             <input type="hidden" name="isbn_13" value="<?= $picture_book['isbn_13'] ?>" />
             <button type="submit" class="btn btn-primary mb-4">登録する</button>
