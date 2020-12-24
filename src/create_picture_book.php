@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/lib/mysqli.php';
 
 function createPictureBook($link, $picture_book)
@@ -10,13 +12,15 @@ INSERT INTO picture_books (
     title,
     authors,
     published_date,
-    thumbnail_uri
+    thumbnail_uri,
+    created_at
 )VALUES (
     "{$picture_book['isbn_13']}",
     "{$picture_book['title']}",
     "{$picture_book['authors']}",
     "{$picture_book['published_date']}",
-    "{$picture_book['thumbnail_uri']}"
+    "{$picture_book['thumbnail_uri']}",
+    NOW()
 )
 EOT;
     $result = mysqli_query($link, $sql);
