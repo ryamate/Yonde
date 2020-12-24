@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/lib/mysqli.php';
 
 function getPictureBookId($link, $stored_picture_book)
@@ -13,19 +15,23 @@ function getPictureBookId($link, $stored_picture_book)
     return $picture_book_id;
 }
 
-function storePictureBook($link, $stored_picture_book)
+function storePictureBook($link, $stored_picture_book, $user_id)
 {
     $sql = <<<EOT
 INSERT INTO stored_picture_books (
     picture_book_id,
+    user_id,
     five_star_rating,
     read_status,
-    review
+    summary,
+    created_at
 )VALUES (
     "{$stored_picture_book['id']}",
+    "{$user_id}",
     "{$stored_picture_book['five_star_rating']}",
     "{$stored_picture_book['read_status']}",
-    "{$stored_picture_book['review']}"
+    "{$stored_picture_book['summary']}",
+    NOW()
 )
 EOT;
     $result = mysqli_query($link, $sql);
@@ -51,15 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'isbn_13' => $_POST['isbn_13'],
         'five_star_rating' => (int)$_POST['five_star_rating'],
         'read_status' => $read_status,
-        'review' => $_POST['review'],
+        'summary' => $_POST['summary'],
     ];
     // バリデーションする
     $link = dbConnect();
     $picture_book_id = getPictureBookId($link, $stored_picture_book);
     $stored_picture_book = array_merge($picture_book_id, $stored_picture_book);
 
+    $user_id = $_SESSION['id'];
     $link = dbConnect();
-    storePictureBook($link, $stored_picture_book);
+    storePictureBook($link, $stored_picture_book, $user_id);
     mysqli_close($link);
     include __DIR__ . '/bookshelf.php';
 }

@@ -9,7 +9,7 @@ function validateUser($link, $user, $file_name)
     $result = mysqli_query($link, $sql);
     $registered_email = mysqli_fetch_assoc($result);
 
-    $sql = "SELECT * from users where user_name = '{$user['user_name']}'";
+    $sql = "SELECT * FROM users WHERE user_name = '{$user['user_name']}'";
     $result = mysqli_query($link, $sql);
     $registered_user_name = mysqli_fetch_assoc($result);
 
