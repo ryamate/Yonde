@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_REQUEST['action'] === 'test_user_login') {
         $user = [
             'email' => 'test@test',
-            'user_name' => 'test_user',
+            'user_name' => 'てすと',
             'password' => 'test_user'
         ];
         $errors = [];

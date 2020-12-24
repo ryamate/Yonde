@@ -1,4 +1,4 @@
-        <header style="margin-top: 90px; margin-bottom:60px;">
+        <header style="margin-top: 60px; margin-bottom:60px;">
             <section class="card-deck shadow-sm mb-4">
                 <div class="card border-0 d-flex align-items-center justify-content-center">
                     <div class="card-body">
@@ -10,9 +10,13 @@
                             </a>
                         <?php endif; ?>
                     </div>
+                    <div>
+                        <a href="" class="small">プロフィール設定</a>
+                    </div>
                 </div>
                 <div class="card border-0 d-flex align-items-center justify-content-center">
-                    <h5 class="card-title"><?= $login_user['user_name']; ?>さんファミリーの絵本棚</h5>
+                    <p class="card-title"><?= $login_user['user_name']; ?>さん</p>
+                    <p>本棚の絵本</p>
                 </div>
                 <div class="card border-0"></div>
             </section>
@@ -62,7 +66,7 @@
                         <div class="card border-0 d-flex align-items-center justify-content-center">
                             <div class="card-body">
                                 <p>
-                                    <?php echo nl2br(escape($stored_picture_book['review']), false); ?>
+                                    <?php echo nl2br(escape($stored_picture_book['summary']), false); ?>
                                 </p>
                             </div>
                         </div>
