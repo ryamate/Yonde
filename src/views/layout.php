@@ -20,12 +20,10 @@
         <div class="navbar-expand">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <form action="search_result.php" method="POST">
-                        <div>
-                            <label for="search">検索</label>
-                            <input type="text" id="search" name="search">
-                            <button type="submit" class="btn btn-teal1 shadow mt-2 mb-2"><i class="fas fa-search"></i></button>
-                        </div>
+                    <form action="search_result.php" method="POST" class="form-inline">
+                        <input type="text" id="search" name="search" class="form-control" placeholder="絵本を検索">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-teal1"><i class="fas fa-search"></i></button>
                     </form>
                 </li>
                 <li class="nav-item">
@@ -33,11 +31,6 @@
             </ul>
         </div>
     </nav>
-    <!-- <nav class="fixed-top navbar navbar-expand-md shadow-sm" style="background: rgba(255,255,255,0.9);">
-        <h1 class="h2">
-            <a class="text-teal1 text-decoration-none" href="bookshelf.php"><img src="/images/package_design.png" alt="yonde" height="45">よんで</a>
-        </h1>
-    </nav> -->
     <?php include $content; ?>
 </body>
 <footer>
