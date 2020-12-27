@@ -3,33 +3,51 @@
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/db_connect.php';
 
-$user = [
-    'email' => '',
-    'user_name' => '',
-    'password' => ''
-];
-
-$errors = [];
-
-session_start();
-//ログイン済みの場合
-// if (isset($_SESSION['user_name'])) {
-//     echo 'ようこそ' .  escape($_SESSION['user_name']) . "さん<br>";
-//     echo "<a href='/logout.php'>ログアウトはこちら。</a>";
-//     exit;
-// }
-
-if (!isset($_REQUEST['action'])) {
-    $_REQUEST = ['action' => ''];
-}
-if ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['join'])) {
-    $_POST = $_SESSION['join'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
         'email' => $_POST['email'],
         'user_name' => $_POST['user_name'],
         'password' => $_POST['password']
     ];
+    $file_name = $_FILES['image']['name'];
+    $dbc = new Dbc;
+    $errors = $dbc->validateUserSignup($user, $file_name);
+    if (!count($errors)) {
+        session_start();
+        $_SESSION['join'] = $_POST;
+        if (!empty($file_name)) {
+            $image = date('Ymd') . $user['user_name'] . '_' . $_FILES['image']['name'];
+            move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/images/user_picture/' . $image);
+            $_SESSION['join']['image'] = $image;
+        }
+        header("Location: check_signup.php");
+        exit();
+    }
+} else {
+
+    $user = [
+        'email' => '',
+        'user_name' => '',
+        'password' => ''
+    ];
+    $errors = [];
+
+    session_start();
+
+    if (!isset($_REQUEST['action'])) {
+        $_REQUEST = ['action' => ''];
+    }
+    if ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['join'])) {
+        $_POST = $_SESSION['join'];
+        $user = [
+            'email' => $_POST['email'],
+            'user_name' => $_POST['user_name'],
+            'password' => $_POST['password']
+        ];
+    }
 }
+
+var_export($_FILES);
 
 $title = 'よんで-Yonde-新規登録';
 $content = __DIR__ . '/views/signup.php';
