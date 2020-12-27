@@ -49,7 +49,7 @@
     </header>
 
     <main>
-        <!-- 説明 → Clear! -->
+        <!-- 大 -->
         <div style="margin-top: 74px;">
             <div class="container mt-4 mb-4 text-center d-none d-md-block">
                 <h2>
@@ -78,7 +78,7 @@
                     いつか「アルバム」のようなものになる。</p>
             </div>
         </div>
-        <!-- ポイント３つ -->
+        <!-- 中 -->
         <div style="margin-top: 74px;">
             <div class="container d-none d-md-block mt-4">
                 <div class="card-deck row">
@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <!-- 幅狭い時 -->
+        <!-- 小 -->
         <div class="container d-block d-md-none mt-4">
             <div class="card-deck row">
                 <div class="card border-0">
@@ -146,6 +146,7 @@
         </div>
 
         <!-- サービス名に込めた想い -->
+        <!-- 大 -->
         <div style="margin-top: 74px;">
             <div class="bg-light pt-5 pb-4">
                 <div class="container mt-4 mb-4 text-center d-none d-md-block">
@@ -174,6 +175,7 @@
                             いつでもこたえてあげる気持ちになる</b>
                     </h1>
                 </div>
+                <!-- 小 -->
                 <div class="container mt-4 mb-4 d-block d-md-none">
                     <h4>
                         <b>サービス名に込めた想い</b>
