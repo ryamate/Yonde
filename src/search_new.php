@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/mysqli.php';
+require_once __DIR__ . '/lib/db_connect.php';
 
 $title = 'よんで-Yonde-絵本検索';
 $content = __DIR__ . '/views/search_new.php';
