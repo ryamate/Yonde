@@ -87,11 +87,14 @@ class Dbc
     {
         $dbh = $this->dbConnect();
 
-        $stmt = $dbh->prepare('SELECT user_name FROM users WHERE email = :user_email');
+        $stmt = $dbh->prepare('SELECT email FROM users WHERE email = :user_email');
         $stmt->bindValue(':user_email', $user['email'], PDO::PARAM_STR);
-
         $stmt->execute();
+        $registered_email = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $stmt = $dbh->prepare('SELECT user_name FROM users WHERE user_name = :user_name');
+        $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
+        $stmt->execute();
         $registered_user_name = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $dbh = null;
