@@ -11,7 +11,7 @@
         <?php endif; ?>
 
         <div class="card container mt-4 p-4">
-            <form action="validate_login.php" method="POST" enctype="multipart/form-data">
+            <form action="login.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="user_name">よんでID</label>
                     <input class="form-control" type="user_name" id="user_name" name="user_name" value="<?= escape($user['user_name']); ?>">
@@ -39,7 +39,7 @@
             </form>
         </div>
         <div class="card container mt-4 p-4">
-            <form action="validate_login.php?action=test_user_login" method="POST" enctype="multipart/form-data">
+            <form action="login.php?action=test_user_login" method="POST" enctype="multipart/form-data">
                 <div>
                     <p>* 新規登録がまだの方はこちら</p>
                     <a href="signup.php" class="btn btn-sm bg-warning btn-outline-warning text-decoration-none text-white" role="button">新規登録する</a>
