@@ -121,7 +121,7 @@ function createUsersTable($link)
     $createTableSql = <<<EOT
     CREATE TABLE users (
         id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        family_id INTEGER,
+        family_id INTEGER NULL,
         user_name VARCHAR(100) UNIQUE,
         email VARCHAR(100) UNIQUE,
         password VARCHAR(255),
@@ -190,7 +190,7 @@ function createStoredPictureBooksTable($link)
     $createTableSql = <<<EOT
     CREATE TABLE stored_picture_books (
         id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        picture_book_id INTEGER UNIQUE NOT NULL,
+        picture_book_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         five_star_rating INTEGER,
         read_status VARCHAR(100),

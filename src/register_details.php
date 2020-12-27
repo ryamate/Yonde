@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/lib/escape.php';
+
 $stored_picture_book = [
     'isbn_13' => $picture_book['isbn_13'],
     'picture_book_id' => '',
