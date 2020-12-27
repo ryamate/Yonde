@@ -4,11 +4,11 @@
 
         <div class="container">
             <div>
-                <img src="<?= $picture_book["thumbnail_uri"]; ?>" alt="表紙イメージ">
+                <img src="<?= escape($picture_book["thumbnail_uri"]); ?>" alt="表紙イメージ">
             </div>
-            <h4 class="card-title"><?= $picture_book["title"]; ?></h4>
+            <h4 class="card-title"><?= escape($picture_book["title"]); ?></h4>
             <div class="card-text">
-                <p><?= $picture_book["authors"]; ?>/<?= $picture_book["published_date"]; ?>出版</p>
+                <p><?= escape($picture_book["authors"]); ?>/<?= escape($picture_book["published_date"]); ?>出版</p>
             </div>
         </div>
         <form action="store_picture_book.php" method="POST">
@@ -41,13 +41,13 @@
             </div>
             <div class="form-group">
                 <label for="five_star_rating">評価(5点満点の整数)</label>
-                <input type="number" name="five_star_rating" id="five_star_rating" class="form-control" value="<?= $stored_picture_book['five_star_rating'] ?>">
+                <input type="number" name="five_star_rating" id="five_star_rating" class="form-control" value="<?= $stored_picture_book['five_star_rating']; ?>">
             </div>
             <div class="form-group">
                 <label for="summary">感想</label>
-                <textarea type="text" name="summary" id="summary" rows="5" class="form-control" value="<?= $stored_picture_book['summary'] ?>"></textarea>
+                <textarea type="text" name="summary" id="summary" rows="5" class="form-control" value="<?= escape($stored_picture_book['summary']); ?>"></textarea>
             </div>
-            <input type="hidden" name="isbn_13" value="<?= $picture_book['isbn_13'] ?>" />
+            <input type="hidden" name="isbn_13" value="<?= escape($picture_book['isbn_13']); ?>" />
             <button type="submit" class="btn btn-primary mb-4">登録する</button>
         </form>
         </div>
