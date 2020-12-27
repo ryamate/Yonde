@@ -22,8 +22,6 @@ if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
     exit;
 }
 
-// var_export($stored_picture_books);
-
 $title = 'よんで-Yonde-絵本棚';
 $content = __DIR__ . '/views/bookshelf.php';
 include __DIR__ . '/views/layout.php';
