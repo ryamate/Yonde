@@ -9,7 +9,6 @@
                 <p><?= $errors['user'] ?></p>
             </div>
         <?php endif; ?>
-
         <div class="card container mt-4 p-4">
             <form action="login.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
@@ -50,6 +49,5 @@
                 </div>
             </form>
         </div>
-
     </div>
 </main>
