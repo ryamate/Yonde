@@ -3,32 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/mysqli.php';
-
-function validateUserLogin($link, $user, $encoded_password)
-{
-    $sql = "SELECT * FROM users WHERE user_name = '{$user['user_name']}' AND password = '{$encoded_password}'";
-    $result = mysqli_query($link, $sql);
-    $registered_user = mysqli_fetch_assoc($result);
-
-    mysqli_free_result($result);
-
-    $errors = [];
-
-    if (!strlen($user['user_name'])) {
-        $errors['user_name'] = '*よんでID：入力願います。';
-    }
-
-    if (!strlen($user['password'])) {
-        $errors['password'] = '*パスワード：入力願います。';
-    }
-
-    if (!$registered_user) {
-        $errors['user'] = '*よんでID、パスワードを正しく入力願います。';
-    }
-
-    return $errors;
-}
+require_once __DIR__ . '/lib/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_REQUEST['action'])) {
@@ -47,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password' => $_POST['password']
         ];
         $encoded_password = sha1($user['password']);
-        $link = dbConnect();
-        $errors = validateUserLogin($link, $user, $encoded_password);
+        $dbc = new Dbc;
+        $errors = $dbc->validateUserLogin($user, $encoded_password);
     }
     if (!count($errors)) {
         session_regenerate_id(true);

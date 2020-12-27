@@ -3,7 +3,7 @@
 session_start();
 
 require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/mysqli.php';
+require_once __DIR__ . '/lib/db_connect.php';
 
 // エラーをnullにする（@$item["volumeInfo"]['authors']などに使用）
 error_reporting(E_ALL);
