@@ -212,18 +212,36 @@ class Dbc
         $dbh = null;
     }
 
+    public function getStoredPictureBookGoogleBooksId($login_user)
+    {
+        $dbh = $this->dbConnect();
+
+        $stmt = $dbh->prepare('SELECT p.google_books_id, p.title FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id WHERE user_id = :login_user_id');
+        $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $results = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $result;
+        }
+
+        return $results;
+        $dbh = null;
+    }
+
     public function createPictureBook($picture_book)
     {
         $sql = <<<EOT
         INSERT INTO picture_books (
-            isbn_13,
+            google_books_id,
             title,
             authors,
             published_date,
             thumbnail_uri,
             created_at
         )VALUES (
-            :isbn_13,
+            :google_books_id,
             :title,
             :authors,
             :published_date,
@@ -238,7 +256,7 @@ class Dbc
         try {
             $stmt = $dbh->prepare($sql);
 
-            $stmt->bindValue(':isbn_13', $picture_book['isbn_13'], PDO::PARAM_STR);
+            $stmt->bindValue(':google_books_id', $picture_book['google_books_id'], PDO::PARAM_STR);
             $stmt->bindValue(':title', $picture_book['title'], PDO::PARAM_STR);
             $stmt->bindValue(':authors', $picture_book['authors'], PDO::PARAM_STR);
             $stmt->bindValue(':published_date', $picture_book['published_date'], PDO::PARAM_STR);
@@ -257,8 +275,8 @@ class Dbc
     {
         $dbh = $this->dbConnect();
 
-        $stmt = $dbh->prepare('SELECT id FROM picture_books where isbn_13 = :isbn_13');
-        $stmt->bindValue(':isbn_13', $stored_picture_book['isbn_13'], PDO::PARAM_STR);
+        $stmt = $dbh->prepare('SELECT id FROM picture_books where google_books_id = :google_books_id');
+        $stmt->bindValue(':google_books_id', $stored_picture_book['google_books_id'], PDO::PARAM_STR);
 
         $stmt->execute();
 
