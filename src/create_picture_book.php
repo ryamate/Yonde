@@ -9,5 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // バリデーションする
     $dbc = new Dbc;
     $dbc->createPictureBook($picture_book);
-    include __DIR__ . '/register_details.php';
+    // include __DIR__ . '/store_picture_book.php';
+    header("Location: store_picture_book.php");
 }

@@ -47,8 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-var_export($_FILES);
-
 $title = 'よんで-Yonde-新規登録';
 $content = __DIR__ . '/views/signup.php';
 include __DIR__ . '/views/layout_before_login.php';

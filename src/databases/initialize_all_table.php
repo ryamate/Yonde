@@ -167,7 +167,7 @@ function createPictureBooksTable($link)
     $createTableSql = <<<EOT
     CREATE TABLE picture_books (
         id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        isbn_13 VARCHAR(100) UNIQUE,
+        google_books_id VARCHAR(100) UNIQUE,
         title VARCHAR(255),
         authors VARCHAR(255),
         published_date VARCHAR(10),
