@@ -22,7 +22,7 @@
                     <div class="card border-0"></div>
                 </section>
                 <div class="container">
-                    <a href="search_new.php" class="btn btn-teal1 mb-4">絵本を検索する</a>
+                    <a href="search_picture_book.php" class="btn btn-teal1 mb-4">絵本を検索する</a>
                 </div>
             </div>
         </header>
