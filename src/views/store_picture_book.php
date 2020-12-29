@@ -11,7 +11,7 @@
                     <p><?= escape($picture_book["authors"]); ?>/<?= escape($picture_book["published_date"]); ?>出版</p>
                 </div>
             </div>
-            <form action="store_picture_book.php" method="POST">
+            <form action="store_picture_book.php?action=store" method="POST">
                 <?php if (count($errors)) : ?>
                     <div class="text-danger">
                         <ul>
@@ -47,8 +47,8 @@
                     <label for="summary">感想</label>
                     <textarea type="text" name="summary" id="summary" rows="5" class="form-control" value="<?= escape($stored_picture_book['summary']); ?>"></textarea>
                 </div>
-                <input type="hidden" name="isbn_13" value="<?= escape($picture_book['isbn_13']); ?>" />
-                <button type="submit" class="btn btn-primary mb-4">登録する</button>
+                <input type="hidden" name="google_books_id" value="<?= escape($picture_book['google_books_id']); ?>" />
+                <button type="submit" class="btn btn-teal1 mb-4">登録する</button>
             </form>
         </section>
     </div>
