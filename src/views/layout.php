@@ -20,7 +20,7 @@
         <div class="navbar-expand">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <form action="search_result.php" method="POST" class="form-inline">
+                    <form action="search_picture_book.php" method="POST" class="form-inline">
                         <input type="text" id="search" name="search" class="form-control" placeholder="絵本を検索">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-teal1"><i class="fas fa-search"></i></button>
