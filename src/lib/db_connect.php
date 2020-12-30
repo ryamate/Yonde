@@ -198,7 +198,7 @@ class Dbc
     {
         $dbh = $this->dbConnect();
 
-        $stmt = $dbh->prepare('SELECT s.id, s.picture_book_id, s.five_star_rating, s.read_status, s.possession, s.summary, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id WHERE user_id = :login_user_id');
+        $stmt = $dbh->prepare('SELECT s.id, s.picture_book_id, s.five_star_rating, s.read_status, s.possession, s.summary, s.created_at, s.updated_at, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id WHERE user_id = :login_user_id');
         $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
 
         $stmt->execute();
