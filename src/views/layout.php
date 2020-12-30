@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/css/app.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
     <title><?= $title; ?></title>
 </head>
 
@@ -20,11 +21,16 @@
         <div class="navbar-expand">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <form action="search_picture_book.php" method="POST" class="form-inline">
-                        <input type="text" id="search" name="search" class="form-control" placeholder="絵本をさがす">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-teal1"><i class="fas fa-search"></i></button>
-                    </form>
+                    <div class="input-group">
+                        <form action="search_picture_book.php" method="POST" class="form-inline">
+                            <div class="input-group">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="絵本をさがす">
+                                <div class="input-group-append">
+                                    <button class="btn btn-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </li>
                 <li class="nav-item">
                 </li>
