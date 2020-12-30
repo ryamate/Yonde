@@ -64,11 +64,33 @@
                                     <div class="card col-md-3 border-0 d-flex align-items-left justify-content-center bg-white">
                                         <div class="card-body d-flex align-items-end justify-content-end bg-white">
                                             <a href="" class="btn btn-info btn-sm small"><i class="fas fa-pencil-alt"></i><i class="fas fa-plus"></i></a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#exampleModal" title="本棚から削除する"><i class="fas fa-trash"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">削除の確認</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            絵本を本棚から削除してもよろしいですか？
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                                                            <form action="delete_stored_picture_book.php" method="POST">
+                                                                <button type="submit" class="btn btn-danger">OK</button>
+                                                                <input type="hidden" name="stored_picture_book_id" value="<?= $stored_picture_book['id'] ?>" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                            <form action="delete_stored_picture_book.php" method="POST">
-                                                <button type="submit" class="btn btn-danger btn-sm ml-2"><i class="fas fa-trash"></i></button>
-                                                <input type="hidden" name="stored_picture_book_id" value="<?= $stored_picture_book['id'] ?>" />
-                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -107,3 +129,5 @@
                 <?php endif; ?>
             </div>
         </main>
+        <script src="/vendor/twbs/bootstrap/site/docs/4.5/assets/js/vendor/jquery.slim.min.js"></script>
+        <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
