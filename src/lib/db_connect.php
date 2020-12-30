@@ -212,6 +212,28 @@ class Dbc
         $dbh = null;
     }
 
+    public function deleteStoredPictureBook($login_user_id, $stored_picture_book_id)
+    {
+        $sql = 'DELETE FROM stored_picture_books WHERE id = :stored_picture_book_id AND user_id = :login_user_id';
+
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare($sql);
+
+            $stmt->bindValue(':stored_picture_book_id', (int)$stored_picture_book_id, PDO::PARAM_INT);
+            $stmt->bindValue(':login_user_id', (int)$login_user_id, PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '絵本棚からの削除完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
     public function getStoredPictureBookGoogleBooksId($login_user)
     {
         $dbh = $this->dbConnect();
