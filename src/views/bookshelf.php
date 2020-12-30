@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="card border-0 d-flex align-items-center justify-content-center">
-                        <p class="card-title"><?= $login_user['user_name']; ?>さん</p>
+                        <p class="card-title"><?= escape($login_user['user_name']); ?>さん</p>
                         <p>本棚の絵本</p>
                     </div>
                     <div class="card border-0"></div>
@@ -64,7 +64,11 @@
                                     <div class="card col-md-3 border-0 d-flex align-items-left justify-content-center bg-white">
                                         <div class="card-body d-flex align-items-end justify-content-end bg-white">
                                             <a href="" class="btn btn-info btn-sm small"><i class="fas fa-pencil-alt"></i><i class="fas fa-plus"></i></a>
-                                            <a href="delete_stored_picture_book" class="btn btn-danger btn-sm ml-2 small"><i class="fas fa-trash"></i></a>
+
+                                            <form action="delete_stored_picture_book.php" method="POST">
+                                                <button type="submit" class="btn btn-danger btn-sm ml-2"><i class="fas fa-trash"></i></button>
+                                                <input type="hidden" name="stored_picture_book_id" value="<?= $stored_picture_book['id'] ?>" />
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
