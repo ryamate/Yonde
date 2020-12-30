@@ -4,10 +4,12 @@
         <p>まずは絵本のタイトル、作家名、出版社名などを入力して検索してください。</p>
         <p>例えば… パンやのろくちゃん や はらぺこあおむし や おしりたんてい など。</p>
         <form action="search_picture_book.php" method="POST" class="form-inline">
-            <input type="text" id="search" name="search" class="form-control" placeholder="絵本を検索" value="<?= escape($search_input); ?>">
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-teal1"><i class="fas fa-search"></i></button>
-            </span>
+            <div class="input-group">
+                <input type="text" id="search" name="search" class="form-control" placeholder="絵本をさがす" value="<?= escape($search_input); ?>">
+                <div class="input-group-append">
+                    <button class="btn btn-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
         </form>
     </div>
 </header>
