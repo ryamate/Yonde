@@ -1,4 +1,4 @@
-<mxfile host="65bd71144e" modified="2020-12-29T10:23:10.965Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.0 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="xtkDcnB2v7QyJGzNdIy8" version="13.10.0" type="embed">
+<mxfile host="65bd71144e" modified="2020-12-31T06:46:33.151Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.0 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="uW_1SlVK8jUTRvLawp57" version="13.10.0" type="embed">
     <diagram id="hHyzIJQCbXKLRy_B1_yv" name="ページ1">
         <mxGraphModel dx="458" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#F1FAEE" math="0" shadow="0">
             <root>
@@ -70,7 +70,7 @@
                 <mxCell id="21" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;fontSize=15;rounded=1;strokeColor=#457B9D;fontColor=#1D3557;" parent="20" vertex="1">
                     <mxGeometry width="40" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="google_book_id" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;fontSize=15;rounded=1;strokeColor=#457B9D;fontColor=#1D3557;" parent="20" vertex="1">
+                <mxCell id="22" value="google_books_id" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;fontSize=15;rounded=1;strokeColor=#457B9D;fontColor=#1D3557;" parent="20" vertex="1">
                     <mxGeometry x="40" width="140" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="23" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=15;rounded=1;strokeColor=#457B9D;fontColor=#1D3557;" parent="16" vertex="1">
