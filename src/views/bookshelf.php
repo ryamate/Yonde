@@ -65,13 +65,13 @@
                                         <div class="card-body d-flex align-items-end justify-content-end bg-white">
                                             <a href="" class="btn btn-info btn-sm small"><i class="fas fa-pencil-alt"></i><i class="fas fa-plus"></i></a>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#exampleModal" title="本棚から削除する"><i class="fas fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="本棚から削除する"><i class="fas fa-trash"></i></button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deleteId<?= $stored_picture_book['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteIdLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">削除の確認</h5>
+                                                            <h5 class="modal-title" id="deleteIdLabel">削除の確認</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
