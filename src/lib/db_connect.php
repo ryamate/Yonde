@@ -277,6 +277,21 @@ class Dbc
         $dbh = null;
     }
 
+    public function validateCreatePictureBook($picture_book)
+    {
+        $dbh = $this->dbConnect();
+
+        $stmt = $dbh->prepare('SELECT google_books_id FROM picture_books WHERE google_books_id = :google_books_id');
+        $stmt->bindValue(':google_books_id', $picture_book['google_books_id'], PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+        $dbh = null;
+    }
+
     public function createPictureBook($picture_book)
     {
         $sql = <<<EOT
