@@ -38,6 +38,8 @@
         </div>
     </nav>
     <?php include $content; ?>
+    <script src="/vendor/twbs/bootstrap/site/docs/4.5/assets/js/vendor/jquery.slim.min.js"></script>
+    <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 <footer>
     <div class=" bg-teal1 text-white" style="margin-top: 74px;">
