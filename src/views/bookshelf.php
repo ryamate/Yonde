@@ -28,8 +28,8 @@
         </header>
         <main>
             <div class="container">
-                <?php if (count($stored_picture_books) > 0) : ?>
-                    <?php foreach ($stored_picture_books as $stored_picture_book) : ?>
+                <?php if (count($display_data) > 0) : ?>
+                    <?php foreach ($display_data as $stored_picture_book) : ?>
                         <section>
                             <div class="pt-3 pr-4 pl-4 mb-4 bg-light">
                                 <div class="card-deck bg-white">
@@ -122,6 +122,26 @@
                             </div>
                         </section>
                     <?php endforeach; ?>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <?php if ($page >= 2) : ?>
+                            <a href="bookshelf.php?page=<?= $page - 1; ?>"><i class="fas fa-angle-double-left"></i></a>
+                        <?php endif; ?>
+                        <?php for ($i = 1; $i <= $max_page; $i++) : ?>
+                            <?php if ($i === (int)$page) : ?>
+                                <?= $i; ?>
+                            <?php else : ?>
+                                <a href="bookshelf.php?page=<?= $i; ?>"><?= $i ?></a>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                        <?php if ($page <= $max_page - 1) : ?>
+                            <a href="bookshelf.php?page=<?= $page + 1; ?>"><i class="fas fa-angle-double-right"></i></a>
+                        <?php endif; ?>
+
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p class="small">全<?= $stored_picture_book_count; ?>件中 <?= $start_no + 1; ?> - <?= $start_no + count($display_data) ?>件を表示</p>
+                    </div>
+
                 <?php else : ?>
                     <div class="container">
                         <p>まだ絵本が登録されていません。</p>
@@ -129,5 +149,3 @@
                 <?php endif; ?>
             </div>
         </main>
-        <script src="/vendor/twbs/bootstrap/site/docs/4.5/assets/js/vendor/jquery.slim.min.js"></script>
-        <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
