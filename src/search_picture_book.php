@@ -31,11 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $page = 1;
     }
 
-    $start_no = ($page - 1) * MAX;
-    $display_searched_books = array_slice($searched_books, $start_no, MAX, true);
+    $start_no = ($page - 1) * $dbc::MAX_DISPLAY_BOOKS;
+    $display_searched_books = array_slice($searched_books, $start_no, $dbc::MAX_DISPLAY_BOOKS, true);
 
     $searched_books_count = count($searched_books);
-    $max_page = ceil($searched_books_count / MAX);
+    $max_page = ceil($searched_books_count / $dbc::MAX_DISPLAY_BOOKS);
 } else {
     $search_input = '';
 }
