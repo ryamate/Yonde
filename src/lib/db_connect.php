@@ -4,6 +4,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class Dbc
 {
+    const MAX_DISPLAY_BOOKS = 10;
+
     protected function dbConnect()
     {
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
@@ -192,6 +194,29 @@ class Dbc
             $dbh->rollBack();
             exit($e);
         }
+    }
+
+    public function displayStoredPictureBooks($login_user, $page)
+    {
+        $dbh = $this->dbConnect();
+
+        $start_no = ($page - 1) * self::MAX_DISPLAY_BOOKS;
+
+        $stmt = $dbh->prepare('SELECT s.id, s.picture_book_id, s.five_star_rating, s.read_status, s.possession, s.summary, s.created_at, s.updated_at, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id WHERE s.user_id = :login_user_id ORDER BY s.updated_at DESC LIMIT :page,:max_display_books');
+
+        $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':page', $start_no, PDO::PARAM_INT);
+        $stmt->bindValue(':max_display_books', self::MAX_DISPLAY_BOOKS, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $results = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $result;
+        }
+
+        return $results;
+        $dbh = null;
     }
 
     public function listStoredPictureBooks($login_user)

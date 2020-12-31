@@ -1,5 +1,4 @@
 <?php
-const MAX = 10;
 
 if (!isset($_SESSION)) {
     session_start();
@@ -17,19 +16,15 @@ if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
     $_SESSION = $login_user;
     $_SESSION['time'] = time();
 
-    $stored_picture_books = $dbc->listStoredPictureBooks($login_user);
-
     if (isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])) {
         $page = $_REQUEST['page'];
     } else {
         $page = 1;
     }
-
-    $start_no = ($page - 1) * MAX;
-    $display_data = array_slice($stored_picture_books, $start_no, MAX, true);
-
+    $start_no = ($page - 1) * $dbc::MAX_DISPLAY_BOOKS;
+    $stored_picture_books = $dbc->displayStoredPictureBooks($login_user, $page);
     $stored_picture_book_count = count($stored_picture_books);
-    $max_page = ceil($stored_picture_book_count / MAX);
+    $max_page = ceil($stored_picture_book_count / $dbc::MAX_DISPLAY_BOOKS);
 } else {
     header('Location: login.php');
     exit;
