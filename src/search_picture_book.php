@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $search_input = $_POST['search'];
-    // バリデーションする
+    // バリデーション（半角スペース入れると取得できない→スペース削除）
     $data = "https://www.googleapis.com/books/v1/volumes?q='$search_input'&maxResults=40";
     $json = file_get_contents($data);
     $searched_books_array = json_decode($json, true);
