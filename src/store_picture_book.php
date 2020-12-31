@@ -32,9 +32,11 @@ if ($_REQUEST['action'] === 'store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $picture_book = $_POST;
-    // バリデーションする
     $dbc = new Dbc;
-    $dbc->createPictureBook($picture_book);
+    $registered_google_books_id = $dbc->validateCreatePictureBook($picture_book);
+    if (!isset($registered_google_books_id['google_books_id'])) {
+        $dbc->createPictureBook($picture_book);
+    }
     $stored_picture_book = [
         'google_books_id' => $picture_book['google_books_id'],
         'picture_book_id' => '',
