@@ -28,8 +28,8 @@
         </header>
         <main>
             <div class="container">
-                <?php if (count($display_data) > 0) : ?>
-                    <?php foreach ($display_data as $stored_picture_book) : ?>
+                <?php if (count($stored_picture_books) > 0) : ?>
+                    <?php foreach ($stored_picture_books as $stored_picture_book) : ?>
                         <section>
                             <div class="pt-3 pr-4 pl-4 mb-4 bg-light">
                                 <div class="card-deck bg-white">
@@ -138,7 +138,7 @@
                         <?php endif; ?>
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
-                        <p class="small">全<?= $stored_picture_book_count; ?>件中 <?= $start_no + 1; ?> - <?= $start_no + count($display_data) ?>件を表示</p>
+                        <p class="small">全<?= $stored_picture_book_count; ?>件中 <?= $start_no + 1; ?> - <?= $start_no + count($stored_picture_books) ?>件を表示</p>
                     </div>
                 <?php else : ?>
                     <div class="container">
