@@ -80,6 +80,10 @@
                         </div>
                     </section>
                 <?php endforeach; ?>
+                <div class="d-flex align-items-center justify-content-center">
+
+                    <p class="small">全100件中1 - 10 件を表示</p>
+                </div>
             <?php else : ?>
                 <p>検索結果は0件です。</p>
             <?php endif; ?>
