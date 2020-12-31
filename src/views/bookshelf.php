@@ -1,6 +1,6 @@
         <header>
-            <div style="margin-top: 60px; margin-bottom:60px;">
-                <section class="card-deck shadow-sm mb-4">
+            <div style="margin-top: 60px;">
+                <section class="card-deck shadow-sm pb-4">
                     <div class="card border-0 d-flex align-items-center justify-content-center">
                         <div class="card-body">
                             <?php if (isset($login_user['user_image_path'])) : ?>
@@ -21,8 +21,8 @@
                     </div>
                     <div class="card border-0"></div>
                 </section>
-                <div class="container">
-                    <a href="search_picture_book.php" class="btn btn-teal1 mb-4">絵本をさがす</a>
+                <div class="container d-flex align-items-center justify-content-left mt-4 mb-4">
+                    <a href="search_picture_book.php" class="btn btn-teal1">絵本をさがす</a>
                 </div>
             </div>
         </header>
@@ -124,24 +124,22 @@
                     <?php endforeach; ?>
                     <div class="d-flex align-items-center justify-content-center">
                         <?php if ($page >= 2) : ?>
-                            <a href="bookshelf.php?page=<?= $page - 1; ?>"><i class="fas fa-angle-double-left"></i></a>
+                            <a href="bookshelf.php?page=<?= $page - 1; ?>" class="btn btn-outline-teal1 mr-1"><i class="fas fa-angle-double-left"></i></a>
                         <?php endif; ?>
                         <?php for ($i = 1; $i <= $max_page; $i++) : ?>
                             <?php if ($i === (int)$page) : ?>
-                                <?= $i; ?>
+                                <a class="btn btn-outline-secondary text-dark disabled mr-1"><?= $i; ?></a>
                             <?php else : ?>
-                                <a href="bookshelf.php?page=<?= $i; ?>"><?= $i ?></a>
+                                <a href="bookshelf.php?page=<?= $i; ?>" class="btn btn-teal1 mr-1"><?= $i ?></a>
                             <?php endif; ?>
                         <?php endfor; ?>
                         <?php if ($page <= $max_page - 1) : ?>
-                            <a href="bookshelf.php?page=<?= $page + 1; ?>"><i class="fas fa-angle-double-right"></i></a>
+                            <a href="bookshelf.php?page=<?= $page + 1; ?>" class="btn btn-outline-teal1 mr-1"><i class="fas fa-angle-double-right"></i></a>
                         <?php endif; ?>
-
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
                         <p class="small">全<?= $stored_picture_book_count; ?>件中 <?= $start_no + 1; ?> - <?= $start_no + count($display_data) ?>件を表示</p>
                     </div>
-
                 <?php else : ?>
                     <div class="container">
                         <p>まだ絵本が登録されていません。</p>
