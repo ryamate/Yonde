@@ -17,8 +17,8 @@
     <?php if ($_SERVER['REQUEST_METHOD'] === 'POST') : ?>
         <div class="container">
             <h2>検索結果</h2>
-            <?php if (count($searched_books) > 0) : ?>
-                <?php foreach ($searched_books as $item_number => $item) : ?>
+            <?php if (count($display_searched_books) > 0) : ?>
+                <?php foreach ($display_searched_books as $item_number => $item) : ?>
                     <section class="card-deck shadow-sm mb-4">
                         <div class="card border-0 d-flex align-items-center justify-content-center">
                             <div class="card-body">
@@ -81,8 +81,32 @@
                     </section>
                 <?php endforeach; ?>
                 <div class="d-flex align-items-center justify-content-center">
+                    <?php if ($page >= 2) : ?>
+                        <form action="search_picture_book.php?page=<?= $page - 1; ?>" method="POST" class="mr-1">
+                            <input type="hidden" name="search" value="<?= $search_input; ?>">
+                            <button class="btn btn-outline-teal1" type="submit" id="search"><i class="fas fa-angle-double-left"></i></button>
+                        </form>
+                    <?php endif; ?>
+                    <?php for ($i = 1; $i <= $max_page; $i++) : ?>
+                        <?php if ($i === (int)$page) : ?>
+                            <a class="btn btn-outline-secondary text-dark disabled mr-1"><?= $i; ?></a>
+                        <?php else : ?>
+                            <form action="search_picture_book.php?page=<?= $i; ?>" method="POST" class="mr-1">
+                                <input type="hidden" name="search" value="<?= $search_input; ?>">
+                                <button class="btn btn-teal1" type="submit" id="search"><?= $i; ?></button>
+                            </form>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                    <?php if ($page <= $max_page - 1) : ?>
+                        <form action="search_picture_book.php?page=<?= $page + 1; ?>" method="POST">
+                            <input type="hidden" name="search" value="<?= $search_input; ?>">
+                            <button class="btn btn-outline-teal1" type="submit" id="search"><i class="fas fa-angle-double-right"></i></button>
+                        </form>
+                    <?php endif; ?>
 
-                    <p class="small">全100件中1 - 10 件を表示</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <p class="small">全<?= $searched_books_count; ?>件中 <?= $start_no + 1; ?> - <?= $start_no + count($display_searched_books) ?>件を表示</p>
                 </div>
             <?php else : ?>
                 <p>検索結果は0件です。</p>
