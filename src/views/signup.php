@@ -17,12 +17,14 @@
                 <div class="form-group">
                     <label for="user_name">よんでID <span class="badge bg-warning text-white">必須</span></label>
                     <input class="form-control" type="user_name" id="user_name" name="user_name" value="<?= escape($user['user_name']); ?>">
+                    <?php if (isset($errors['user_name'])) : ?>
+                        <div class="text-danger">
+                            <p><?= $errors['user_name'] ?></p>
+                        </div>
+                    <?php else : ?>
+                        <p class="text-dark small">* 日本語もしくは、英数字で設定願います。</p>
+                    <?php endif; ?>
                 </div>
-                <?php if (isset($errors['user_name'])) : ?>
-                    <div class="text-danger">
-                        <p><?= $errors['user_name'] ?></p>
-                    </div>
-                <?php endif; ?>
                 <div class="form-group">
                     <label for="password">パスワード <span class="badge bg-warning text-white">必須</span></label>
                     <input class="form-control" type="password" id="password" name="password" value="<?= escape($user['password']); ?>">
@@ -31,13 +33,13 @@
                             <p><?= $errors['password'] ?></p>
                         </div>
                     <?php else : ?>
-                        <p class="text-dark small">* パスワードは半角英数字をそれぞれ１文字以上含んだ、８文字以上で設定してください。</p>
+                        <p class="text-dark small">* パスワードは半角英数字をそれぞれ１文字以上含んだ、８文字以上で設定願います。</p>
                     <?php endif; ?>
                 </div>
 
                 <div class="form-group">
                     <label for="image">プロフィール画像 <span class="badge bg-light">任意</span></label><br>
-                    <input type="file" name="image" size="35" value="test" />
+                    <input type="file" name="image" size="35" value="image" />
                     <div class="text-danger">
                         <?php if (isset($errors['image'])) : ?>
                             <?php if ($errors['image'] === 'type') : ?>
@@ -53,9 +55,9 @@
             </form>
         </div>
         <div class="card container mt-4 p-4">
-            <form action="login.php?action=test_user_login" method="POST" enctype="multipart/form-data">
+            <form action="login.php?action=guest_user_login" method="POST" enctype="multipart/form-data">
                 <p>* 新規登録せずに機能を試したい方はこちら</p>
-                <button type="submit" class="btn bg-white btn-outline-teal1 text-decoration-none text-teal1">テストユーザーログイン</button>
+                <button type="submit" class="btn bg-white btn-outline-teal1 text-decoration-none text-teal1">ゲストユーザーログイン</button>
             </form>
         </div>
     </div>
