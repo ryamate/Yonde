@@ -1,29 +1,60 @@
         <header>
             <div style="margin-top: 60px;">
-                <section class="card-deck shadow-sm pb-4">
-                    <div class="card border-0 d-flex align-items-center justify-content-center">
+                <section class="card-deck pb-4">
+                    <div class="card border-0 d-flex align-items-end justify-content-center">
                         <div class="card-body">
-                            <?php if (isset($login_user['user_image_path'])) : ?>
-                                <img src="images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" style="width: 100px;">
+                            <?php if ($login_user['user_image_path'] !== '') : ?>
+                                <img src="images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                             <?php else : ?>
-                                <a href="" style="width: 100px;">
-                                    <i class="far fa-user-circle"></i>
-                                </a>
+                                <img src="images/user_picture/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                             <?php endif; ?>
                         </div>
-                        <div>
-                            <a href="" class="small">プロフィール設定</a>
+                    </div>
+                    <div class="card border-0 d-flex align-items-start justify-content-center">
+                        <p class="card-title h5"><?= escape($login_user['user_name']); ?>ファミリーの本棚</p>
+                        <p class="card-title"><?= escape($login_user['user_name']); ?>さん</p>
+                    </div>
+                    <div class="card border-0 d-flex align-items-top justify-content-center">
+                        <p class=" card-title"><?= escape($login_user['user_name']); ?>さんの家族</p>
+                        <img src="images/user_picture/no_image_user_woman.png" alt="プロフィール画像" style="width: 60px; height:60px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                    </div>
+                </section>
+                <section>
+                    <div class="d-flex align-items-center justify-content-center mb-4" style="height: 60px; vertical-align: middle;">
+                        <div class="navbar-expand">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <p class="small">絵本登録数</p>
+                                    <p>123</p>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <p class="small">読んだ回数</p>
+                                    <p>1234</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="card border-0 d-flex align-items-center justify-content-center">
-                        <p class="card-title"><?= escape($login_user['user_name']); ?>さん</p>
-                        <p>本棚の絵本</p>
-                    </div>
-                    <div class="card border-0"></div>
                 </section>
-                <div class="container d-flex align-items-center justify-content-left mt-4 mb-4">
-                    <a href="search_picture_book.php" class="btn btn-teal1">絵本をさがす</a>
-                </div>
+                <section>
+                    <div class="d-flex align-items-center justify-content-center bg-light mb-4" style="height: 60px; vertical-align: middle;">
+                        <div class="navbar-expand ">
+                            <ul class="navbar-nav">
+                                <li class="nav-item ml-1">
+                                    <a href="" class="btn btn-info btn-sm text-white small"><i class="fas fa-pen"></i>読み聞かせ記録</a>
+                                </li>
+                                <li class="nav-item ml-1">
+                                    <a href="" class="btn btn-secondary btn-sm text-white "><i class="fas fa-user-circle"></i>プロフィール</a>
+                                </li>
+                                <li class="nav-item ml-1">
+                                    <a href="" class="btn btn-secondary btn-sm text-white "><i class="fas fa-clock"></i>タイムライン</a>
+                                </li>
+                                <li class="nav-item ml-1">
+                                    <a href="" class="btn btn-secondary btn-sm text-white "><i class="fas fa-cog"></i>設定</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
             </div>
         </header>
         <main>
@@ -36,7 +67,7 @@
                                     <div class="card col-md-3 border-0 d-flex align-items-center justify-content-center bg-white">
                                         <div class="card-body bg-white">
                                             <?php if ($stored_picture_book['thumbnail_uri'] !== null) : ?>
-                                                <img src="<?= escape($stored_picture_book['thumbnail_uri']); ?>" alt="表紙イメージ">
+                                                <img src="<?= escape($stored_picture_book['thumbnail_uri']); ?>" alt="表紙イメージ" style="border-radius: 2px;">
                                             <?php else : ?>
                                                 <?= 'no image'; ?>
                                             <?php endif; ?>
@@ -63,7 +94,7 @@
                                     </div>
                                     <div class="card col-md-3 border-0 d-flex align-items-left justify-content-center bg-white">
                                         <div class="card-body d-flex align-items-end justify-content-end bg-white">
-                                            <a href="" class="btn btn-info btn-sm small"><i class="fas fa-pencil-alt"></i><i class="fas fa-plus"></i></a>
+                                            <a href="" title="読み聞かせ記録" class="btn btn-info btn-sm small"><i class="fas fa-pen"></i></a>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="本棚から削除する"><i class="fas fa-trash"></i></button>
                                             <!-- Modal -->
@@ -89,8 +120,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>

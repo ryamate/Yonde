@@ -10,28 +10,53 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md fixed-top shadow-sm" style="height: 60px; vertical-align: middle;background: rgba(255,255,255,0.9);">
+    <nav class="navbar navbar-expand-md fixed-top shadow-sm bg-teal1" style="height: 60px; vertical-align: middle;">
         <div class="navbar-brand p-0">
             <a href="bookshelf.php"><img src="/images/package_design.png" alt="yonde" height="45"></a>
         </div>
         <div class="row collapse navbar-collapse mr-auto">
-            <a class="text-teal1 text-decoration-none mb-0 h3" href="bookshelf.php">よんで</a>
+            <a class="text-white text-decoration-none mb-0 ml-1 h2" href="bookshelf.php">よんで</a>
         </div>
         <div class="navbar-expand">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <div class="input-group">
-                        <form action="search_picture_book.php" method="POST" class="form-inline">
-                            <div class="input-group">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="絵本をさがす">
-                                <div class="input-group-append">
-                                    <button class="btn btn-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
-                                </div>
+                    <form action="search_picture_book.php" method="POST" class="form-inline">
+                        <div class="input-group input-group-sm mt-2">
+                            <input type="text" id="search" name="search" class="form-control" placeholder="絵本をさがす">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-teal1 bg-white text-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item ml-1">
+                    <a href="" title="本棚" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
                 </li>
                 <li class="nav-item">
+                    <a href="" title="タイムライン" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="far fa-clock fa-lg"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="" title="プロフィール設定" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
+                </li>
+                <li class=" nav-item ml-1">
+                    <div class="dropdown drop-hover">
+                        <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php if ($login_user['user_image_path'] !== '') : ?>
+                                <img src="images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
+                            <?php else : ?>
+                                <img src="images/user_picture/no_image_user_man.png" alt="プロフィール画像" class="rounded-circle" style="width: 100px; height:100px;background-position: center center; object-fit:cover;">
+                            <?php endif; ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item small" href="">ホーム</a>
+                            <a class="dropdown-item small" href="">ログアウト</a>
+                        </div>
+                    </div>
+                    <style>
+                        .drop-hover:hover>.dropdown-menu {
+                            display: block;
+                        }
+                    </style>
                 </li>
             </ul>
         </div>
