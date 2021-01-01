@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_REQUEST['action'])) {
         $_REQUEST = ['action' => ''];
     }
-    if ($_REQUEST['action'] === 'test_user_login') {
+    if ($_REQUEST['action'] === 'guest_user_login') {
         $user = [
-            'email' => 'test@test',
-            'user_name' => 'てすと',
-            'password' => 'test_user'
+            'email' => 'guest@guest',
+            'user_name' => 'ゲスト',
+            'password' => 'guest_user'
         ];
     } else {
         $user = [
