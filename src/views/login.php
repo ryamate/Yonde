@@ -38,14 +38,14 @@
             </form>
         </div>
         <div class="card container mt-4 p-4">
-            <form action="login.php?action=test_user_login" method="POST" enctype="multipart/form-data">
+            <form action="login.php?action=guest_user_login" method="POST" enctype="multipart/form-data">
                 <div>
                     <p>* 新規登録がまだの方はこちら</p>
                     <a href="signup.php" class="btn btn-sm bg-warning btn-outline-warning text-decoration-none text-white" role="button">新規登録する</a>
                 </div><br>
                 <div>
                     <p class="text-teal1">* 新規登録せずに機能を試したい方はこちら</p>
-                    <button type="submit" class="btn btn-sm bg-white btn-outline-teal1 text-decoration-none text-teal1">テストユーザーログイン</button>
+                    <button type="submit" class="btn btn-sm bg-white btn-outline-teal1 text-decoration-none text-teal1">ゲストユーザーログイン</button>
                 </div>
             </form>
         </div>
