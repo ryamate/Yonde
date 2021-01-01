@@ -236,7 +236,7 @@ function createReadRecordsTable($link)
 }
 
 
-function createTestFamily($link)
+function createGuestFamily($link)
 {
     $sql = <<<EOT
     INSERT INTO families (
@@ -245,20 +245,20 @@ function createTestFamily($link)
         created_at
     )VALUES (
         1,
-        "てす",
+        "ゲス",
         NOW()
     )
     EOT;
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo '追加完了 test_family' . PHP_EOL;
+        echo '追加完了 guest_family' . PHP_EOL;
     } else {
-        echo 'Error: 追加失敗 test_family' . PHP_EOL;
+        echo 'Error: 追加失敗 guest_family' . PHP_EOL;
         echo 'Debugging Error:' . mysqli_error($link) . PHP_EOL;
     }
 }
 
-function createTestUser($link)
+function createGuestUser($link)
 {
     $sql = <<<EOT
     INSERT INTO users (
@@ -270,23 +270,23 @@ function createTestUser($link)
         created_at
     )VALUES (
         1,
-        "てすと",
-        "test@test",
-        "test_user",
-        "test_user_image.png",
+        "ゲスト",
+        "guest@guest",
+        "guest_user",
+        "no_image_user_man.png",
         NOW()
     )
     EOT;
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo '追加完了 test_user' . PHP_EOL;
+        echo '追加完了 guest_user' . PHP_EOL;
     } else {
-        echo 'Error: 追加失敗 test_user' . PHP_EOL;
+        echo 'Error: 追加失敗 guest_user' . PHP_EOL;
         echo 'Debugging Error:' . mysqli_error($link) . PHP_EOL;
     }
 }
 
-function createTestPartner($link)
+function createGuestPartner($link)
 {
     $sql = <<<EOT
     INSERT INTO users (
@@ -298,23 +298,23 @@ function createTestPartner($link)
         created_at
     )VALUES (
         1,
-        "てすこ",
-        "test@partner",
-        "test_partner",
-        "test_user2_image.png",
+        "ゲスミ",
+        "guest@partner",
+        "guest_partner",
+        "no_image_user_woman.png",
         NOW()
     )
     EOT;
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo '追加完了 test_partner' . PHP_EOL;
+        echo '追加完了 guest_partner' . PHP_EOL;
     } else {
-        echo 'Error: 追加失敗 test_partner' . PHP_EOL;
+        echo 'Error: 追加失敗 guest_partner' . PHP_EOL;
         echo 'Debugging Error:' . mysqli_error($link) . PHP_EOL;
     }
 }
 
-function createTestChild($link)
+function createGuestChild($link)
 {
     $sql = <<<EOT
     INSERT INTO children (
@@ -323,15 +323,15 @@ function createTestChild($link)
         created_at
     )VALUES (
         1,
-        "てすたろう",
+        "ゲスタロウ",
         NOW()
     )
     EOT;
     $result = mysqli_query($link, $sql);
     if ($result) {
-        echo '追加完了 test_child' . PHP_EOL;
+        echo '追加完了 guest_child' . PHP_EOL;
     } else {
-        echo 'Error: 追加失敗 test_child' . PHP_EOL;
+        echo 'Error: 追加失敗 guest_child' . PHP_EOL;
         echo 'Debugging Error:' . mysqli_error($link) . PHP_EOL;
     }
 }
@@ -351,9 +351,9 @@ createPictureBooksTable($link);
 createStoredPictureBooksTable($link);
 createReadRecordsTable($link);
 
-createTestUser($link);
-createTestFamily($link);
-createTestPartner($link);
-createTestChild($link);
+createGuestUser($link);
+createGuestFamily($link);
+createGuestPartner($link);
+createGuestChild($link);
 
 mysqli_close($link);
