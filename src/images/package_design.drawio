@@ -1,20 +1,20 @@
-<mxfile host="65bd71144e" modified="2020-12-17T04:48:20.970Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.0 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="6PEmrbFoA-yOnL8eV4Pp" version="13.10.0" type="embed">
+<mxfile host="65bd71144e" modified="2020-12-31T22:19:52.169Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.0 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="U16XGc3d2Jca8mms_tjJ" version="13.10.0" type="embed">
     <diagram id="FKqktztcBN4K4i71OJ5Y" name="ページ1">
-        <mxGraphModel dx="1860" dy="1224" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="930" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="5" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;arcSize=2;strokeWidth=5;" parent="1" vertex="1">
-                    <mxGeometry x="424" y="585" width="320" height="320" as="geometry"/>
+                    <mxGeometry x="253" y="425" width="320" height="320" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="" style="ellipse;whiteSpace=wrap;html=1;rotation=90;fillColor=#fad7ac;strokeColor=#b46504;strokeWidth=5;" vertex="1" parent="1">
-                    <mxGeometry x="340" y="726" width="160" height="80" as="geometry"/>
+                <mxCell id="12" value="" style="ellipse;whiteSpace=wrap;html=1;rotation=90;fillColor=#fad7ac;strokeColor=#b46504;strokeWidth=5;" parent="1" vertex="1">
+                    <mxGeometry x="522.5" y="593.5" width="109" height="76" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="" style="ellipse;whiteSpace=wrap;html=1;rotation=90;fillColor=#fad7ac;strokeColor=#b46504;strokeWidth=5;" vertex="1" parent="1">
-                    <mxGeometry x="670" y="726" width="160" height="80" as="geometry"/>
+                <mxCell id="13" value="Yonde" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;fontSize=100;fontFamily=Comic Sans MS;fontColor=#333333;spacing=2;" parent="1" vertex="1">
+                    <mxGeometry x="264" y="720" width="300" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="&lt;span style=&quot;font-family: &amp;quot;comic sans ms&amp;quot;;&quot;&gt;Yonde&lt;/span&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;rounded=1;strokeWidth=5;fontSize=58;position2=0.87;base=95;labelBackgroundColor=none;fillColor=#f9f7ed;strokeColor=#36393d;rotation=0;arcSize=50;fontColor=#4D4D4D;" vertex="1" parent="1">
-                    <mxGeometry x="40" y="486" width="310" height="320" as="geometry"/>
+                <mxCell id="14" value="" style="ellipse;whiteSpace=wrap;html=1;rotation=90;fillColor=#fad7ac;strokeColor=#b46504;strokeWidth=5;" vertex="1" parent="1">
+                    <mxGeometry x="195" y="593.5" width="109" height="76" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
