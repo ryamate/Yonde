@@ -351,7 +351,7 @@ class Dbc
         $dbh = null;
     }
 
-    public function storePictureBook($stored_picture_book, $user_id)
+    public function storePictureBook($stored_picture_book, $login_user)
     {
         $sql = <<<EOT
         INSERT INTO stored_picture_books (
@@ -378,7 +378,7 @@ class Dbc
             $stmt = $dbh->prepare($sql);
 
             $stmt->bindValue(':picture_book_id', $stored_picture_book['id'], PDO::PARAM_STR);
-            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $login_user['id'], PDO::PARAM_STR);
             $stmt->bindValue(':five_star_rating', $stored_picture_book['five_star_rating'], PDO::PARAM_STR);
             $stmt->bindValue(':read_status', $stored_picture_book['read_status'], PDO::PARAM_STR);
             $stmt->bindValue(':summary', $stored_picture_book['summary'], PDO::PARAM_STR);

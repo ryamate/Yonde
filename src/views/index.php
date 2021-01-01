@@ -24,12 +24,12 @@
                             </div>
                         </div>
                         <div class="col-md-6 d-none d-md-block">
-                            <img src="images/package_design_top.png" class="img-fluid rounded position-relative" alt="..." width="80%">
+                            <img src="images/package_design_top.png" class="img-fluid position-relative" alt="..." width="80%">
                         </div>
 
                         <!-- 小 -->
                         <div class="d-block d-md-none">
-                            <img src="images/package_design_top.png" class="img-fluid rounded position-relative" alt="..." width="80%" style="left:35px;">
+                            <img src="images/package_design_top.png" class="img-fluid position-relative" alt="..." width="80%" style="left:35px;">
                         </div>
                         <div class="text-left col-md-6 d-block d-md-none">
                             <h4><b>こどもの「よんで」が<br>
