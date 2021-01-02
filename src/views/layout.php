@@ -48,8 +48,8 @@
                             <?php endif; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item small" href="">ホーム</a>
-                            <a class="dropdown-item small" href="">ログアウト</a>
+                            <a class="dropdown-item small" href="bookshelf.php">ホーム</a>
+                            <a class="dropdown-item small" href="logout.php">ログアウト</a>
                         </div>
                     </div>
                     <style>
@@ -66,7 +66,7 @@
     <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 <footer>
-    <div class=" bg-teal1 text-white" style="margin-top: 74px;">
+    <div class="bg-teal1 text-white" style="margin-top: 74px;">
         <div class="container text-center pt-4 mb-4" style="font-size:x-small;">
             <a class="btn btn-link">
                 <h6>利用規約</h6>
@@ -82,7 +82,7 @@
             </a>
         </div>
         <div class="container text-center mt-4 pb-5">
-            <a class="" style="font-size:xx-small;">© 2020 Ryuzo Yamate
+            <a class="" style="font-size:xx-small;">© 2021 Ryuzo Yamate
             </a>
         </div>
     </div>
