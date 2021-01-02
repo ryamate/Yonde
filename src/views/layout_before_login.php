@@ -47,7 +47,7 @@
             </a>
         </div>
         <div class="container text-center mt-5 mb-5">
-            <a class="" style="font-size:xx-small;">© 2020 Ryuzo Yamate
+            <a class="" style="font-size:xx-small;">© 2021 Ryuzo Yamate
             </a>
         </div>
     </div>

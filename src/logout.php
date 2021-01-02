@@ -2,18 +2,7 @@
 
 session_start();
 
-$output = '';
-
-if (isset($_SESSION["EMAIL"])) {
-    $output = 'ログアウトしました。';
-} else {
-    $output = 'セッションがタイムアウトしました。';
-}
-
-//セッション変数のクリア
 $_SESSION = array();
-
-//セッションクッキーも削除
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(
@@ -26,7 +15,10 @@ if (ini_get("session.use_cookies")) {
         $params["httponly"]
     );
 }
-//セッションクリア
-@session_destroy();
+session_destroy();
 
-echo $output;
+setcookie('user_name', '', time() - 60 * 60);
+
+$title = 'よんで-Yonde-ログイン';
+$content = __DIR__ . '/views/logout.php';
+include __DIR__ . '/views/layout_before_login.php';
