@@ -66,10 +66,13 @@
                                 <div class="card-deck bg-white">
                                     <div class="card col-md-3 border-0 d-flex align-items-center justify-content-center bg-white">
                                         <div class="card-body bg-white">
-                                            <?php if ($stored_picture_book['thumbnail_uri'] !== null) : ?>
+                                            <?php if ($stored_picture_book['thumbnail_uri'] !== '') : ?>
                                                 <img src="<?= escape($stored_picture_book['thumbnail_uri']); ?>" alt="表紙イメージ" style="border-radius: 2px;">
                                             <?php else : ?>
-                                                <?= 'no image'; ?>
+                                                <span class="fa-stack text-info fa-5x">
+                                                    <i class="fas fa-book fa-stack-2x"></i>
+                                                    <i class="fa fa-stack-1x fa-inverse d-inline-block text-truncate ml-5" style="max-width: 120px;font-size:2px;"><?= escape($stored_picture_book['title']); ?></i>
+                                                </span>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -94,9 +97,19 @@
                                     </div>
                                     <div class="card col-md-3 border-0 d-flex align-items-left justify-content-center bg-white">
                                         <div class="card-body d-flex align-items-end justify-content-end bg-white">
-                                            <a href="" title="読み聞かせ記録" class="btn btn-info btn-sm small"><i class="fas fa-pen"></i></a>
+                                            <form action="modify_stored_picture_book.php" method="POST">
+                                                <input type="hidden" name="title" value="<?= $stored_picture_book['title'] ?>" />
+                                                <input type="hidden" name="authors" value="<?= $stored_picture_book['authors'] ?>" />
+                                                <input type="hidden" name="published_date" value="<?= $stored_picture_book['published_date'] ?>" />
+                                                <input type="hidden" name="thumbnail_uri" value="<?= $stored_picture_book['thumbnail_uri'] ?>" />
+                                                <input type="hidden" name="stored_picture_book_id" value="<?= $stored_picture_book['id'] ?>" />
+                                                <input type="hidden" name="five_star_rating" value="<?= $stored_picture_book['five_star_rating'] ?>" />
+                                                <input type="hidden" name="read_status" value="<?= $stored_picture_book['read_status'] ?>" />
+                                                <input type="hidden" name="summary" value="<?= $stored_picture_book['summary'] ?>" />
+                                                <button type="submit" class="btn btn-info btn-sm small" title="読み聞かせ記録"><i class="fas fa-pen"></i></a>
+                                            </form>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="本棚から削除する"><i class="fas fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="本棚から削除する"><i class="fas fa-trash-alt"></i></button>
                                             <!-- Modal -->
                                             <div class="modal fade" id="deleteId<?= $stored_picture_book['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteIdLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">

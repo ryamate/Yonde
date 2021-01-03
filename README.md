@@ -12,6 +12,19 @@ PHPで制作予定です。
 - 未定
 
 ## 使用技術
+- HTML5, CSS3
+- Bootstrap 4.5.0
+- jQuery 3.5.1
+- PHP 7.4.13
+- MySQL 5.
+- PHPMyAdmin 5.0.4
+- Heroku（Herokuアップ成功後 → AWS）
+- AWS（EC2、RDS、ELB、S3、Route53、IAM）（予定）
+- Docker
+- CircleCI（予定）
+- Git/GitHub
+- Apache 2.4.38
+- 開発環境：ローカル環境(MacOS), VSCode
 
 ## 機能一覧
 PHPで制作予定のアプリです。
@@ -19,6 +32,11 @@ PHPで制作予定のアプリです。
 ## 使い方
 
 ## 使用画面のイメージ
+2021.1.3時点
+- ログイン前トップページ
+![スクリーンショット 2021-01-03 16 15 59](https://user-images.githubusercontent.com/57904570/103473746-45dba380-4ddf-11eb-9952-af4fcb9f9ed4.png)
+- ログイン後トップページ
+![スクリーンショット 2021-01-03 16 11 09](https://user-images.githubusercontent.com/57904570/103473741-38beb480-4ddf-11eb-9329-26a1c1e39e67.png)
 
 ## ローカル環境へのインストール方法
 
