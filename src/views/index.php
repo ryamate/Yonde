@@ -24,12 +24,12 @@
                             </div>
                         </div>
                         <div class="col-md-6 d-none d-md-block">
-                            <img src="images/package_design_top.png" class="img-fluid position-relative" alt="..." width="80%">
+                            <img src="images/index_top.png" class="img-fluid position-relative" alt="..." width="80%">
                         </div>
 
                         <!-- 小 -->
                         <div class="d-block d-md-none">
-                            <img src="images/package_design_top.png" class="img-fluid position-relative" alt="..." width="80%" style="left:35px;">
+                            <img src="images/index_top.png" class="img-fluid position-relative" alt="..." width="80%" style="left:35px;">
                         </div>
                         <div class="text-left col-md-6 d-block d-md-none">
                             <h4><b>こどもの「よんで」が<br>
@@ -64,6 +64,7 @@
                     だから、記録として残して家族と共有しておくと、<br>
                     いつか「アルバム」のようなものになる。</p>
             </div>
+            <!-- 小 -->
             <div class="container mt-4 mb-4 text-left d-block d-md-none">
                 <h5>
                     <b>絵本読み聞かせの記録を<br>
@@ -78,12 +79,12 @@
                     いつか「アルバム」のようなものになる。</p>
             </div>
         </div>
-        <!-- 中 -->
+        <!-- 大 -->
         <div style="margin-top: 74px;">
             <div class="container d-none d-md-block mt-4">
                 <div class="card-deck row">
                     <div class="card border-0">
-                        <a href=""><img src="images/Bibliophile-pana.png" width="100%" alt=""></a>
+                        <img src="images/index_3-1.png" width="100%" alt="">
                         <div class="card-body">
                             <h4 class="card-title"><b>絵本棚</b></h4>
                             <p class="card-text">これからよみたい本、これまでよんだ本を飾ることができます。<br>
@@ -92,16 +93,18 @@
                         </div>
                     </div>
                     <div class="card border-0">
-                        <a href=""><img src="images/Creativity-amico.png" width="100%" alt=""></a>
+                        <img src="images/index_3-2.png" width="100%" alt="">
                         <div class="card-body">
                             <h4 class="card-title"><b>読み聞かせ記録・管理</b></h4>
                             <p class="card-text">絵本棚に登録した本の読み聞かせた記録を付けることができます。<br>
-                                いつ読んだかが積み上がって、「なんども読んだ」が「１２３回読んだ」に変わるかもしれません。
+                                いつ読んだかが積み上がって、「なんども読んだ」が「何回読んだ」に変わるかもしれません。
                             </p>
                         </div>
                     </div>
                     <div class="card border-0">
-                        <a href=""><img src="images/Family-amico.png" width="100%" alt=""></a>
+                        <img src="images/index_3-3-0.png" width="100%" alt="">
+                        <img src="images/index_3-3.png" width="100%" alt="">
+                        <img src="images/index_3-3-2.png" width="100%" alt="">
                         <div class="card-body">
                             <h4 class="card-title"><b>家族と共有</b></h4>
                             <p class="card-text">家族と絵本棚と読み聞かせ記録を共有することができます。<br>
@@ -116,7 +119,7 @@
         <div class="container d-block d-md-none mt-4">
             <div class="card-deck row">
                 <div class="card border-0">
-                    <a href=""><img src="images/Bibliophile-pana.png" width="100%" alt=""></a>
+                    <a href=""><img src="images/index_3-1.png" width="100%" alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title"><b>絵本棚</b></h5>
                         <p class="card-text">これからよみたい本、これまでよんだ本を飾ることができます。<br>
@@ -125,16 +128,16 @@
                     </div>
                 </div>
                 <div class="card border-0">
-                    <a href=""><img src="images/Creativity-amico.png" width="100%" alt=""></a>
+                    <a href=""><img src="images/index_3-2.png" width="100%" alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title"><b>読み聞かせ記録・管理</b></h5>
                         <p class="card-text">絵本棚に登録した本の読み聞かせた記録を付けることができます。<br>
-                            いつ読んだかが積み上がって、「なんども読んだ」が「１２３回読んだ」に変わるかもしれません。
+                            いつ読んだかが積み上がって、「なんども読んだ」が「何回読んだ」に変わるかもしれません。
                         </p>
                     </div>
                 </div>
                 <div class="card border-0">
-                    <a href=""><img src="images/Family-amico.png" width="100%" alt=""></a>
+                    <a href=""><img src="images/index_3-3.png" width="100%" alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title"><b>家族と共有</b></h5>
                         <p class="card-text">家族と絵本棚と読み聞かせ記録を共有することができます。<br>

@@ -219,23 +219,23 @@ class Dbc
         $dbh = null;
     }
 
-    public function listStoredPictureBooks($login_user)
-    {
-        $dbh = $this->dbConnect();
+    // public function listStoredPictureBooks($login_user)
+    // {
+    //     $dbh = $this->dbConnect();
 
-        $stmt = $dbh->prepare('SELECT s.id, s.picture_book_id, s.five_star_rating, s.read_status, s.possession, s.summary, s.created_at, s.updated_at, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id WHERE user_id = :login_user_id');
-        $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
+    //     $stmt = $dbh->prepare('SELECT s.id, s.picture_book_id, s.five_star_rating, s.read_status, s.possession, s.summary, s.created_at, s.updated_at, p.title, p.authors, p.thumbnail_uri, p.published_date FROM stored_picture_books s JOIN picture_books p ON s.picture_book_id = p.id WHERE user_id = :login_user_id');
+    //     $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
 
-        $stmt->execute();
+    //     $stmt->execute();
 
-        $results = [];
-        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $results[] = $result;
-        }
+    //     $results = [];
+    //     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    //         $results[] = $result;
+    //     }
 
-        return $results;
-        $dbh = null;
-    }
+    //     return $results;
+    //     $dbh = null;
+    // }
 
     public function deleteStoredPictureBook($login_user_id, $stored_picture_book_id)
     {
@@ -386,6 +386,29 @@ class Dbc
             $stmt->execute();
             $dbh->commit();
             echo '絵本棚への登録完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
+    public function modifyStorePictureBook($stored_picture_book)
+    {
+
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE stored_picture_books SET five_star_rating = :five_star_rating, read_status = :read_status, summary = :summary WHERE id = :stored_picture_book_id');
+
+            $stmt->bindValue(':five_star_rating', $stored_picture_book['five_star_rating'], PDO::PARAM_INT);
+            $stmt->bindValue(':read_status', $stored_picture_book['read_status'], PDO::PARAM_STR);
+            $stmt->bindValue(':summary', $stored_picture_book['summary'], PDO::PARAM_STR);
+            $stmt->bindValue(':stored_picture_book_id', $stored_picture_book['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
         } catch (PDOException $e) {
             $dbh->rollBack();
             exit($e);
