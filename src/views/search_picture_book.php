@@ -25,7 +25,7 @@
                                 <!-- <h5 class="card-title">No.<?= $item_number + 1; ?></h5> -->
 
                                 <?php $thumbnail_uri = @$item["volumeInfo"]["imageLinks"]["thumbnail"]; ?>
-                                <?php if ($thumbnail_uri !== null) : ?>
+                                <?php if ($thumbnail_uri !== '') : ?>
                                     <img src="<?= $thumbnail_uri; ?>" alt="表紙イメージ">
                                 <?php else : ?>
                                     <?= 'no image'; ?>
