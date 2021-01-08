@@ -1,0 +1,67 @@
+<mxfile host="65bd71144e" modified="2021-01-05T22:40:10.724Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.0 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="mH_sfp_H2v5GSmBHha0l" version="13.10.0" type="embed">
+    <diagram id="fp5n8K5wV-1dMlIHT02_" name="ページ1">
+        <mxGraphModel dx="930" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="30" value="" style="shape=table;html=1;whiteSpace=wrap;startSize=0;container=1;collapsible=0;childLayout=tableLayout;" vertex="1" parent="1">
+                    <mxGeometry x="129" y="130" width="570" height="909" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="30">
+                    <mxGeometry width="570" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;" vertex="1" parent="31">
+                    <mxGeometry width="570" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=0;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="30">
+                    <mxGeometry y="50" width="570" height="859" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;" vertex="1" parent="33">
+                    <mxGeometry width="570" height="859" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="新規登録" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="509" y="140" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="ログイン" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="599" y="140" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="よんで" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="196" y="140" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="ロゴ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="140" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="210" width="500" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="新規登録" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="196" y="310" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="ログイン" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="299" y="310" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="イメージ" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="419" y="230" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="こどもの「よんで」が&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;楽しみになる&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="196" y="230" width="183" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="コンセプト" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="390" width="500" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="できること&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3Bshadow%3D0%3BstrokeColor%3D%23F0F0F0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22180%22%20y%3D%22380%22%20width%3D%22500%22%20height%3D%22120%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="524.5" width="500" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="サービス名に込めた思い" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="670" width="500" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="新規登録" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="374" y="770" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="フッター" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;strokeColor=#F0F0F0;" vertex="1" parent="1">
+                    <mxGeometry x="169" y="930" width="491" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
