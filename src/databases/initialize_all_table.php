@@ -124,9 +124,9 @@ function createUsersTable($link)
         family_id INTEGER NULL,
         user_name VARCHAR(100) UNIQUE,
         email VARCHAR(100) UNIQUE,
-        password VARCHAR(255),
+        password VARCHAR(100),
+        user_image_path VARCHAR(100),
         introduction VARCHAR(1000),
-        user_image_path VARCHAR(1000),
         created_at TIMESTAMP NULL,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ) DEFAULT CHARACTER SET=utf8mb4;
@@ -194,7 +194,6 @@ function createStoredPictureBooksTable($link)
         user_id INTEGER NOT NULL,
         five_star_rating INTEGER,
         read_status VARCHAR(100),
-        possession INTEGER,
         summary VARCHAR(1000),
         created_at TIMESTAMP NULL,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -216,9 +215,9 @@ function createReadRecordsTable($link)
     $createTableSql = <<<EOT
     CREATE TABLE read_records (
         id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        stored_picture_book_id INTEGER UNIQUE NOT NULL,
-        user_id INTEGER UNIQUE NOT NULL,
-        summary VARCHAR(1000),
+        stored_picture_book_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        memo VARCHAR(1000),
         read_date TIMESTAMP NULL,
         created_at TIMESTAMP NULL,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -267,13 +266,15 @@ function createGuestUser($link)
         email,
         password,
         user_image_path,
+        introduction,
         created_at
     )VALUES (
         1,
         "ゲスト",
         "guest@guest",
-        "guest_user",
+        "guest_user1",
         "no_image_user_man.png",
+        "ゲストユーザーです。",
         NOW()
     )
     EOT;
@@ -295,13 +296,15 @@ function createGuestPartner($link)
         email,
         password,
         user_image_path,
+        introduction,
         created_at
     )VALUES (
         1,
         "ゲスミ",
         "guest@partner",
-        "guest_partner",
+        "guest_partner1",
         "no_image_user_woman.png",
+        "ゲストユーザーの妻です。",
         NOW()
     )
     EOT;
