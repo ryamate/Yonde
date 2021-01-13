@@ -1,7 +1,5 @@
 <?php
 
-const MAX = 10;
-
 session_start();
 
 require_once __DIR__ . '/lib/escape.php';
