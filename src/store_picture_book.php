@@ -3,12 +3,12 @@
 session_start();
 
 require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
+require_once __DIR__ . '/lib/user.php';
 
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
-$dbc = new Dbc;
+$dbc = new User;
 $login_user = $dbc->getLoginUser($user);
 
 if (!isset($_REQUEST['action'])) {
