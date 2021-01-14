@@ -11,7 +11,7 @@ if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
     $user = [
         'user_name' => $_SESSION['user_name'],
     ];
-    $dbc = new Dbc;
+    $dbc = new User;
     $login_user = $dbc->getLoginUser($user);
     $_SESSION = $login_user;
     $_SESSION['time'] = time();

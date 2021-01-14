@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password' => $_POST['password']
         ];
         $encoded_password = sha1($user['password']);
-        $dbc = new Dbc;
+        $dbc = new User;
         $errors = $dbc->validateUserLogin($user, $encoded_password);
     }
     if (!count($errors)) {
