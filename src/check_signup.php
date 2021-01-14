@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' => sha1($_SESSION['join']['password']),
         'user_image_path' => $_SESSION['join']['image']
     ];
-    $dbc = new Dbc;
+    $dbc = new User;
     $dbc->createUser($user);
     unset($_SESSION['join']);
     $_SESSION['first_login']['user_name'] = $user['user_name'];

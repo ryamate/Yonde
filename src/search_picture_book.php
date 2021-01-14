@@ -4,6 +4,7 @@ session_start();
 
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/db_connect.php';
+require_once __DIR__ . '/lib/user.php';
 
 // エラーをnullにする（@$item["volumeInfo"]['authors']などに使用）
 error_reporting(E_ALL);
@@ -11,7 +12,7 @@ error_reporting(E_ALL);
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
-$dbc = new Dbc;
+$dbc = new User;
 $login_user = $dbc->getLoginUser($user);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
