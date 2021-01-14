@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/db_connect.php';
+require_once __DIR__ . '/lib/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
@@ -10,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' => $_POST['password']
     ];
     $file_name = $_FILES['image']['name'];
-    $dbc = new Dbc;
+    $dbc = new User;
     $errors = $dbc->validateUserSignup($user, $file_name);
     if (!count($errors)) {
         session_start();
