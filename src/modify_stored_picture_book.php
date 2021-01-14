@@ -10,7 +10,7 @@ $errors = [];
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
-$dbc = new Dbc;
+$dbc = new User;
 $login_user = $dbc->getLoginUser($user);
 
 if (!isset($_REQUEST['action'])) {
