@@ -4,14 +4,16 @@ session_start();
 
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/db_connect.php';
+require_once __DIR__ . '/lib/user.php';
+require_once __DIR__ . '/lib/picture_book.php';
 
 $errors = [];
 
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
-$dbc = new User;
-$login_user = $dbc->getLoginUser($user);
+$user_model = new User;
+$login_user = $user_model->getLoginUser($user);
 
 if (!isset($_REQUEST['action'])) {
     $_REQUEST = ['action' => ''];
@@ -30,7 +32,8 @@ if ($_REQUEST['action'] === 'modify' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         'summary' => $_POST['summary'],
     ];
     // バリデーションする
-    $dbc->modifyStorePictureBook($stored_picture_book);
+    $picture_book_model = new PictureBook;
+    $picture_book_model->modifyStorePictureBook($stored_picture_book);
     header("Location: bookshelf.php");
     exit();
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
