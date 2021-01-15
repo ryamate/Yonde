@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' => $_POST['password']
     ];
     $file_name = $_FILES['image']['name'];
-    $dbc = new User;
-    $errors = $dbc->validateUserSignup($user, $file_name);
+    $user_model = new User;
+    $errors = $user_model->validateUserSignup($user, $file_name);
     if (!count($errors)) {
         session_start();
         $_SESSION['join'] = $_POST;

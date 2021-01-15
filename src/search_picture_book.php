@@ -5,6 +5,7 @@ session_start();
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/db_connect.php';
 require_once __DIR__ . '/lib/user.php';
+require_once __DIR__ . '/lib/picture_book.php';
 
 // エラーをnullにする（@$item["volumeInfo"]['authors']などに使用）
 error_reporting(E_ALL);
@@ -12,8 +13,8 @@ error_reporting(E_ALL);
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
-$dbc = new User;
-$login_user = $dbc->getLoginUser($user);
+$user_model = new User;
+$login_user = $user_model->getLoginUser($user);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $search_input = $_POST['search'];
@@ -23,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $searched_books_array = json_decode($json, true);
     $searched_books = $searched_books_array["items"];
 
-    $stored_picture_books = $dbc->getStoredPictureBookGoogleBooksId($login_user);
+    $picture_book_model = new PictureBook;
+    $stored_picture_books = $picture_book_model->getStoredPictureBookGoogleBooksId($login_user);
 
     if (isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])) {
         $page = $_REQUEST['page'];
@@ -31,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $page = 1;
     }
 
-    $start_no = ($page - 1) * $dbc::MAX_DISPLAY_BOOKS;
-    $display_searched_books = array_slice($searched_books, $start_no, $dbc::MAX_DISPLAY_BOOKS, true);
+    $start_no = ($page - 1) * $picture_book_model::MAX_DISPLAY_BOOKS;
+    $display_searched_books = array_slice($searched_books, $start_no, $picture_book_model::MAX_DISPLAY_BOOKS, true);
 
     $searched_books_count = count($searched_books);
-    $max_page = ceil($searched_books_count / $dbc::MAX_DISPLAY_BOOKS);
+    $max_page = ceil($searched_books_count / $picture_book_model::MAX_DISPLAY_BOOKS);
 } else {
     $search_input = '';
 }
