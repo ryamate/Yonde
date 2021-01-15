@@ -40,8 +40,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="five_star_rating">評価(5点満点の整数)</label>
-                    <input type="number" name="five_star_rating" id="five_star_rating" class="form-control" value="<?= $stored_picture_book['five_star_rating']; ?>">
+                    <label for="five_star_rating">評価(5点満点)</label>
+                    <select name="five_star_rating" id="five_star_rating" class="form-control" value="<?= $stored_picture_book['five_star_rating']; ?>">
+                        <option value="">まだ評価しない</option>
+                        <option value="1">★☆☆☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="4">★★★★☆</option>
+                        <option value="5">★★★★★</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="summary">感想</label>

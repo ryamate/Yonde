@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . 'db_connect.php';
+declare(strict_types=1);
+
+require_once __DIR__ . '/db_connect.php';
 
 class User extends Dbc
 {
