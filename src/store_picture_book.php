@@ -4,12 +4,13 @@ session_start();
 
 require_once __DIR__ . '/lib/escape.php';
 require_once __DIR__ . '/lib/user.php';
+require_once __DIR__ . '/lib/picture_book.php';
 
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
-$dbc = new User;
-$login_user = $dbc->getLoginUser($user);
+$user_model = new User;
+$login_user = $user_model->getLoginUser($user);
 
 if (!isset($_REQUEST['action'])) {
     $_REQUEST = ['action' => ''];
@@ -28,18 +29,20 @@ if ($_REQUEST['action'] === 'store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         'summary' => $_POST['summary'],
     ];
     // バリデーションする
-    $picture_book_id = $dbc->getPictureBookId($stored_picture_book);
+    $picture_book_model = new PictureBook;
+    $picture_book_id = $picture_book_model->getPictureBookId($stored_picture_book);
     $stored_picture_book = array_merge($picture_book_id, $stored_picture_book);
 
     $user_id = $_SESSION['id'];
-    $dbc->storePictureBook($stored_picture_book, $login_user);
+    $picture_book_model->storePictureBook($stored_picture_book, $login_user);
     header("Location: bookshelf.php");
     exit();
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $picture_book = $_POST;
-    $registered_google_books_id = $dbc->validateCreatePictureBook($picture_book);
+    $picture_book_model = new PictureBook;
+    $registered_google_books_id = $picture_book_model->validateCreatePictureBook($picture_book);
     if (!isset($registered_google_books_id['google_books_id'])) {
-        $dbc->createPictureBook($picture_book);
+        $picture_book_model->createPictureBook($picture_book);
     }
     $stored_picture_book = [
         'google_books_id' => $picture_book['google_books_id'],
