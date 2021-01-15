@@ -25,7 +25,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <p class="small">絵本登録数</p>
-                                    <p>123</p>
+                                    <p><?= $stored_picture_book_count; ?></p>
                                 </li>
                                 <li class="nav-item ml-4">
                                     <p class="small">読んだ回数</p>
@@ -121,7 +121,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            絵本を本棚から削除してもよろしいですか？
+                                                            『<?= $stored_picture_book['title'] ?>』を本棚から削除してもよろしいですか？
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
