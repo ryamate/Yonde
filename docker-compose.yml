@@ -6,19 +6,19 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
     ports:
-      - "60080:80"
+      - "60080:80" # ホストからゲストへポートフォワード
     volumes:
       - ./src:/var/www/html
     depends_on:
-      - db
+      - db # DB側のコンテナが出来上がってからwebを実行する
 
   db:
     image: mysql:5.5.62
     ports:
-      - "63306:3306"
+      - "63306:3306" # ホストからゲストへポートフォワード
     volumes:
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql # データの永続化
     env_file:
       - ./docker/db/db-variables.env
 
@@ -32,7 +32,7 @@ services:
     links:
       - db
     ports:
-      - 61080:80
+      - 61080:80 # ホストからゲストへポートフォワード
     volumes:
       - /sessions
 
