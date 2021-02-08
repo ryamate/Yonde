@@ -9,8 +9,8 @@
                                     楽しみになる</b>
                             </h1>
                             <div class="row d-none d-md-block">
-                                <a class="col-md-4 btn btn-teal1 font-weight-bold shadow mt-2 mb-2 ml-4" href="signup.php" role="button">新規登録する</a>
-                                <a class="col-md-4 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2" href="login.php" role="button">ログインする</a>
+                                <a class="col-md-4 btn btn-teal1 font-weight-bold shadow mt-2 mb-2 ml-4" href="./auth/signup.php" role="button">新規登録する</a>
+                                <a class="col-md-4 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2" href="./auth/login.php" role="button">ログインする</a>
                             </div>
                         </div>
                         <!-- 中 -->
@@ -19,8 +19,8 @@
                                     楽しみになる</b>
                             </h3>
                             <div class="row d-none d-md-block">
-                                <a class="col-md-5 btn btn-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="signup.php" role="button">新規登録する</a>
-                                <a class="col-md-5 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="login.php" role="button">ログインする</a>
+                                <a class="col-md-5 btn btn-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="./auth/signup.php" role="button">新規登録する</a>
+                                <a class="col-md-5 btn btn-outline-teal1 font-weight-bold shadow mt-2 mb-2 ml-2" href="./auth/login.php" role="button">ログインする</a>
                             </div>
                         </div>
                         <div class="col-md-6 d-none d-md-block">
@@ -37,10 +37,10 @@
                             </h4>
                         </div>
                         <div class="container d-block d-md-none">
-                            <a class="btn btn-outline-teal1 btn-block shadow mt-2 mb-2" href="login.php" role="button">ログインする</a>
+                            <a class="btn btn-outline-teal1 btn-block shadow mt-2 mb-2" href="./auth/login.php" role="button">ログインする</a>
                         </div>
                         <div class="col-lg-3 col-md-12 d-block d-md-none">
-                            <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="signup.php" role="button">新規登録する</a>
+                            <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="./auth/signup.php" role="button">新規登録する</a>
                         </div>
 
                     </div>
@@ -207,12 +207,12 @@
                 </div>
                 <div class="text-center d-none d-md-block">
                     <!-- <button type="submit" class="btn btn-lg btn-teal1 shadow mt-2 mb-2">新規登録する</button> -->
-                    <a class="btn btn-teal1 btn-lg shadow mt-2 mb-2" href="signup.php" role="button">新規登録する</a>
+                    <a class="btn btn-teal1 btn-lg shadow mt-2 mb-2" href="./auth/signup.php" role="button">新規登録する</a>
 
                 </div>
                 <div class="container d-block d-md-none">
                     <!-- <button type="submit" class="btn btn-teal1 btn-lg btn-block shadow mt-2 mb-2">新規登録する</button> -->
-                    <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="signup.php" role="button">新規登録する</a>
+                    <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="./auth/signup.php" role="button">新規登録する</a>
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
-require_once __DIR__ . '/lib/user.php';
+require_once __DIR__ . '/../../lib/escape.php';
+require_once __DIR__ . '/../../lib/db_connect.php';
+require_once __DIR__ . '/../../lib/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
@@ -49,5 +49,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $title = 'よんで-Yonde-新規登録';
-$content = __DIR__ . '/views/signup.php';
-include __DIR__ . '/views/layout_before_login.php';
+$content = __DIR__ . '/../../views/auth/signup.php';
+include __DIR__ . '/../../views/layout_before_login.php';
