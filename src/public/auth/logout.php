@@ -20,5 +20,5 @@ session_destroy();
 setcookie('user_name', '', time() - 60 * 60);
 
 $title = 'よんで-Yonde-ログイン';
-$content = __DIR__ . '/views/logout.php';
-include __DIR__ . '/views/layout_before_login.php';
+$content = __DIR__ . '/../../views/auth/logout.php';
+include __DIR__ . '/../../views/layout_before_login.php';
