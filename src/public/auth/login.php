@@ -2,8 +2,9 @@
 
 session_start();
 
-require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
+require_once __DIR__ . '/../../lib/escape.php';
+require_once __DIR__ . '/../../lib/db_connect.php';
+require_once __DIR__ . '/../../lib/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_REQUEST['action'])) {
@@ -52,5 +53,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $title = 'よんで-Yonde-ログイン';
-$content = __DIR__ . '/views/login.php';
-include __DIR__ . '/views/layout_before_login.php';
+$content = __DIR__ . '/../../views/auth/login.php';
+include __DIR__ . '/../../views/layout_before_login.php';
