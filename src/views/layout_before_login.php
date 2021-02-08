@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/css/app.css">
+    <link href="assets/css/app.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <title><?= $title; ?></title>
 </head>
@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-md fixed-top shadow-sm bg-teal1" style="height: 60px; vertical-align: middle;">
         <div class="navbar-brand p-0">
-            <a href="/"><img src="/images/package_design.png" alt="yonde" height="45"></a>
+            <a href="/"><img src="assets/images/package_design.png" alt="yonde" height="45"></a>
         </div>
         <div class="row collapse navbar-collapse mr-auto">
             <a class="text-white text-decoration-none mb-0 h3" href="/">よんで</a>
