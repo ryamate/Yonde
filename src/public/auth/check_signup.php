@@ -6,9 +6,9 @@ if (!isset($_SESSION['join'])) {
     exit();
 }
 
-require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
-
+require_once __DIR__ . '/../../lib/escape.php';
+require_once __DIR__ . '/../../lib/db_connect.php';
+require_once __DIR__ . '/../../lib/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['join']['image'])) {
@@ -29,5 +29,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $title = 'よんで-Yonde-新規登録';
-$content = __DIR__ . '/views/check_signup.php';
-include __DIR__ . '/views/layout_before_login.php';
+$content = __DIR__ . '/../../views/auth/check_signup.php';
+include __DIR__ . '/../../views/layout_before_login.php';
