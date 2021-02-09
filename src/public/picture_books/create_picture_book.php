@@ -1,9 +1,11 @@
 <?php
 
-session_start();
+declare(strict_types=1);
 
-require_once __DIR__ . '/lib/db_connect.php';
-require_once __DIR__ . '/lib/picture_book.php';
+require_once __DIR__ . '/../../lib/db_connect.php';
+require_once __DIR__ . '/../../lib/picture_book.php';
+
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $picture_book = $_POST;
