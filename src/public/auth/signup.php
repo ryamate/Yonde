@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/db_connect.php';
 require_once __DIR__ . '/../../lib/user.php';

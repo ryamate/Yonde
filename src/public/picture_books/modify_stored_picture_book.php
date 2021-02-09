@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+require_once __DIR__ . '/../../lib/escape.php';
+require_once __DIR__ . '/../../lib/user.php';
+require_once __DIR__ . '/../../lib/picture_book.php';
+
 session_start();
 
-require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
-require_once __DIR__ . '/lib/user.php';
-require_once __DIR__ . '/lib/picture_book.php';
-
 $errors = [];
-
 $user = [
     'user_name' => $_SESSION['user_name'],
 ];
@@ -34,12 +34,12 @@ if ($_REQUEST['action'] === 'modify' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     // バリデーションする
     $picture_book_model = new PictureBook;
     $picture_book_model->modifyStorePictureBook($stored_picture_book);
-    header("Location: bookshelf.php");
+    header("Location: ../bookshelf.php");
     exit();
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stored_picture_book = $_POST;
 }
 
 $title = 'よんで-Yonde-詳細編集';
-$content = __DIR__ . '/views/modify_stored_picture_book.php';
-include __DIR__ . '/views/layout.php';
+$content = __DIR__ . '/../../views/picture_books/modify_stored_picture_book.php';
+include __DIR__ . '/../../views/layout.php';

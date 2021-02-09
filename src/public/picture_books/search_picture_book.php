@@ -1,11 +1,13 @@
 <?php
 
-session_start();
+declare(strict_types=1);
 
-require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
-require_once __DIR__ . '/lib/user.php';
-require_once __DIR__ . '/lib/picture_book.php';
+require_once __DIR__ . '/../../lib/escape.php';
+require_once __DIR__ . '/../../lib/db_connect.php';
+require_once __DIR__ . '/../../lib/user.php';
+require_once __DIR__ . '/../../lib/picture_book.php';
+
+session_start();
 
 // エラーをnullにする（@$item["volumeInfo"]['authors']などに使用）
 error_reporting(E_ALL);
@@ -45,5 +47,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 $title = '絵本検索';
-$content = __DIR__ . '/views/search_picture_book.php';
-include __DIR__ . '/views/layout.php';
+$content = __DIR__ . '/../../views/picture_books/search_picture_book.php';
+include __DIR__ . '/../../views/layout.php';
