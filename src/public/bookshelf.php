@@ -1,14 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
+require_once __DIR__ . '/../lib/escape.php';
+require_once __DIR__ . '/../lib/db_connect.php';
+require_once __DIR__ . '/../lib/user.php';
+require_once __DIR__ . '/../lib/picture_book.php';
+
+//
 if (!isset($_SESSION)) {
     session_start();
 }
-
-require_once __DIR__ . '/lib/escape.php';
-require_once __DIR__ . '/lib/db_connect.php';
-require_once __DIR__ . '/lib/user.php';
-require_once __DIR__ . '/lib/picture_book.php';
-
+/**
+ *
+ */
 if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
     $user = [
         'user_name' => $_SESSION['user_name'],
@@ -29,10 +34,10 @@ if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
     $stored_picture_book_count = count($stored_picture_books);
     $max_page = ceil($stored_picture_book_count / $picture_book_model::MAX_DISPLAY_BOOKS);
 } else {
-    header('Location: login.php');
+    header('Location: ../auth/login.php');
     exit;
 }
 
 $title = 'よんで-Yonde-絵本棚';
-$content = __DIR__ . '/views/bookshelf.php';
-include __DIR__ . '/views/layout.php';
+$content = __DIR__ . '/../views/bookshelf.php';
+include __DIR__ . '/../views/layout.php';
