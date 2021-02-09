@@ -53,15 +53,15 @@ class User extends Dbc
         $errors = [];
 
         if (!strlen($user['user_name'])) {
-            $errors['user_name'] = '*よんでID：入力願います。';
+            $errors['user_name'] = '*よんでID：入力してください。';
         }
 
         if (!strlen($user['password'])) {
-            $errors['password'] = '*パスワード：入力願います。';
+            $errors['password'] = '*パスワード：入力してください。';
         }
 
         if (!$registered_user) {
-            $errors['user'] = '*よんでID、パスワードを正しく入力願います。';
+            $errors['user'] = '*よんでID、パスワードを正しく入力してください。';
         }
 
         return $errors;
@@ -95,21 +95,21 @@ class User extends Dbc
         }
 
         if (!strlen($user['user_name'])) {
-            $errors['user_name'] = '*よんでID：入力願います。';
+            $errors['user_name'] = '*よんでID：入力してください。';
         } elseif (strlen($user['user_name']) > 16) {
-            $errors['user_name'] = '*よんでID：16文字以内 で入力願います。';
+            $errors['user_name'] = '*よんでID：16文字以内 で入力してください。';
         } elseif (isset($registered_user_name['user_name'])) {
             $errors['user_name'] = '*よんでID："' . $registered_user_name['user_name'] . '"は、使用されています。';
         }
 
         if (!preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $user['password'])) {
-            $errors['password'] =  '*パスワード：半角英数字をそれぞれ1文字以上含んだ8文字以上で設定願います。';
+            $errors['password'] =  '*パスワード：半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。';
         }
 
         if (!empty($file_name)) {
             $ext = substr($file_name, -3);
             if ($ext !== 'gif' && $ext !== 'jpg' && $ext !== 'png') {
-                $errors['image'] = '* プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロード願います。';
+                $errors['image'] = '* プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロードしてください。';
             }
         }
 
