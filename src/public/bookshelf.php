@@ -40,4 +40,5 @@ if (isset($_SESSION['user_name']) && $_SESSION['time'] + 60 * 60 > time()) {
 
 $title = 'よんで-Yonde-絵本棚';
 $content = __DIR__ . '/../views/bookshelf.php';
+$delete_stored_picture_book = __DIR__ . '/../views/picture_books/delete_stored_picture_book.php';
 include __DIR__ . '/../views/layout.php';
