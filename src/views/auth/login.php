@@ -14,12 +14,12 @@
                 <div class="form-group">
                     <label for="user_name">よんでID</label>
                     <input class="form-control" type="user_name" id="user_name" name="user_name" value="<?= escape($user['user_name']); ?>">
+                    <?php if (isset($errors['user_name'])) : ?>
+                        <div class="text-danger">
+                            <p><?= $errors['user_name'] ?></p>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <?php if (isset($errors['user_name'])) : ?>
-                    <div class="text-danger">
-                        <p><?= $errors['user_name'] ?></p>
-                    </div>
-                <?php endif; ?>
                 <div class="form-group">
                     <label for="password">パスワード</label>
                     <input class="form-control" type="password" id="password" name="password" value="<?= escape($user['password']); ?>">
@@ -38,11 +38,11 @@
             </form>
         </div>
         <div class="card container mt-4 p-4">
+            <div>
+                <p>* 新規登録がまだの方はこちら</p>
+                <a href="signup.php" class="btn btn-sm bg-warning btn-outline-warning text-decoration-none text-white" role="button">新規登録する</a>
+            </div><br>
             <form action="login.php?action=guest_user_login" method="POST" enctype="multipart/form-data">
-                <div>
-                    <p>* 新規登録がまだの方はこちら</p>
-                    <a href="signup.php" class="btn btn-sm bg-warning btn-outline-warning text-decoration-none text-white" role="button">新規登録する</a>
-                </div><br>
                 <div>
                     <p class="text-teal1">* 新規登録せずに機能を試したい方はこちら</p>
                     <button type="submit" class="btn btn-sm bg-white btn-outline-teal1 text-decoration-none text-teal1">ゲストユーザーログイン</button>

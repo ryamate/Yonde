@@ -4,9 +4,9 @@
                     <div class="card border-0 d-flex align-items-end justify-content-center">
                         <div class="card-body">
                             <?php if ($login_user['user_image_path'] !== '') : ?>
-                                <img src="images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                                <img src="assets/images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                             <?php else : ?>
-                                <img src="images/user_picture/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                                <img src="assets/images/user_picture/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                             <?php endif; ?>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="card border-0 d-flex align-items-top justify-content-center">
                         <p class=" card-title"><?= escape($login_user['user_name']); ?>さんの家族</p>
-                        <img src="images/user_picture/no_image_user_woman.png" alt="プロフィール画像" style="width: 60px; height:60px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                        <img src="assets/images/user_picture/no_image_user_woman.png" alt="プロフィール画像" style="width: 60px; height:60px;background-position: center center;border-radius: 50%;object-fit:cover;">
                     </div>
                 </section>
                 <section>
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="card col-md-3 border-0 d-flex align-items-left justify-content-center bg-white">
                                         <div class="card-body d-flex align-items-end justify-content-end bg-white">
-                                            <form action="modify_stored_picture_book.php" method="POST">
+                                            <form action="../picture_books/modify_stored_picture_book.php" method="POST">
                                                 <input type="hidden" name="title" value="<?= $stored_picture_book['title'] ?>" />
                                                 <input type="hidden" name="authors" value="<?= $stored_picture_book['authors'] ?>" />
                                                 <input type="hidden" name="published_date" value="<?= $stored_picture_book['published_date'] ?>" />
@@ -108,6 +108,7 @@
                                                 <input type="hidden" name="summary" value="<?= $stored_picture_book['summary'] ?>" />
                                                 <button type="submit" class="btn btn-info btn-sm small" title="読み聞かせ記録"><i class="fas fa-pen"></i></a>
                                             </form>
+                                            <!-- 登録絵本の削除ボタン -->
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="本棚から削除する"><i class="fas fa-trash-alt"></i></button>
                                             <!-- Modal -->
@@ -125,7 +126,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                                                            <form action="delete_stored_picture_book.php" method="POST">
+                                                            <form action="../picture_books/delete_stored_picture_book.php" method="POST">
                                                                 <button type="submit" class="btn btn-danger">OK</button>
                                                                 <input type="hidden" name="stored_picture_book_id" value="<?= $stored_picture_book['id'] ?>" />
                                                             </form>
@@ -164,6 +165,7 @@
                             </div>
                         </section>
                     <?php endforeach; ?>
+                    <!-- ページング -->
                     <div class="d-flex align-items-center justify-content-center">
                         <?php if ($page >= 2) : ?>
                             <a href="bookshelf.php?page=<?= $page - 1; ?>" class="btn btn-outline-teal1 mr-1"><i class="fas fa-angle-double-left"></i></a>
@@ -183,9 +185,8 @@
                         <p class="small">全<?= $stored_picture_book_count; ?>件中 <?= $start_no + 1; ?> - <?= $start_no + count($stored_picture_books) ?>件を表示</p>
                     </div>
                 <?php else : ?>
-                    <div class="container">
-                        <p>まだ絵本が登録されていません。</p>
-                    </div>
+                    <!-- 絵本登録が０冊の場合 -->
+                    <p>まだ絵本が登録されていません。</p>
                 <?php endif; ?>
             </div>
         </main>
