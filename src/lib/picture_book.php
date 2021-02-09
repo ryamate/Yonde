@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/db_connect.php';
 
+/**
+ * picture_booksテーブルとやりとりするモデルクラス
+ */
 class PictureBook extends Dbc
 {
     const MAX_DISPLAY_BOOKS = 10;

@@ -1,14 +1,17 @@
 <?php
 
-session_start();
-if (!isset($_SESSION['join'])) {
-    header('Location: index.php');
-    exit();
-}
+declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/db_connect.php';
 require_once __DIR__ . '/../../lib/user.php';
+
+session_start();
+
+if (!isset($_SESSION['join'])) {
+    header('Location: index.php');
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['join']['image'])) {

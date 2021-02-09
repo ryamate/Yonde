@@ -4,8 +4,15 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/db_connect.php';
 
+/**
+ * usersテーブルとやりとりするモデルクラス
+ */
 class User extends Dbc
 {
+    /**
+     * user_nameから、ユーザー情報を取得し、返す
+     */
+    //issue: 型を指定する
     public function getLoginUser($user)
     {
         if (empty($user)) {
@@ -14,6 +21,7 @@ class User extends Dbc
 
         $dbh = $this->dbConnect();
 
+        // issue: '*' をカラム名ひとつずつに置き換え
         $stmt = $dbh->prepare('SELECT * FROM users WHERE user_name = :user_name');
         $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
 
@@ -59,6 +67,9 @@ class User extends Dbc
         return $errors;
     }
 
+    /**
+     *
+     */
     public function validateUserSignup($user, $file_name)
     {
         $dbh = $this->dbConnect();
@@ -105,6 +116,9 @@ class User extends Dbc
         return $errors;
     }
 
+    /**
+     *
+     */
     public function createUser($user)
     {
         $sql = <<<EOT
