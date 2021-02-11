@@ -36,6 +36,9 @@ class User extends Dbc
         $dbh = null;
     }
 
+    /**
+     * ログインのバリデーション処理
+     */
     public function validateUserLogin($user, $encoded_password)
     {
         $dbh = $this->dbConnect();
@@ -53,32 +56,33 @@ class User extends Dbc
         $errors = [];
 
         if (!strlen($user['user_name'])) {
-            $errors['user_name'] = '*よんでID：入力してください。';
+            $errors['user_name'] = 'よんでID：入力してください';
         }
 
         if (!strlen($user['password'])) {
-            $errors['password'] = '*パスワード：入力してください。';
+            $errors['password'] = 'パスワード：入力してください';
         }
 
         if (!$registered_user) {
-            $errors['user'] = '*よんでID、パスワードを正しく入力してください。';
+            $errors['user'] = 'よんでID、パスワードを正しく入力してください';
         }
 
         return $errors;
     }
 
     /**
-     *
+     * 新規会員登録時のバリデーション処理
      */
     public function validateUserSignup($user, $file_name)
     {
         $dbh = $this->dbConnect();
 
+        // メールアドレスか登録済みでないかの確認
         $stmt = $dbh->prepare('SELECT email FROM users WHERE email = :user_email');
         $stmt->bindValue(':user_email', $user['email'], PDO::PARAM_STR);
         $stmt->execute();
         $registered_email = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        // ユーザー名が登録済みでないかの確認
         $stmt = $dbh->prepare('SELECT user_name FROM users WHERE user_name = :user_name');
         $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
         $stmt->execute();
@@ -89,27 +93,28 @@ class User extends Dbc
         $errors = [];
 
         if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = '*メールアドレス：入力された値が正しくありません。';
+            $errors['email'] = 'メールアドレス：入力された値が正しくありません。';
         } elseif (isset($registered_email['email'])) {
-            $errors['email'] = '*メールアドレス：登録済みのメールアドレスです。';
+            $errors['email'] = 'メールアドレス：登録済みのメールアドレスです。';
         }
 
+        // issue: 半角英数小文字3～16文字でない
         if (!strlen($user['user_name'])) {
-            $errors['user_name'] = '*よんでID：入力してください。';
+            $errors['user_name'] = 'よんでID：入力してください。';
         } elseif (strlen($user['user_name']) > 16) {
-            $errors['user_name'] = '*よんでID：16文字以内 で入力してください。';
+            $errors['user_name'] = 'よんでID：16文字以内 で入力してください。';
         } elseif (isset($registered_user_name['user_name'])) {
-            $errors['user_name'] = '*よんでID："' . $registered_user_name['user_name'] . '"は、使用されています。';
+            $errors['user_name'] = 'よんでID："' . $registered_user_name['user_name'] . '"は、使用されています。';
         }
 
         if (!preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $user['password'])) {
-            $errors['password'] =  '*パスワード：半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。';
+            $errors['password'] =  'パスワード：半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。';
         }
 
         if (!empty($file_name)) {
             $ext = substr($file_name, -3);
             if ($ext !== 'gif' && $ext !== 'jpg' && $ext !== 'png') {
-                $errors['image'] = '* プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロードしてください。';
+                $errors['image'] = 'プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロードしてください。';
             }
         }
 
@@ -117,19 +122,69 @@ class User extends Dbc
     }
 
     /**
+     * よんでID変更時のバリデーション処理
      *
+     * modify_user_name.php で使用
+     */
+    public function validateModifyUsername($user)
+    {
+        $dbh = $this->dbConnect();
+
+        // new_user_name が登録済みのものでないかの確認
+        $stmt = $dbh->prepare('SELECT user_name FROM users WHERE user_name = :new_user_name');
+        $stmt->bindValue(':new_user_name', $user['new_user_name'], PDO::PARAM_STR);
+
+        $stmt->execute();
+        // 登録済みのものがある場合、値が入る
+        $registered_user_name = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
+        $stmt = $dbh->prepare('SELECT password FROM users WHERE id = :user_id AND password = :encoded_password');
+        $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_STR);
+        $stmt->bindValue(':encoded_password', sha1($user['password']), PDO::PARAM_STR);
+
+        $stmt->execute();
+        $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $dbh = null;
+
+        $errors = [];
+        // バリデーション結果のメッセージ
+        if (!strlen($user['new_user_name'])) {
+            $errors['new_user_name'] = 'よんでID：入力してください';
+        } elseif (strlen($user['new_user_name']) > 16) {
+            $errors['new_user_name'] = 'よんでID：16文字以内 で入力してください';
+        } elseif (isset($registered_user_name['user_name'])) {
+            $errors['new_user_name'] = 'よんでID："' . $registered_user_name['user_name'] . '"は、使用されています';
+        }
+        // issue: 半角英数小文字3～16文字でない
+
+        if (!strlen($user['password'])) {
+            $errors['password'] = 'パスワード：入力してください';
+        } elseif (!$registered_user_password) {
+            $errors['password'] = 'パスワードを正しく入力してください';
+        }
+
+
+        return $errors;
+    }
+
+    /**
+     * 新規会員登録処理
      */
     public function createUser($user)
     {
         $sql = <<<EOT
         INSERT INTO users (
             user_name,
+            nickname,
             email,
             password,
             user_image_path,
             created_at
         )VALUES (
             :user_name,
+            :nickname,
             :email,
             :password,
             :user_image_path,
@@ -144,6 +199,7 @@ class User extends Dbc
             $stmt = $dbh->prepare($sql);
 
             $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':nickname', $user['nickname'], PDO::PARAM_STR);
             $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
             $stmt->bindValue(':password', $user['password'], PDO::PARAM_STR);
             $stmt->bindValue(':user_image_path', $user['user_image_path'], PDO::PARAM_STR);
@@ -151,6 +207,29 @@ class User extends Dbc
             $stmt->execute();
             $dbh->commit();
             echo 'ユーザー登録完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
+    /**
+     * よんでID変更
+     */
+    public function modifyUsername($user)
+    {
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE users SET user_name = :user_name WHERE id = :user_id');
+
+            $stmt->bindValue(':user_name', $user['new_user_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
         } catch (PDOException $e) {
             $dbh->rollBack();
             exit($e);

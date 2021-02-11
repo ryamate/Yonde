@@ -3,9 +3,17 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/escape.php';
-require_once __DIR__ . '/../../lib/db_connect.php';
 require_once __DIR__ . '/../../lib/user.php';
 
+session_start(); // 既存のセッションを再開
+
+/**
+ * 新規登録フォーム画面から POST されたら、バリデーション処理し、エラーがなければ、新規登録確認画面へ遷移する。
+ * もしくは、
+ * 初めて index.php から遷移してきた場合、新規でフォーム画面を表示する。
+ * もしくは、
+ * 新規登録確認画面から「修正する」ボタンで戻ってきた場合、値が残った状態でフォーム画面を表示する。
+ */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
         'email' => $_POST['email'],
@@ -18,37 +26,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!count($errors)) {
         session_start();
         $_SESSION['join'] = $_POST;
+        // プロフィール画像選択ありの場合、名前をつけてアップロードする
         if (!empty($file_name)) {
             $image = date('Ymd') . $user['user_name'] . '_' . $_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/images/user_picture/' . $image);
+            move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../assets/images/user_picture/' . $image);
             $_SESSION['join']['image'] = $image;
         }
+        // 新規登録確認画面へ遷移する
         header("Location: check_signup.php");
         exit();
     }
-} else {
-
+} elseif (!isset($_REQUEST['action'])) {
+    // views/auth/signup.php での未定義エラー防止のため、$user、$errors のカラ配列を用意する
     $user = [
         'email' => '',
         'user_name' => '',
         'password' => ''
     ];
     $errors = [];
-
-    session_start();
-
-    if (!isset($_REQUEST['action'])) {
-        $_REQUEST = ['action' => ''];
-    }
-    if ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['join'])) {
-        $_POST = $_SESSION['join'];
-        $user = [
-            'email' => $_POST['email'],
-            'user_name' => $_POST['user_name'],
-            'password' => $_POST['password']
-        ];
-    }
+} elseif ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['join'])) {
+    $_POST = $_SESSION['join'];
+    $user = [
+        'email' => $_POST['email'],
+        'user_name' => $_POST['user_name'],
+        'password' => $_POST['password']
+    ];
 }
+
 
 $title = 'よんで-Yonde-新規登録';
 $content = __DIR__ . '/../../views/auth/signup.php';

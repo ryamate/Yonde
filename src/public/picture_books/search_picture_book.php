@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/escape.php';
-require_once __DIR__ . '/../../lib/db_connect.php';
 require_once __DIR__ . '/../../lib/user.php';
 require_once __DIR__ . '/../../lib/picture_book.php';
 
@@ -46,6 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-$title = '絵本検索';
+$title = 'よんで-Yonde-絵本検索';
 $content = __DIR__ . '/../../views/picture_books/search_picture_book.php';
 include __DIR__ . '/../../views/layout.php';
