@@ -43,13 +43,10 @@
                             <a href="" class="btn btn-info btn-sm text-white small"><i class="fas fa-pen"></i>読み聞かせ記録</a>
                         </li>
                         <li class="nav-item ml-1">
-                            <a href="" class="btn btn-secondary btn-sm text-white "><i class="fas fa-user-circle"></i>プロフィール</a>
-                        </li>
-                        <li class="nav-item ml-1">
                             <a href="" class="btn btn-secondary btn-sm text-white "><i class="fas fa-clock"></i>タイムライン</a>
                         </li>
                         <li class="nav-item ml-1">
-                            <a href="" class="btn btn-secondary btn-sm text-white "><i class="fas fa-cog"></i>設定</a>
+                            <a href="../users/profile_setting.php" class="btn btn-secondary btn-sm text-white "><i class="fas fa-cog"></i>プロフィール設定</a>
                         </li>
                     </ul>
                 </div>
@@ -57,6 +54,7 @@
         </section>
     </div>
 </header>
+
 <main>
     <div class="container">
         <?php if (count($stored_picture_books) > 0) : ?>

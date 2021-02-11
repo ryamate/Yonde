@@ -44,7 +44,7 @@
             </div><br>
             <form action="login.php?action=guest_user_login" method="POST" enctype="multipart/form-data">
                 <div>
-                    <p class="text-teal1">* 新規登録せずに機能を試したい方はこちら</p>
+                    <p class="text-teal1">新規登録せずに機能を試したい方はこちら</p>
                     <button type="submit" class="btn btn-sm bg-white btn-outline-teal1 text-decoration-none text-teal1">ゲストユーザーログイン</button>
                 </div>
             </form>
