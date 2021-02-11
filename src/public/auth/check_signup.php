@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/escape.php';
-require_once __DIR__ . '/../../lib/db_connect.php';
 require_once __DIR__ . '/../../lib/user.php';
 
 session_start();
@@ -20,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
         'email' => $_SESSION['join']['email'],
         'user_name' => $_SESSION['join']['user_name'],
+        'nickname' => $_SESSION['join']['user_name'], // nickname の初期設定は、user_nameにする
         'password' => sha1($_SESSION['join']['password']),
         'user_image_path' => $_SESSION['join']['image']
     ];
-    $dbc = new User;
-    $dbc->createUser($user);
+    $user_model = new User;
+    $user_model->createUser($user);
     unset($_SESSION['join']);
     $_SESSION['first_login']['user_name'] = $user['user_name'];
     header("Location: login.php");

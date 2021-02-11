@@ -1,14 +1,20 @@
 <?php
 
 /**
- * アプリケーション開発する際に、テーブルを初期化するためのプログラムです。
+ * 「よんで」のアプリケーション開発する際に、テーブルを初期化するためのプログラムです。
+ *
+ * 実行コマンド：
+ * $ docker-compose exec app php lib/Database/InitializeTableBatch.php
  */
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../lib/db_connect.php';
+require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../lib/db_connect.php';
 
+/**
+ * yonde_log データベースのテーブル初期化クラス
+ */
 class InitializeTableBatch extends Dbc
 {
     public static function dropTable($table_name)
@@ -43,6 +49,7 @@ class InitializeTableBatch extends Dbc
                 id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
                 family_id INTEGER NULL,
                 user_name VARCHAR(100) UNIQUE,
+                nickname VARCHAR(100),
                 email VARCHAR(100) UNIQUE,
                 password VARCHAR(100),
                 user_image_path VARCHAR(100),
@@ -124,7 +131,7 @@ class InitializeTableBatch extends Dbc
             created_at
         )VALUES (
             1,
-            "ゲス",
+            "やまだ",
             NOW()
         )
         EOT;
@@ -144,6 +151,7 @@ class InitializeTableBatch extends Dbc
         INSERT INTO users (
             family_id,
             user_name,
+            nickname,
             email,
             password,
             user_image_path,
@@ -151,7 +159,8 @@ class InitializeTableBatch extends Dbc
             created_at
         )VALUES (
             1,
-            "ゲスト",
+            "guest",
+            "たろう",
             "guest@guest",
             "guest_user1",
             "no_image_user_man.png",
@@ -175,6 +184,7 @@ class InitializeTableBatch extends Dbc
         INSERT INTO users (
             family_id,
             user_name,
+            nickname,
             email,
             password,
             user_image_path,
@@ -182,7 +192,8 @@ class InitializeTableBatch extends Dbc
             created_at
         )VALUES (
             1,
-            "ゲスミ",
+            "partner",
+            "はなこ",
             "guest@partner",
             "guest_partner1",
             "no_image_user_woman.png",
@@ -209,7 +220,7 @@ class InitializeTableBatch extends Dbc
             created_at
         )VALUES (
             1,
-            "ゲスタロウ",
+            "いちろう",
             NOW()
         )
         EOT;

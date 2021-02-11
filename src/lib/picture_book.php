@@ -191,7 +191,6 @@ class PictureBook extends Dbc
 
     public function modifyStorePictureBook($stored_picture_book)
     {
-
         $dbh = $this->dbConnect();
         $dbh->beginTransaction();
 
