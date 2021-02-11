@@ -36,16 +36,12 @@
                     <a href="" title="タイムライン" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="far fa-clock fa-lg"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a href="" title="プロフィール設定" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
+                    <a href="../users/profile_setting.php" title="プロフィール設定" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
                 </li>
                 <li class=" nav-item ml-1">
                     <div class="dropdown drop-hover">
                         <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php if ($login_user['user_image_path'] !== '') : ?>
-                                <img src="../assets/images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
-                            <?php else : ?>
-                                <img src="../assets/images/user_picture/no_image_user_man.png" alt="プロフィール画像" class="rounded-circle" style="width: 100px; height:100px;background-position: center center; object-fit:cover;">
-                            <?php endif; ?>
+                            <img src="../assets/images/user_picture/<?= $login_user['user_image_path'] !== '' ? escape($login_user['user_image_path']) : 'no_image_user_man.png'; ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
