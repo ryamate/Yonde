@@ -12,7 +12,7 @@
 
             <tr>
                 <th>ニックネーム</th>
-                <td><?= escape($login_user['nickname']) ?>　<a href="">変更はこちらから</a></td>
+                <td><?= escape($login_user['nickname']) ?>　<a href="modify_nickname.php">変更はこちらから</a></td>
             </tr>
 
             <tr>
