@@ -1,0 +1,12 @@
+// VSCodeデバッグ機能の設定
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "php",
+      "request": "launch",
+      "name": "Listen for Xdebug", // わかりやすければ、なんでもOK
+      "port": 9003, // Xdebug のポート番号
+    }
+  ]
+}

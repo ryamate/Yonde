@@ -27,7 +27,7 @@
                 <dt>プロフィール画像</dt>
                 <dd>
                     <?php if (isset($_SESSION['join']['image'])) : ?>
-                        <img src="images/user_picture/<?= escape($_SESSION['join']['image']) ?>" alt="" style="width: 200px; height:200px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                        <img src="../assets/images/user_picture/<?= escape($_SESSION['join']['image']) ?>" alt="" style="width: 200px; height:200px;background-position: center center;border-radius: 50%;object-fit:cover;">
                     <?php else : ?>
                         未選択
                     <?php endif; ?>

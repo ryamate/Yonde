@@ -1,0 +1,18 @@
+{
+  "name": "yonde", // 名前はなんでもOK
+  "dockerComposeFile": [ // ファイルのパスを指定
+    "../docker-compose.yml",
+  ],
+  "service": "app", // app コンテナを指定
+  "workspaceFolder": "/var/www/html", // Docker の src ディレクトリ以下と同じ
+  "forwardPorts": [ // コンテナ内からローカルマシンに転送するポート
+    9003 // Xdebug は9003番ポートがデフォルト
+  ],
+  "extensions": [ // Remote Development で使う拡張機能
+    "felixfbecker.php-debug", // Xdebug を使うのに必要
+    "bmewburn.vscode-intelephense-client", // 補完
+    "coenraads.bracket-pair-colorizer-2", // 括弧の色
+    "oderwat.indent-rainbow", // インデントのわかりやすさ
+    "streetsidesoftware.code-spell-checker" // スペルチェック
+  ]
+}
