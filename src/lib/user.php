@@ -133,23 +133,20 @@ class User extends Dbc
         // new_user_name が登録済みのものでないかの確認
         $stmt = $dbh->prepare('SELECT user_name FROM users WHERE user_name = :new_user_name');
         $stmt->bindValue(':new_user_name', $user['new_user_name'], PDO::PARAM_STR);
-
         $stmt->execute();
-        // 登録済みのものがある場合、値が入る
-        $registered_user_name = $stmt->fetch(PDO::FETCH_ASSOC);
+        $registered_user_name = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものがある場合、その値が入る
 
         // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
         $stmt = $dbh->prepare('SELECT password FROM users WHERE id = :user_id AND password = :encoded_password');
         $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_STR);
         $stmt->bindValue(':encoded_password', sha1($user['password']), PDO::PARAM_STR);
-
         $stmt->execute();
-        $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC);
+        $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
 
         $dbh = null;
 
-        $errors = [];
         // バリデーション結果のメッセージ
+        $errors = [];
         if (!strlen($user['new_user_name'])) {
             $errors['new_user_name'] = 'よんでID：入力してください';
         } elseif (strlen($user['new_user_name']) > 16) {
@@ -165,9 +162,27 @@ class User extends Dbc
             $errors['password'] = 'パスワードを正しく入力してください';
         }
 
+        return $errors;
+    }
+
+    /**
+     * ニックネーム変更時のバリデーション処理
+     *
+     * modify_nickname.php で使用
+     */
+    public function validateModifyNickname($user)
+    {
+        // バリデーション結果のメッセージ
+        $errors = [];
+        if (!strlen($user['new_nickname'])) {
+            $errors['new_nickname'] = 'ニックネーム：入力してください';
+        } elseif (strlen($user['new_nickname']) > 100) {
+            $errors['new_nickname'] = 'ニックネーム：16文字以内 で入力してください。';
+        }
 
         return $errors;
     }
+
 
     /**
      * 新規会員登録処理
@@ -235,6 +250,30 @@ class User extends Dbc
             exit($e);
         }
     }
+
+    /**
+     * ニックネーム変更
+     */
+    public function modifyNickname($user)
+    {
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE users SET nickname = :nickname WHERE id = :user_id');
+
+            $stmt->bindValue(':nickname', $user['new_nickname'], PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
 
     public function createFamily($user)
     {
