@@ -11,11 +11,11 @@
                 </div>
             </div>
             <div class="card border-0 d-flex align-items-start justify-content-center">
-                <p class="card-title h5"><?= escape($login_user['user_name']); ?>ファミリーの本棚</p>
-                <p class="card-title"><?= escape($login_user['user_name']); ?>さん</p>
+                <p class="card-title h5"><?= escape($login_user['nickname']); ?>ファミリーの本棚</p>
+                <p class="card-title"><?= escape($login_user['nickname']); ?>さん</p>
             </div>
             <div class="card border-0 d-flex align-items-top justify-content-center">
-                <p class=" card-title"><?= escape($login_user['user_name']); ?>さんの家族</p>
+                <p class=" card-title"><?= escape($login_user['nickname']); ?>さんの家族</p>
                 <img src="assets/images/user_picture/no_image_user_woman.png" alt="プロフィール画像" style="width: 60px; height:60px;background-position: center center;border-radius: 50%;object-fit:cover;">
             </div>
         </section>
