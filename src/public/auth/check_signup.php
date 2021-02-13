@@ -12,7 +12,8 @@ if (!isset($_SESSION['join'])) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // フォーム画面からのPOSTであれば、処理開始
     if (!isset($_SESSION['join']['image'])) {
         $_SESSION['join']['image'] = '';
     }
