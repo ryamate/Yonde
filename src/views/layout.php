@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-md fixed-top shadow-sm bg-teal1" style="height: 60px; vertical-align: middle;">
         <div class="navbar-brand p-0">
-            <a href="../bookshelf.php"><img src="../assets/images/package_design.png" alt="yonde" height="45"></a>
+            <a href="../bookshelf.php"><img src="../assets/images/logo_face.png" alt="yonde" height="45"></a>
         </div>
         <div class="row collapse navbar-collapse mr-auto">
             <a class="text-white text-decoration-none mb-0 ml-1 h2" href="../bookshelf.php">よんで</a>
