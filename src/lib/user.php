@@ -186,10 +186,9 @@ class User extends Dbc
     /**
      * プロフィール画像設定時のバリデーション処理
      */
-    public function validateUserImageUpdate($file_name)
+    public function validateUserIconUpdate($file_name)
     {
         $errors = [];
-
         if (!empty($file_name)) {
             $ext = substr($file_name, -3);
             if ($ext !== 'gif' && $ext !== 'jpg' && $ext !== 'png') {
@@ -294,9 +293,32 @@ class User extends Dbc
     }
 
     /**
+     * プロフィール画像の追加
+     */
+    public function updateUserIcon($user, $file_name)
+    {
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE users SET user_icon = :user_icon WHERE id = :user_id');
+
+            $stmt->bindValue(':user_icon', $file_name, PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
+    /**
      * プロフィール画像の削除
      */
-    public function deleteUserImage($user)
+    public function deleteUserIcon($user)
     {
         $dbh = $this->dbConnect();
         $dbh->beginTransaction();
