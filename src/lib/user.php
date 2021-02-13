@@ -199,8 +199,21 @@ class User extends Dbc
         return $errors;
     }
 
+    /**
+     * バリデーション処理: 自己紹介変更
+     *
+     * profile_setting.php で使用
+     */
+    public function validateModifyIntroduction($user)
+    {
+        // バリデーション結果のメッセージ
+        $errors = [];
+        if (mb_strlen($user['new_introduction']) > 1000) {
+            $errors['new_introduction'] = '1000文字以内 で入力してください。';
+        }
 
-
+        return $errors;
+    }
 
     /**
      * 新規会員登録処理
@@ -247,7 +260,7 @@ class User extends Dbc
     }
 
     /**
-     * よんでID変更
+     * よんでID（user_name）を変更する
      */
     public function modifyUsername($user)
     {
@@ -270,7 +283,7 @@ class User extends Dbc
     }
 
     /**
-     * ニックネーム変更
+     * ニックネームを変更する
      */
     public function modifyNickname($user)
     {
@@ -293,7 +306,7 @@ class User extends Dbc
     }
 
     /**
-     * プロフィール画像の追加
+     * プロフィール画像を追加する
      */
     public function updateUserIcon($user, $file_name)
     {
@@ -327,6 +340,29 @@ class User extends Dbc
             $stmt = $dbh->prepare('UPDATE users SET user_icon = :user_icon WHERE id = :user_id');
 
             $stmt->bindValue(':user_icon', "", PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
+    /**
+     * 自己紹介を変更する
+     */
+    public function modifyIntroduction($user)
+    {
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE users SET introduction = :introduction WHERE id = :user_id');
+
+            $stmt->bindValue(':introduction', $user['new_introduction'], PDO::PARAM_STR);
             $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
 
             $stmt->execute();
