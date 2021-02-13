@@ -183,6 +183,25 @@ class User extends Dbc
         return $errors;
     }
 
+    /**
+     * プロフィール画像設定時のバリデーション処理
+     */
+    public function validateUserImageUpdate($file_name)
+    {
+        $errors = [];
+
+        if (!empty($file_name)) {
+            $ext = substr($file_name, -3);
+            if ($ext !== 'gif' && $ext !== 'jpg' && $ext !== 'png') {
+                $errors['image'] = 'プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロードしてください';
+            }
+        }
+
+        return $errors;
+    }
+
+
+
 
     /**
      * 新規会員登録処理
@@ -274,6 +293,28 @@ class User extends Dbc
         }
     }
 
+    /**
+     * プロフィール画像の削除
+     */
+    public function deleteUserImage($user)
+    {
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE users SET user_image_path = :user_image_path WHERE id = :user_id');
+
+            $stmt->bindValue(':user_image_path', "", PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
 
     public function createFamily($user)
     {
