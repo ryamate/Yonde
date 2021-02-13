@@ -18,8 +18,8 @@
             <tr>
                 <th>プロフィール画像</th>
                 <td>
-                    <img src="../assets/images/user_picture/<?= $login_user['user_image_path'] !== '' ? escape($login_user['user_image_path']) : 'no_image_user_man.png'; ?>" alt="" class="img-thumbnail" style="width: 100px; height:100px;background-position: center center;object-fit:cover;">　
-                    <a href="modify_user_image_path.php">変更はこちらから</a>
+                    <img src="../assets/images/user_icon/<?= $login_user['user_icon'] !== '' ? escape($login_user['user_icon']) : 'no_image_user_man.png'; ?>" alt="" class="img-thumbnail" style="width: 100px; height:100px;background-position: center center;object-fit:cover;">　
+                    <a href="modify_user_icon.php">変更はこちらから</a>
                 </td>
             </tr>
 
