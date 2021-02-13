@@ -20,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_REQUEST['action'] === 'update') {
     $file_name = $_FILES['image']['name'];
     $user_model = new User;
     $errors = $user_model->validateUserImageUpdate($file_name);
-    // バリデーション処理がOKだったら、テーブルのuser_image_path カラムに追加する
+    // バリデーション処理がOKだったら、テーブルのuser_icon カラムに追加する
     if (!count($errors)) {
         // ファイル名を変更して、ディレクトリへ保存する
         $image = date('Ymd') . $login_user['user_name'] . '_' . $file_name;
-        move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../assets/images/user_picture/' . $image);
-        $_SESSION['user_image_path'] = $image;
+        move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../assets/images/user_icon/' . $image);
+        $_SESSION['user_icon'] = $image;
         header("Location: profile_setting.php"); // プロフィール設定画面へ遷移する
         exit();
     }
@@ -33,25 +33,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_REQUEST['action'] === 'update') {
 
     $login_user = [ // テーブル及びディレクトリからの削除に使用する
         'id' => $_SESSION['id'],
-        'user_image_path' => $_SESSION['user_image_path'],
+        'user_icon' => $_SESSION['user_icon'],
     ];
 
     $user_model = new User;
-    $user_model->deleteUserImage($login_user); // users テーブルの user_image_path を削除する
+    $user_model->deleteUserImage($login_user); // users テーブルの user_icon を削除する
     // ディレクトリの画像ファイルを削除する
-    if (file_exists(__DIR__ . '/../assets/images/user_picture/' . $login_user['user_image_path'])) {
-        unlink(__DIR__ . '/../assets/images/user_picture/' . $login_user['user_image_path']);
+    if (file_exists(__DIR__ . '/../assets/images/user_icon/' . $login_user['user_icon'])) {
+        unlink(__DIR__ . '/../assets/images/user_icon/' . $login_user['user_icon']);
     }
-    $_SESSION['user_image_path'] = ""; // session の内容を削除する
+    $_SESSION['user_icon'] = ""; // session の内容を削除する
     header("Location: profile_setting.php"); // プロフィール設定画面へ遷移する
     exit();
 }
 
 // viewで表示、及び、if文（uploaded or not uploaded）に使用する
 $login_user = [
-    'user_image_path' => $_SESSION['user_image_path'],
+    'user_icon' => $_SESSION['user_icon'],
 ];
 
 $title = 'プロフィール画像設定-Yonde-よんで';
-$content = __DIR__ . '/../../views/users/modify_user_image_path.php';
+$content = __DIR__ . '/../../views/users/modify_user_icon.php';
 include __DIR__ . '/../../views/layout.php';

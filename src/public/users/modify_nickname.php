@@ -44,7 +44,7 @@ $login_user = [
     'user_name' => $_SESSION['user_name'],
     'nickname' => $_SESSION['nickname'],
     'email' => $_SESSION['email'],
-    'user_image_path' => $_SESSION['user_image_path'],
+    'user_icon' => $_SESSION['user_icon'],
 ];
 
 $title = 'ニックネーム変更-Yonde-よんで';

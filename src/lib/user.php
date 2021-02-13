@@ -214,14 +214,14 @@ class User extends Dbc
             nickname,
             email,
             password,
-            user_image_path,
+            user_icon,
             created_at
         )VALUES (
             :user_name,
             :nickname,
             :email,
             :password,
-            :user_image_path,
+            :user_icon,
             NOW()
         )
         EOT;
@@ -236,7 +236,7 @@ class User extends Dbc
             $stmt->bindValue(':nickname', $user['nickname'], PDO::PARAM_STR);
             $stmt->bindValue(':email', $user['email'], PDO::PARAM_STR);
             $stmt->bindValue(':password', $user['password'], PDO::PARAM_STR);
-            $stmt->bindValue(':user_image_path', $user['user_image_path'], PDO::PARAM_STR);
+            $stmt->bindValue(':user_icon', $user['user_icon'], PDO::PARAM_STR);
 
             $stmt->execute();
             $dbh->commit();
@@ -302,9 +302,9 @@ class User extends Dbc
         $dbh->beginTransaction();
 
         try {
-            $stmt = $dbh->prepare('UPDATE users SET user_image_path = :user_image_path WHERE id = :user_id');
+            $stmt = $dbh->prepare('UPDATE users SET user_icon = :user_icon WHERE id = :user_id');
 
-            $stmt->bindValue(':user_image_path', "", PDO::PARAM_STR);
+            $stmt->bindValue(':user_icon', "", PDO::PARAM_STR);
             $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
 
             $stmt->execute();
