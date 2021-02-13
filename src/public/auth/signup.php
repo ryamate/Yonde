@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // プロフィール画像選択ありの場合、名前をつけてアップロードする
         if (!empty($file_name)) {
             $image = date('Ymd') . $user['user_name'] . '_' . $_FILES['image']['name'];
-            move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../assets/images/user_picture/' . $image);
+            move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../assets/images/user_icon/' . $image);
             $_SESSION['join']['image'] = $image;
         }
         // 新規登録確認画面へ遷移する

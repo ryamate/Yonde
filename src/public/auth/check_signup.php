@@ -12,7 +12,8 @@ if (!isset($_SESSION['join'])) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // フォーム画面からのPOSTであれば、処理開始
     if (!isset($_SESSION['join']['image'])) {
         $_SESSION['join']['image'] = '';
     }
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'user_name' => $_SESSION['join']['user_name'],
         'nickname' => $_SESSION['join']['user_name'], // nickname の初期設定は、user_nameにする
         'password' => sha1($_SESSION['join']['password']),
-        'user_image_path' => $_SESSION['join']['image']
+        'user_icon' => $_SESSION['join']['image']
     ];
     $user_model = new User;
     $user_model->createUser($user);

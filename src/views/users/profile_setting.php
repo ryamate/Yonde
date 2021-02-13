@@ -1,5 +1,5 @@
 <div style="margin-top: 75px;">
-    <form method="POST" action="modify_introduction.php">
+    <form method="POST" action="profile_setting.php">
         <div class="container">
             <h2>プロフィール設定</h2>
         </div>
@@ -7,29 +7,32 @@
         <table class="container table table-bordered">
             <tr>
                 <th>よんでID</th>
-                <td><?= escape($login_user['user_name']) ?>　<a href="modify_user_name.php">変更はこちらから</a></td>
+                <td><?= escape($login_user['user_name']) ?>　<a href="modify_user_name.php" class="small">変更はこちらから</a></td>
             </tr>
 
             <tr>
                 <th>ニックネーム</th>
-                <td><?= escape($login_user['nickname']) ?>　<a href="modify_nickname.php">変更はこちらから</a></td>
+                <td><?= escape($login_user['nickname']) ?>　<a href="modify_nickname.php" class="small">変更はこちらから</a></td>
             </tr>
 
             <tr>
                 <th>プロフィール画像</th>
                 <td>
-                    <img src="../assets/images/user_picture/<?= $login_user['user_image_path'] !== '' ? escape($login_user['user_image_path']) : 'no_image_user_man.png'; ?>" alt="" class="img-thumbnail" style="width: 100px; height:100px;background-position: center center;object-fit:cover;">　
-                    <a href="">変更はこちらから</a>
+                    <img src="../assets/images/user_icon/<?= $login_user['user_icon'] !== '' ? escape($login_user['user_icon']) : 'no_image_user_man.png'; ?>" alt="" class="img-thumbnail" style="width: 100px; height:100px;background-position: center center;object-fit:cover;">　
+                    <a href="modify_user_icon.php" class="small">変更はこちらから</a>
                 </td>
             </tr>
 
             <tr>
                 <th>
-                    <label for="introduction">自己紹介</label>
+                    <label for="new_introduction">自己紹介</label>
                 </th>
                 <td>
-                    <textarea name="introduction" id="introduction" class="form-control"><?= $login_user['introduction'] ?></textarea>
-                    <ul>
+                    <textarea name="new_introduction" id="new_introduction" class="form-control"><?= escape($login_user['introduction']); ?></textarea>
+                    <ul class="text-dark small">
+                        <?php if (isset($errors['new_introduction'])) : ?>
+                            <li class="text-danger"><?= $errors['new_introduction'] ?></li>
+                        <?php endif; ?>
                         <li>1000文字以内 / HTMLタグ使用不可</li>
                     </ul>
 
@@ -51,12 +54,12 @@
             <tbody>
                 <tr>
                     <th>ファミリーネーム【機能追加予定】</th>
-                    <td>---　<a href="">変更はこちらから</a></td>
+                    <td>---　<a href="" class="small">変更はこちらから</a></td>
                 </tr>
 
                 <tr>
                     <th>ファミリーメンバー【機能追加予定】</th>
-                    <td>---　<a href="">変更はこちらから</a></td>
+                    <td>---　<a href="" class="small">変更はこちらから</a></td>
                 </tr>
 
             </tbody>

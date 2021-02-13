@@ -7,7 +7,6 @@ require_once __DIR__ . '/../../lib/user.php';
 
 session_start(); // 既存のセッションを再開する
 
-
 /**
  * 「ニックネームの変更」フォーム画面から POST されたら、バリデーション処理し、エラーがなければ、DBに接続・変更し、プロフィール設定画面へ遷移する。
  * もしくは、
@@ -44,7 +43,7 @@ $login_user = [
     'user_name' => $_SESSION['user_name'],
     'nickname' => $_SESSION['nickname'],
     'email' => $_SESSION['email'],
-    'user_image_path' => $_SESSION['user_image_path'],
+    'user_icon' => $_SESSION['user_icon'],
 ];
 
 $title = 'ニックネーム変更-Yonde-よんで';

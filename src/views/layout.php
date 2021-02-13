@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-md fixed-top shadow-sm bg-teal1" style="height: 60px; vertical-align: middle;">
         <div class="navbar-brand p-0">
-            <a href="../bookshelf.php"><img src="../assets/images/package_design.png" alt="yonde" height="45"></a>
+            <a href="../bookshelf.php"><img src="../assets/images/logo_face.png" alt="yonde" height="45"></a>
         </div>
         <div class="row collapse navbar-collapse mr-auto">
             <a class="text-white text-decoration-none mb-0 ml-1 h2" href="../bookshelf.php">よんで</a>
@@ -42,7 +42,7 @@
                 <li class=" nav-item ml-1">
                     <div class="dropdown drop-hover">
                         <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../assets/images/user_picture/<?= $login_user['user_image_path'] !== '' ? escape($login_user['user_image_path']) : 'no_image_user_man.png'; ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
+                            <img src="../assets/images/user_icon/<?= $login_user['user_icon'] !== '' ? escape($login_user['user_icon']) : 'no_image_user_man.png'; ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
