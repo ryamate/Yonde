@@ -52,7 +52,7 @@ class InitializeTableBatch extends Dbc
                 nickname VARCHAR(100),
                 email VARCHAR(100) UNIQUE,
                 password VARCHAR(100),
-                user_image_path VARCHAR(100),
+                user_icon VARCHAR(100),
                 introduction VARCHAR(1000),
                 created_at TIMESTAMP NULL,
                 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -154,7 +154,7 @@ class InitializeTableBatch extends Dbc
             nickname,
             email,
             password,
-            user_image_path,
+            user_icon,
             introduction,
             created_at
         )VALUES (
@@ -187,7 +187,7 @@ class InitializeTableBatch extends Dbc
             nickname,
             email,
             password,
-            user_image_path,
+            user_icon,
             introduction,
             created_at
         )VALUES (
