@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // HTMLで表示する
 $login_user = [
     'user_name' => $_SESSION['user_name'],
-    'user_image_path' => $_SESSION['user_image_path'],
+    'user_icon' => $_SESSION['user_icon'],
 ];
 
 $title = 'よんでID変更-Yonde-よんで';

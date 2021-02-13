@@ -4,8 +4,8 @@
 
         <!--プロフィール画像を設定していない場合、ファイル選択、及び、設定ボタンを設置した画面を表示し、
         プロフィール画像を設定済みの場合、プロフィール画像表示、及び、削除ボタンを設置した画面を表示する-->
-        <?php if ($login_user['user_image_path'] === '') : ?>
-            <form method="POST" action="modify_user_image_path.php?action=update" enctype="multipart/form-data">
+        <?php if ($login_user['user_icon'] === '') : ?>
+            <form method="POST" action="modify_user_icon.php?action=update" enctype="multipart/form-data">
                 <!-- 画像アップロード → enctype="multipart/form-data" -->
                 <table class="container table table-bordered">
                     <tr>
@@ -29,13 +29,13 @@
             </form>
 
         <?php else : ?>
-            <form method="POST" action="modify_user_image_path.php?action=delete">
+            <form method="POST" action="modify_user_icon.php?action=delete">
                 <input type="hidden" name="_method" value="delete">
                 <table class="container table table-bordered">
                     <tr>
                         <th><label>プロフィール画像</label></th>
                         <td>
-                            <img src="../assets/images/user_picture/<?= $login_user['user_image_path']; ?>" alt="" class="img-thumbnail" style="width: 150px; height:150px;background-position: center center;object-fit:cover;">
+                            <img src="../assets/images/user_icon/<?= $login_user['user_icon']; ?>" alt="" class="img-thumbnail" style="width: 150px; height:150px;background-position: center center;object-fit:cover;">
                         </td>
                     </tr>
                 </table>

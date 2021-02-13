@@ -3,10 +3,10 @@
         <section class="card-deck pb-4">
             <div class="card border-0 d-flex align-items-end justify-content-center">
                 <div class="card-body">
-                    <?php if ($login_user['user_image_path'] !== '') : ?>
-                        <img src="assets/images/user_picture/<?= escape($login_user['user_image_path']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                    <?php if ($login_user['user_icon'] !== '') : ?>
+                        <img src="assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                     <?php else : ?>
-                        <img src="assets/images/user_picture/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                        <img src="assets/images/user_icon/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                     <?php endif; ?>
                 </div>
             </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="card border-0 d-flex align-items-top justify-content-center">
                 <p class=" card-title"><?= escape($login_user['nickname']); ?>さんの家族</p>
-                <img src="assets/images/user_picture/no_image_user_woman.png" alt="プロフィール画像" style="width: 60px; height:60px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                <img src="assets/images/user_icon/no_image_user_woman.png" alt="プロフィール画像" style="width: 60px; height:60px;background-position: center center;border-radius: 50%;object-fit:cover;">
             </div>
         </section>
         <section>
