@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 /**
  * XSS対策
