@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // フォーム画面からのPOST�
         'email' => $_SESSION['join']['email'],
         'user_name' => $_SESSION['join']['user_name'],
         'nickname' => $_SESSION['join']['user_name'], // nickname の初期設定は、user_nameにする
-        'password' => sha1($_SESSION['join']['password']),
+        'password' => password_hash($_SESSION['join']['password'], PASSWORD_BCRYPT),
         'user_icon' => $_SESSION['join']['image']
     ];
     $user_model = new User;
