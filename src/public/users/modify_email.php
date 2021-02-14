@@ -15,6 +15,7 @@ session_start(); // 新しいセッションを開始、あるいは既存のセ
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_user = [
         'id' => $_SESSION['id'],
+        'user_name' => $_SESSION['user_name'],
         'email' => $_SESSION['email'],
         'new_email' => $_POST['new_email'],
         'password' => $_POST['password']
