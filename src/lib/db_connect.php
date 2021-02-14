@@ -1,9 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require __DIR__ . '/../vendor/autoload.php';
 
+/**
+ * データベース接続機能
+ */
 class Dbc
 {
 

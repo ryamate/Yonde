@@ -1,23 +1,20 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/user.php';
 require_once __DIR__ . '/../../lib/picture_book.php';
 
-session_start();
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
-// エラーをnullにする（@$item["volumeInfo"]['authors']などに使用）
-error_reporting(E_ALL);
-
-$user = [
-    'user_name' => $_SESSION['user_name'],
-];
-$user_model = new User;
-$login_user = $user_model->getLoginUser($user);
+error_reporting(E_ALL); // エラーをnullにする（@$item["volumeInfo"]['authors']などに使用）
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login_user = [
+        'id' => $_SESSION['id'],
+    ];
+
     $search_input = $_POST['search'];
     // バリデーション（半角スペース入れると取得できない→スペース削除）
     $data = "https://www.googleapis.com/books/v1/volumes?q='$search_input'&maxResults=40";
@@ -43,6 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $search_input = '';
 }
 
+$login_user = [
+    'user_icon' => $_SESSION['user_icon'],
+];
 
 
 $title = 'よんで-Yonde-絵本検索';
