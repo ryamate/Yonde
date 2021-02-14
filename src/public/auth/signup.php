@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/user.php';
 
-session_start(); // 既存のセッションを再開
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
 /**
  * 新規登録フォーム画面から POST されたら、バリデーション処理し、エラーがなければ、新規登録確認画面へ遷移する。
@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_model = new User;
     $errors = $user_model->validateUserSignup($user, $file_name);
     if (!count($errors)) {
-        session_start();
         $_SESSION['join'] = $_POST;
         // プロフィール画像選択ありの場合、名前をつけてアップロードする
         if (!empty($file_name)) {

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/db_connect.php';
 
@@ -10,18 +10,18 @@ require_once __DIR__ . '/db_connect.php';
 class User extends Dbc
 {
     /**
-     * user_nameから、ユーザー情報を取得し、返す
+     * user_name を引数とし、ユーザー情報を取得し、返す
      */
     //issue: 型を指定する
     public function getLoginUser($user)
     {
         if (empty($user)) {
-            exit('ユーザー情報が不正です。');
+            exit('ユーザー情報が不正です');
         }
 
         $dbh = $this->dbConnect();
 
-        // issue: '*' をカラム名ひとつずつに置き換え
+        // issue: '*' をカラム名ひとつずつに置き換える
         $stmt = $dbh->prepare('SELECT * FROM users WHERE user_name = :user_name');
         $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
 
@@ -30,17 +30,18 @@ class User extends Dbc
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$result) {
-            exit('ユーザー情報を取得できません。');
+            exit('ユーザー情報を取得できません');
         }
         return $result;
         $dbh = null;
     }
 
     /**
-     * ログインのバリデーション処理
+     * バリデーション処理: ログイン
      */
-    public function validateUserLogin($user, $encoded_password)
+    public function validateUserLogin($user)
     {
+        $encoded_password = sha1($user['password']);
         $dbh = $this->dbConnect();
 
         $stmt = $dbh->prepare('SELECT user_name, password FROM users WHERE user_name = :user_name AND password = :encoded_password');
@@ -64,14 +65,14 @@ class User extends Dbc
         }
 
         if (!$registered_user) {
-            $errors['user'] = 'よんでID、パスワードを正しく入力してください';
+            $errors['user'] = 'よんでID、パスワード を正しく入力してください';
         }
 
         return $errors;
     }
 
     /**
-     * 新規会員登録時のバリデーション処理
+     * バリデーション処理: 新規会員登録
      */
     public function validateUserSignup($user, $file_name)
     {
@@ -92,29 +93,34 @@ class User extends Dbc
 
         $errors = [];
 
-        if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'メールアドレス：入力された値が正しくありません。';
+        if (!strlen($user['email'])) {
+            $errors['email'] = 'メールアドレスを入力してください';
+        } elseif (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'メールアドレスの入力された値が正しくありません';
         } elseif (isset($registered_email['email'])) {
-            $errors['email'] = 'メールアドレス：登録済みのメールアドレスです。';
+            $errors['email'] = '登録済みのメールアドレスです';
         }
 
-        // issue: 半角英数小文字3～16文字でない
         if (!strlen($user['user_name'])) {
-            $errors['user_name'] = 'よんでID：入力してください。';
-        } elseif (strlen($user['user_name']) > 16) {
-            $errors['user_name'] = 'よんでID：16文字以内 で入力してください。';
-        } elseif (isset($registered_user_name['user_name'])) {
-            $errors['user_name'] = 'よんでID："' . $registered_user_name['user_name'] . '"は、使用されています。';
+            $errors['user_name'] = 'よんでIDを入力してください';
+        } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $user['user_name'])) {
+            $errors['user_name'] = 'よんでIDは半角英数小文字のみで入力してください';
+        } else {
+            if (strlen($user['user_name']) > 16 | strlen($user['user_name']) < 3) {
+                $errors['user_name'] = 'よんでIDは半角英数小文字3～16文字で入力してください';
+            } elseif (isset($registered_user_name['user_name'])) {
+                $errors['user_name'] = 'よんでID"' . $registered_user_name['user_name'] . '"は、使用されています';
+            }
         }
 
         if (!preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $user['password'])) {
-            $errors['password'] =  'パスワード：半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。';
+            $errors['password'] =  'パスワードは半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください';
         }
 
         if (!empty($file_name)) {
             $ext = substr($file_name, -3);
             if ($ext !== 'gif' && $ext !== 'jpg' && $ext !== 'png') {
-                $errors['image'] = 'プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロードしてください。';
+                $errors['image'] = 'プロフィール画像は「.gif」または「.jpg」「.png」のファイルをアップロードしてください';
             }
         }
 
@@ -122,9 +128,7 @@ class User extends Dbc
     }
 
     /**
-     * よんでID変更時のバリデーション処理
-     *
-     * modify_user_name.php で使用
+     * バリデーション処理: よんでID変更
      */
     public function validateModifyUsername($user)
     {
@@ -135,29 +139,68 @@ class User extends Dbc
         $stmt->bindValue(':new_user_name', $user['new_user_name'], PDO::PARAM_STR);
         $stmt->execute();
         $registered_user_name = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものがある場合、その値が入る
-
         // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
         $stmt = $dbh->prepare('SELECT password FROM users WHERE id = :user_id AND password = :encoded_password');
         $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_STR);
         $stmt->bindValue(':encoded_password', sha1($user['password']), PDO::PARAM_STR);
         $stmt->execute();
         $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
-
         $dbh = null;
 
         // バリデーション結果のメッセージ
         $errors = [];
         if (!strlen($user['new_user_name'])) {
-            $errors['new_user_name'] = 'よんでID：入力してください';
-        } elseif (strlen($user['new_user_name']) > 16) {
-            $errors['new_user_name'] = 'よんでID：16文字以内 で入力してください';
-        } elseif (isset($registered_user_name['user_name'])) {
-            $errors['new_user_name'] = 'よんでID："' . $registered_user_name['user_name'] . '"は、使用されています';
+            $errors['new_user_name'] = 'よんでIDを入力してください';
+        } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $user['new_user_name'])) {
+            $errors['new_user_name'] = 'よんでIDは半角英数小文字のみで入力してください';
+        } else {
+            if (strlen($user['new_user_name']) > 16 | strlen($user['new_user_name']) < 3) {
+                $errors['new_user_name'] = 'よんでIDは半角英数小文字3～16文字で入力してください';
+            } elseif (isset($registered_user_name['user_name'])) {
+                $errors['new_user_name'] = 'よんでID"' . $registered_user_name['user_name'] . '"は、使用されています';
+            }
         }
-        // issue: 半角英数小文字3～16文字でない
 
         if (!strlen($user['password'])) {
-            $errors['password'] = 'パスワード：入力してください';
+            $errors['password'] = 'パスワードを入力してください';
+        } elseif (!$registered_user_password) {
+            $errors['password'] = 'パスワードを正しく入力してください';
+        }
+
+        return $errors;
+    }
+    /**
+     * バリデーション処理: メールアドレス変更
+     */
+    public function validateModifyEmail($user)
+    {
+        $dbh = $this->dbConnect();
+
+        // new_email が登録済みのものでないかの確認
+        $stmt = $dbh->prepare('SELECT email FROM users WHERE email = :new_email');
+        $stmt->bindValue(':new_email', $user['new_email'], PDO::PARAM_STR);
+        $stmt->execute();
+        $registered_email = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものがある場合、その値が入る
+        // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
+        $stmt = $dbh->prepare('SELECT password FROM users WHERE id = :user_id AND password = :encoded_password');
+        $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_STR);
+        $stmt->bindValue(':encoded_password', sha1($user['password']), PDO::PARAM_STR);
+        $stmt->execute();
+        $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
+        $dbh = null;
+
+        // バリデーション結果のメッセージ
+        $errors = [];
+        if (!strlen($user['new_email'])) {
+            $errors['new_email'] = 'メールアドレスを入力してください';
+        } elseif (!filter_var($user['new_email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['new_email'] = 'メールアドレスの入力された値が正しくありません';
+        } elseif (isset($registered_email['email'])) {
+            $errors['new_email'] = 'メールアドレス"' . $registered_email['email'] . '"は、使用されています';
+        }
+
+        if (!strlen($user['password'])) {
+            $errors['password'] = 'パスワードを入力してください';
         } elseif (!$registered_user_password) {
             $errors['password'] = 'パスワードを正しく入力してください';
         }
@@ -166,9 +209,7 @@ class User extends Dbc
     }
 
     /**
-     * ニックネーム変更時のバリデーション処理
-     *
-     * modify_nickname.php で使用
+     * バリデーション処理: ニックネーム変更
      */
     public function validateModifyNickname($user)
     {
@@ -176,15 +217,15 @@ class User extends Dbc
         $errors = [];
         if (!strlen($user['new_nickname'])) {
             $errors['new_nickname'] = 'ニックネーム：入力してください';
-        } elseif (strlen($user['new_nickname']) > 100) {
-            $errors['new_nickname'] = 'ニックネーム：16文字以内 で入力してください。';
+        } elseif (mb_strlen($user['new_nickname']) > 16) {
+            $errors['new_nickname'] = 'ニックネーム：16文字以内 で入力してください';
         }
 
         return $errors;
     }
 
     /**
-     * プロフィール画像設定時のバリデーション処理
+     * バリデーション処理: プロフィール画像設定
      */
     public function validateUserIconUpdate($file_name)
     {
@@ -192,15 +233,17 @@ class User extends Dbc
         if (!empty($file_name)) {
             $ext = substr($file_name, -3);
             if ($ext !== 'gif' && $ext !== 'jpg' && $ext !== 'png') {
-                $errors['image'] = 'プロフィール画像：「.gif」または「.jpg」「.png」のファイルをアップロードしてください';
+                $errors['image'] = '「.gif」または「.jpg」「.png」のファイルをアップロードしてください';
             }
+        } elseif (empty($file_name)) {
+            $errors['image'] = 'ファイルを選択してください';
         }
 
         return $errors;
     }
 
     /**
-     * バリデーション処理: 自己紹介変更
+     * バリデーション処理: 自己紹介文変更
      *
      * profile_setting.php で使用
      */
@@ -209,7 +252,7 @@ class User extends Dbc
         // バリデーション結果のメッセージ
         $errors = [];
         if (mb_strlen($user['new_introduction']) > 1000) {
-            $errors['new_introduction'] = '1000文字以内 で入力してください。';
+            $errors['new_introduction'] = '1000文字以内 で入力してください';
         }
 
         return $errors;
@@ -271,6 +314,29 @@ class User extends Dbc
             $stmt = $dbh->prepare('UPDATE users SET user_name = :user_name WHERE id = :user_id');
 
             $stmt->bindValue(':user_name', $user['new_user_name'], PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '編集完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
+    /**
+     * メールアドレスを変更する
+     */
+    public function modifyEmail($user)
+    {
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare('UPDATE users SET email = :email WHERE id = :user_id');
+
+            $stmt->bindValue(':email', $user['new_email'], PDO::PARAM_STR);
             $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_INT);
 
             $stmt->execute();

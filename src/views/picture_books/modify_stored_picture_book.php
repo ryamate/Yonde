@@ -56,7 +56,7 @@
                     <label for="summary">感想</label>
                     <textarea type="text" name="summary" id="summary" rows="5" class="form-control"><?= escape($stored_picture_book['summary']); ?></textarea>
                 </div>
-                <input type="hidden" name="stored_picture_book_id" value="<?= escape($stored_picture_book['stored_picture_book_id']); ?>" />
+                <input type="hidden" name="stored_picture_book_id" value="<?= escape($stored_picture_book['id']); ?>" />
                 <button type="submit" class="btn btn-teal1 mb-4">編集する</button>
             </form>
         </section>

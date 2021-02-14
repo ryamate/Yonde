@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/user.php';
 require_once __DIR__ . '/../../lib/picture_book.php';
 
-session_start();
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
 /**
  * ログインユーザー情報をuserテーブルから取得する

@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/user.php';
 
-session_start(); // 既存のセッションを再開する
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
 /**
  * 「ニックネームの変更」フォーム画面から POST されたら、バリデーション処理し、エラーがなければ、DBに接続・変更し、プロフィール設定画面へ遷移する。
