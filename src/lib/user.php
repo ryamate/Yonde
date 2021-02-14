@@ -39,32 +39,29 @@ class User extends Dbc
     /**
      * バリデーション処理: ログイン
      */
-    public function validateUserLogin($user)
+    public function validateUserLogin(array $user): array
     {
-        $encoded_password = sha1($user['password']);
         $dbh = $this->dbConnect();
-
-        $stmt = $dbh->prepare('SELECT user_name, password FROM users WHERE user_name = :user_name AND password = :encoded_password');
+        // よんでIDに対するパスワードのハッシュをDBから取得
+        $stmt = $dbh->prepare('SELECT password FROM users WHERE user_name = :user_name');
         $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
-        $stmt->bindValue(':encoded_password', $encoded_password, PDO::PARAM_STR);
-
         $stmt->execute();
-
         $registered_user = $stmt->fetch(PDO::FETCH_ASSOC);
-
         $dbh = null;
 
         $errors = [];
 
         if (!strlen($user['user_name'])) {
-            $errors['user_name'] = 'よんでID：入力してください';
+            $errors['user_name'] = 'よんでIDを入力してください';
         }
 
         if (!strlen($user['password'])) {
-            $errors['password'] = 'パスワード：入力してください';
+            $errors['password'] = 'パスワードを入力してください';
         }
 
-        if (!$registered_user) {
+        if ($registered_user === false) { // よんでIDが存在しない（falseが返されている）場合
+            $errors['user'] = 'よんでID、パスワード を正しく入力してください';
+        } elseif (!password_verify($user['password'], $registered_user['password'])) { // パスワードがハッシュにマッチするかどうかを調べる
             $errors['user'] = 'よんでID、パスワード を正しく入力してください';
         }
 
@@ -130,7 +127,7 @@ class User extends Dbc
     /**
      * バリデーション処理: よんでID変更
      */
-    public function validateModifyUsername($user)
+    public function validateModifyUsername(array $user): array
     {
         $dbh = $this->dbConnect();
 
@@ -138,14 +135,7 @@ class User extends Dbc
         $stmt = $dbh->prepare('SELECT user_name FROM users WHERE user_name = :new_user_name');
         $stmt->bindValue(':new_user_name', $user['new_user_name'], PDO::PARAM_STR);
         $stmt->execute();
-        $registered_user_name = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものがある場合、その値が入る
-        // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
-        $stmt = $dbh->prepare('SELECT password FROM users WHERE id = :user_id AND password = :encoded_password');
-        $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_STR);
-        $stmt->bindValue(':encoded_password', sha1($user['password']), PDO::PARAM_STR);
-        $stmt->execute();
-        $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
-        $dbh = null;
+        $registered = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものがある場合、その値が入り、未登録の場合、false
 
         // バリデーション結果のメッセージ
         $errors = [];
@@ -156,23 +146,30 @@ class User extends Dbc
         } else {
             if (strlen($user['new_user_name']) > 16 | strlen($user['new_user_name']) < 3) {
                 $errors['new_user_name'] = 'よんでIDは半角英数小文字3～16文字で入力してください';
-            } elseif (isset($registered_user_name['user_name'])) {
-                $errors['new_user_name'] = 'よんでID"' . $registered_user_name['user_name'] . '"は、使用されています';
+            } elseif (isset($registered['user_name'])) {
+                $errors['new_user_name'] = 'よんでID"' . $registered['user_name'] . '"は、使用されています';
             }
         }
 
+        // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
+        $stmt = $dbh->prepare('SELECT password FROM users WHERE user_name = :user_name');
+        $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
+        $stmt->execute();
+        $registered = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
+        $dbh = null;
         if (!strlen($user['password'])) {
             $errors['password'] = 'パスワードを入力してください';
-        } elseif (!$registered_user_password) {
+        } elseif (!password_verify($user['password'], $registered['password'])) { // パスワードがハッシュにマッチするかどうかを調べる
             $errors['password'] = 'パスワードを正しく入力してください';
         }
 
         return $errors;
     }
+
     /**
      * バリデーション処理: メールアドレス変更
      */
-    public function validateModifyEmail($user)
+    public function validateModifyEmail(array $user): array
     {
         $dbh = $this->dbConnect();
 
@@ -181,13 +178,6 @@ class User extends Dbc
         $stmt->bindValue(':new_email', $user['new_email'], PDO::PARAM_STR);
         $stmt->execute();
         $registered_email = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものがある場合、その値が入る
-        // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
-        $stmt = $dbh->prepare('SELECT password FROM users WHERE id = :user_id AND password = :encoded_password');
-        $stmt->bindValue(':user_id', $user['id'], PDO::PARAM_STR);
-        $stmt->bindValue(':encoded_password', sha1($user['password']), PDO::PARAM_STR);
-        $stmt->execute();
-        $registered_user_password = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
-        $dbh = null;
 
         // バリデーション結果のメッセージ
         $errors = [];
@@ -199,9 +189,15 @@ class User extends Dbc
             $errors['new_email'] = 'メールアドレス"' . $registered_email['email'] . '"は、使用されています';
         }
 
+        // 入力されたパスワードが、現在のよんでIDと紐づいたパスワードと一致するかを確認する
+        $stmt = $dbh->prepare('SELECT password FROM users WHERE user_name = :user_name');
+        $stmt->bindValue(':user_name', $user['user_name'], PDO::PARAM_STR);
+        $stmt->execute();
+        $registered = $stmt->fetch(PDO::FETCH_ASSOC); // 登録済みのものと一致すれば、その値が入る
+        $dbh = null;
         if (!strlen($user['password'])) {
             $errors['password'] = 'パスワードを入力してください';
-        } elseif (!$registered_user_password) {
+        } elseif (!password_verify($user['password'], $registered['password'])) { // パスワードがハッシュにマッチするかどうかを調べる
             $errors['password'] = 'パスワードを正しく入力してください';
         }
 
@@ -211,7 +207,7 @@ class User extends Dbc
     /**
      * バリデーション処理: ニックネーム変更
      */
-    public function validateModifyNickname($user)
+    public function validateModifyNickname(array $user): array
     {
         // バリデーション結果のメッセージ
         $errors = [];
@@ -227,7 +223,7 @@ class User extends Dbc
     /**
      * バリデーション処理: プロフィール画像設定
      */
-    public function validateUserIconUpdate($file_name)
+    public function validateUserIconUpdate($file_name): array
     {
         $errors = [];
         if (!empty($file_name)) {
@@ -247,7 +243,7 @@ class User extends Dbc
      *
      * profile_setting.php で使用
      */
-    public function validateModifyIntroduction($user)
+    public function validateModifyIntroduction(array $user): array
     {
         // バリデーション結果のメッセージ
         $errors = [];
@@ -261,7 +257,7 @@ class User extends Dbc
     /**
      * 新規会員登録処理
      */
-    public function createUser($user)
+    public function createUser(array $user)
     {
         $sql = <<<EOT
         INSERT INTO users (
