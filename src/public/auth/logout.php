@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
-session_start();
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
-$_SESSION = array();
+$_SESSION = array(); // 全てのセッション変数を削除する
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(
@@ -17,7 +17,7 @@ if (ini_get("session.use_cookies")) {
         $params["httponly"]
     );
 }
-session_destroy();
+session_destroy(); // セッションに登録されたデータを全て破棄する
 
 setcookie('user_name', '', time() - 60 * 60);
 

@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/user.php';
 
-session_start();
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
 /**
  * ログインフォーム画面からのPOSTであれば、入力内容でログイン処理、
@@ -16,8 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_REQUEST = ['action' => ''];
     }
     /**
-     * ゲストユーザー情報を配列にいれる。
-     * もしくは、POSTされたユーザー情報を配列にいれ、バリデーション処理する。
+     * ゲストユーザー情報を配列にいれ、ゲストユーザーでログイン処理する。
+     * もしくは、
+     * POSTされたユーザー情報を配列にいれ、バリデーション処理し、エラーがなければ、ログイン処理する。
      */
     if ($_REQUEST['action'] === 'guest_user_login') {
         $user = [
@@ -31,15 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'user_name' => $_POST['user_name'],
             'password' => $_POST['password']
         ];
-        $encoded_password = sha1($user['password']);
         $user_model = new User;
-        $errors = $user_model->validateUserLogin($user, $encoded_password);
+        $errors = $user_model->validateUserLogin($user);
     }
 
-    /**
-     * バリデーションエラーがなければ、本棚ページへ遷移し、
-     * エラーがあれば、ログインフォーム画面にとどまる。
-     */
+    // エラーがなければ、本棚ページへ遷移し、エラーがあれば、ログインフォーム画面にとどまる。
     if (!count($errors)) {
         session_regenerate_id(true);
         $_SESSION['user_name'] = $user['user_name'];

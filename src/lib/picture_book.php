@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/db_connect.php';
 
@@ -9,8 +9,12 @@ require_once __DIR__ . '/db_connect.php';
  */
 class PictureBook extends Dbc
 {
+    // ページングにおいて、１ページに表示する件数
     const MAX_DISPLAY_BOOKS = 10;
 
+    /**
+     * ログインユーザーの登録済み絵本を表示する
+     */
     public function displayStoredPictureBooks($login_user, $page)
     {
         $dbh = $this->dbConnect();
@@ -34,7 +38,10 @@ class PictureBook extends Dbc
         $dbh = null;
     }
 
-    public function deleteStoredPictureBook($login_user_id, $stored_picture_book_id)
+    /**
+     * 登録済み絵本を登録解除する
+     */
+    public function deleteStoredPictureBook($login_user, $stored_picture_book)
     {
         $sql = 'DELETE FROM stored_picture_books WHERE id = :stored_picture_book_id AND user_id = :login_user_id';
 
@@ -44,8 +51,8 @@ class PictureBook extends Dbc
         try {
             $stmt = $dbh->prepare($sql);
 
-            $stmt->bindValue(':stored_picture_book_id', (int)$stored_picture_book_id, PDO::PARAM_INT);
-            $stmt->bindValue(':login_user_id', (int)$login_user_id, PDO::PARAM_INT);
+            $stmt->bindValue(':stored_picture_book_id', (int)$stored_picture_book['id'], PDO::PARAM_INT);
+            $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
 
             $stmt->execute();
             $dbh->commit();
@@ -56,6 +63,9 @@ class PictureBook extends Dbc
         }
     }
 
+    /**
+     * ログインユーザーの登録済み絵本の Google Books ID を取得する
+     */
     public function getStoredPictureBookGoogleBooksId($login_user)
     {
         $dbh = $this->dbConnect();
@@ -74,6 +84,9 @@ class PictureBook extends Dbc
         $dbh = null;
     }
 
+    /**
+     * バリデーション処理: 絵本登録
+     */
     public function validateCreatePictureBook($picture_book)
     {
         $dbh = $this->dbConnect();
@@ -89,6 +102,9 @@ class PictureBook extends Dbc
         $dbh = null;
     }
 
+    /**
+     * 絵本を登録する
+     */
     public function createPictureBook($picture_book)
     {
         $sql = <<<EOT
@@ -130,6 +146,9 @@ class PictureBook extends Dbc
         }
     }
 
+    /**
+     * 絵本の picture_book_id を取得する
+     */
     public function getPictureBookId($stored_picture_book)
     {
         $dbh = $this->dbConnect();
@@ -148,6 +167,9 @@ class PictureBook extends Dbc
         $dbh = null;
     }
 
+    /**
+     * 絵本を本棚に登録する
+     */
     public function storePictureBook($stored_picture_book, $login_user)
     {
         $sql = <<<EOT
@@ -189,6 +211,9 @@ class PictureBook extends Dbc
         }
     }
 
+    /**
+     * 登録済み絵本の評価などを変更する
+     */
     public function modifyStorePictureBook($stored_picture_book)
     {
         $dbh = $this->dbConnect();
