@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
 require_once __DIR__ . '/../../lib/user.php';
 
-session_start();
+session_start(); // 新しいセッションを開始、あるいは既存のセッションを再開する
 
+//新規会員登録フォームからの遷移ではない直接アクセスなどの場合、index.phpへ送る
 if (!isset($_SESSION['join'])) {
     header('Location: index.php');
     exit();
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // フォーム画面からのPOSTであれば、処理開始
     if (!isset($_SESSION['join']['image'])) {

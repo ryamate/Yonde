@@ -7,7 +7,7 @@
  * $ docker-compose exec app php lib/Database/InitializeTableBatch.php
  */
 
-declare(strict_types=1);
+declare(strict_types=1); // 厳密な型付けを宣言
 
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/../../lib/db_connect.php';
