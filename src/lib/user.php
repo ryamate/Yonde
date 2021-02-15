@@ -266,6 +266,7 @@ class User extends Dbc
             email,
             password,
             user_icon,
+            introduction,
             created_at
         )VALUES (
             :user_name,
@@ -273,6 +274,7 @@ class User extends Dbc
             :email,
             :password,
             :user_icon,
+            '',
             NOW()
         )
         EOT;
