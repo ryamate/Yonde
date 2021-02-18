@@ -131,7 +131,7 @@ class InitializeTableBatch extends Dbc
             created_at
         )VALUES (
             1,
-            "やまだ",
+            "ゲストファミリー",
             NOW()
         )
         EOT;
@@ -160,10 +160,10 @@ class InitializeTableBatch extends Dbc
         )VALUES (
             1,
             "guest",
-            "たろう",
+            "ゲストユーザー",
             "guest@guest",
             "guest_user1",
-            "no_image_user_man.png",
+            "guest_user_man.png",
             "ゲストユーザーです。",
             NOW()
         )
@@ -193,11 +193,11 @@ class InitializeTableBatch extends Dbc
         )VALUES (
             1,
             "partner",
-            "はなこ",
+            "ゲストパートナー",
             "guest@partner",
             "guest_partner1",
-            "no_image_user_woman.png",
-            "ゲストユーザーの妻です。",
+            "guest_user_woman.png",
+            "ゲストユーザーのパートナーです。",
             NOW()
         )
         EOT;
@@ -220,7 +220,7 @@ class InitializeTableBatch extends Dbc
             created_at
         )VALUES (
             1,
-            "いちろう",
+            "ゲストチャイルド",
             NOW()
         )
         EOT;

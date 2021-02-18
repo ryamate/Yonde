@@ -21,7 +21,7 @@
                     <?php if ($login_user['user_icon'] !== '') : ?>
                         <img src="../assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;object-fit:cover;">
                     <?php else : ?>
-                        <i class="far fa-user-circle fa-5x text-dark"></i>
+                        <i class="far fa-user-circle fa-5x text-secondary"></i>
                     <?php endif; ?>
                     <a href="modify_user_icon.php" class="small">変更はこちらから</a>
                 </td>

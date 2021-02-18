@@ -9,8 +9,8 @@ require_once __DIR__ . '/db_connect.php';
  */
 class PictureBook extends Dbc
 {
-    // ページングにおいて、１ページに表示する件数
-    const MAX_DISPLAY_BOOKS = 10;
+
+    const MAX_DISPLAY_BOOKS = 10; // ページングにおいて、１ページに表示する件数
 
     /**
      * ログインユーザーの登録済み絵本を表示する
