@@ -13,11 +13,12 @@
 <body>
     <nav class="navbar navbar-expand-md fixed-top shadow-sm bg-teal1" style="height: 60px; vertical-align: middle;">
         <div class="navbar-brand p-0">
-            <a href="../bookshelf.php"><img src="../assets/images/logo_face.png" alt="yonde" height="45"></a>
+            <a href="../bookshelf.php"><img src="../assets/images/logo.png" alt="yonde" height="45"></a>
         </div>
         <div class="row collapse navbar-collapse mr-auto">
             <a class="text-white text-decoration-none mb-0 ml-1 h2" href="../bookshelf.php">よんで</a>
         </div>
+
         <div class="navbar-expand">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -39,9 +40,9 @@
                 <li class="nav-item">
                     <a href="../users/profile_setting.php" title="プロフィール設定" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
                 </li>
-                <li class=" nav-item ml-1">
+                <li class=" nav-item ml-1 d-flex align-items-center justify-content-center">
                     <div class="dropdown drop-hover">
-                        <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="">
 
                             <!-- <img src="../assets/images/user_icon/<?= $login_user['user_icon'] !== '' ? escape($login_user['user_icon']) : 'no_image_user_man.png'; ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;"> -->
 
@@ -49,7 +50,7 @@
                             <?php if ($login_user['user_icon'] !== '') : ?>
                                 <img src="../assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
                             <?php else : ?>
-                                <i class="far fa-user-circle fa-3x text-white rounded-circle"></i>
+                                <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
                                 <!-- <img src="assets/images/user_icon/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;"> -->
                             <?php endif; ?>
 
