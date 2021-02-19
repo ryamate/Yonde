@@ -103,13 +103,17 @@ class InitializeTableBatch extends Dbc
             CREATE TABLE $table_name (
                 id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
                 stored_picture_book_id INTEGER NOT NULL,
+                family_id INTEGER,
                 user_id INTEGER NOT NULL,
+                child_id INTEGER NOT NULL,
                 memo VARCHAR(1000),
                 read_date TIMESTAMP NULL,
                 created_at TIMESTAMP NULL,
                 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 FOREIGN KEY (stored_picture_book_id) REFERENCES stored_picture_books(id),
-                FOREIGN KEY (user_id) REFERENCES users(id)
+                FOREIGN KEY (family_id) REFERENCES families(id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (child_id) REFERENCES children(id)
             ) DEFAULT CHARACTER SET=utf8mb4;
             EOT;
         }
@@ -211,20 +215,41 @@ class InitializeTableBatch extends Dbc
         $dbh = null;
     }
 
-    public static function createGuestChild()
+    public static function createGuestChildren()
     {
         $sql = <<<EOT
         INSERT INTO children (
             family_id,
             child_name,
+            child_birthday,
             created_at
         )VALUES (
             1,
             "ゲストチャイルド",
+            "2017-04-01",
             NOW()
         )
         EOT;
         $dbh = self::dbConnect();
+        $result = $dbh->query($sql);
+        if ($result) {
+            echo '追加完了: guest_child' . PHP_EOL;
+        } else {
+            exit('Error: 追加失敗: guest_child' . PHP_EOL);
+        }
+        $sql = <<<EOT
+        INSERT INTO children (
+            family_id,
+            child_name,
+            child_birthday,
+            created_at
+        )VALUES (
+            1,
+            "ゲストチャイルド2",
+            "2018-05-02",
+            NOW()
+        )
+        EOT;
         $result = $dbh->query($sql);
         if ($result) {
             echo '追加完了: guest_child' . PHP_EOL;
@@ -252,4 +277,4 @@ InitializeTableBatch::createTable('read_records');
 InitializeTableBatch::createGuestUser();
 InitializeTableBatch::createGuestFamily();
 InitializeTableBatch::createGuestPartner();
-InitializeTableBatch::createGuestChild();
+InitializeTableBatch::createGuestChildren();
