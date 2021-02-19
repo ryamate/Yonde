@@ -9,8 +9,8 @@ require_once __DIR__ . '/db_connect.php';
  */
 class PictureBook extends Dbc
 {
-    // ページングにおいて、１ページに表示する件数
-    const MAX_DISPLAY_BOOKS = 10;
+
+    const MAX_DISPLAY_BOOKS = 10; // ページングにおいて、１ページに表示する件数
 
     /**
      * ログインユーザーの登録済み絵本を表示する
@@ -230,6 +230,68 @@ class PictureBook extends Dbc
             $stmt->execute();
             $dbh->commit();
             echo '編集完了';
+        } catch (PDOException $e) {
+            $dbh->rollBack();
+            exit($e);
+        }
+    }
+
+    /**
+     * バリデーション処理: 読み聞かせ記録
+     */
+    public function validateRecordRead(array $read_picture_book): array
+    {
+        // バリデーション結果のメッセージ
+        $errors = [];
+        if (mb_strlen($read_picture_book['memo']) > 140) {
+            $errors['memo'] = '140文字以内 で入力してください';
+        }
+
+        return $errors;
+    }
+
+
+    /**
+     * 登録済み絵本の評価などを変更する
+     */
+    public function recordReadPictureBook(array $read_picture_book)
+    {
+        $sql = <<<EOT
+        INSERT INTO read_records (
+            stored_picture_book_id,
+            family_id,
+            user_id,
+            child_id,
+            read_date,
+            memo,
+            created_at
+            )VALUES (
+            :stored_picture_book_id,
+            :family_id,
+            :user_id,
+            :child_id,
+            :read_date,
+            :memo,
+            NOW()
+        )
+        EOT;
+
+        $dbh = $this->dbConnect();
+        $dbh->beginTransaction();
+
+        try {
+            $stmt = $dbh->prepare($sql);
+
+            $stmt->bindValue(':stored_picture_book_id', $read_picture_book['stored_picture_book_id'], PDO::PARAM_STR);
+            $stmt->bindValue(':family_id', $read_picture_book['family_id'], PDO::PARAM_STR);
+            $stmt->bindValue(':user_id', $read_picture_book['user_id'], PDO::PARAM_STR);
+            $stmt->bindValue(':child_id', $read_picture_book['child_id'], PDO::PARAM_STR);
+            $stmt->bindValue(':read_date', $read_picture_book['read_date'], PDO::PARAM_STR);
+            $stmt->bindValue(':memo', $read_picture_book['memo'], PDO::PARAM_STR);
+
+            $stmt->execute();
+            $dbh->commit();
+            echo '絵本棚への登録完了';
         } catch (PDOException $e) {
             $dbh->rollBack();
             exit($e);

@@ -23,6 +23,7 @@
                 <?php endif; ?>
 
                 <div class="form-group">
+
                     <label for="read_status">読書状況</label>
                     <div>
                         <div class="form-check form-check-inline">
@@ -39,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="five_star_rating">評価(5点満点)</label>
                     <select name="five_star_rating" id="five_star_rating" class="form-control">
@@ -52,10 +54,12 @@
                         <option value="5" <?= ($stored_picture_book['five_star_rating'] === '5') ? 'selected' : ''; ?>>★★★★★</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="summary">感想</label>
                     <textarea type="text" name="summary" id="summary" rows="5" class="form-control"><?= escape($stored_picture_book['summary']); ?></textarea>
                 </div>
+
                 <input type="hidden" name="stored_picture_book_id" value="<?= escape($stored_picture_book['id']); ?>" />
                 <button type="submit" class="btn btn-teal1 mb-4">編集する</button>
             </form>

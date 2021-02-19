@@ -1,6 +1,6 @@
 <!-- bookshelf.php で使用 -->
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="本棚から削除する"><i class="fas fa-trash-alt"></i></button>
+<button type="button" class="btn btn-outline-danger bg-white text-danger btn-sm" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="絵本を本棚から削除する"><i class="far fa-trash-alt"></i></button>
 <!-- Modal -->
 <div class="modal fade" id="deleteId<?= $stored_picture_book['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteIdLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
