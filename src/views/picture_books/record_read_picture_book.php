@@ -22,19 +22,11 @@
                 </div>
 
             </div>
-            <form action="modify_stored_picture_book.php?action=modify" method="POST">
-                <?php if (count($errors)) : ?>
-                    <div class="text-danger">
-                        <ul>
-                            <?php foreach ($errors as $error) : ?>
-                                <li><?= $error; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
+
+            <form action="record_read_picture_book.php?action=modify" method="POST">
 
                 <div class="form-group">
-                    <label for="read_date">よんだ日付</label>
+                    <label for="read_date">よんだ日</label>
                     <div>
                         <input type="date" id="today" name="read_date" max="2050-12-31">
                     </div>
@@ -66,19 +58,43 @@
                 </script>
 
                 <div class="form-group">
-                    <label for="memo">ひとことメモ</label>
+                    <label for="user_id">よんだ人</label>
+                    <select name="user_id" id="user_id" class="form-control">
+                        <?php foreach ($family_members as $family_member) : ?>
+                            <option value="<?= $family_member['user_id']; ?>"><?= $family_member['nickname']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="child_id">きいた子</label>
+                    <select name="child_id" id="child_id" class="form-control">
+                        <?php foreach ($children as $child) : ?>
+                            <option value="<?= $child['child_id']; ?>"><?= $child['child_name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="memo">ひとこと</label>
                     <textarea type="text" name="memo" id="memo" rows="1" maxlength="140" class="form-control"><?= escape($read_picture_book['memo']); ?></textarea>
                     <ul class="text-dark small">
+                        <?php if (isset($errors['memo'])) : ?>
+                            <li class="text-danger"><?= $errors['memo'] ?></li>
+                        <?php endif; ?>
                         <li>140字以内</li>
                     </ul>
                 </div>
+
                 <div>
-                    <input type="hidden" name="stored_picture_book_id" value="<?= escape($read_picture_book['id']); ?>" />
-                    <button type="submit" class="btn btn-primary mb-4">よみきかせ記録をする</button>
+                    <input type="hidden" name="stored_picture_book_id" value="<?= escape($read_picture_book['stored_picture_book_id']); ?>" />
+                    <button type="submit" class="btn btn-teal1 mb-4">よみきかせ記録をする</button>
                 </div>
+
             </form>
         </section>
 
+        <!-- ダミー値 -->
         <section>
             <h5>これまでの『<?= escape($read_picture_book['title']);  ?>』のよみきかせ記録</h5>
             <ul style="list-style: none;">
