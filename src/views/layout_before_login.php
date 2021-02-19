@@ -16,7 +16,7 @@
             <a href="/"><img src="../assets/images/logo.png" alt="yonde" height="45"></a>
         </div>
         <div class="row collapse navbar-collapse mr-auto">
-            <a class="text-white text-decoration-none mb-0 h3" href="/">よんで</a>
+            <a class="text-white text-decoration-none mb-0  ml-1 h2" href="/">よんで</a>
         </div>
         <div class="navbar-expand">
             <ul class="navbar-nav">
