@@ -20,7 +20,7 @@
             </div>
 
             <div class="card border-0 text-center pt-3">
-                <h5 class="card-title">えほんの棚</h5>
+
                 <p class="card-text small">ファミリーメンバー</p>
                 <div>
                     <a href="">
@@ -76,6 +76,7 @@
     <div class="container" style="max-width: 540px;">
 
         <!-- 絵本の記録表示 -->
+        <h1 class="text-dark">絵本棚</h1>
         <?php if (count($display_read_records) > 0) : ?>
             <?php foreach ($display_read_records as $display_read_record) : ?>
                 <section>
@@ -84,7 +85,7 @@
                         <div class="row no-gutters">
                             <div class="col-sm-5">
                                 <?php if ($display_read_record['thumbnail_uri'] !== '') : ?>
-                                    <img src="<?= escape($display_read_record['thumbnail_uri']); ?>" alt="表紙イメージ" width="100%" height="100%" style="max-width: 300px; border-radius: 2px;">
+                                    <img src="<?= escape($display_read_record['thumbnail_uri']); ?>" alt="表紙イメージ" class="border-right border-bottom" width="100%" height="100%" style="max-width: 280px; border-radius: 2px;">
                                 <?php else : ?>
                                     <svg class="bd-placeholder-img" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
                                         <title>表紙のイメージがありません</title>
