@@ -297,4 +297,49 @@ class PictureBook extends Dbc
             exit($e);
         }
     }
+
+    /**
+     * 絵本棚でよみきかせ記録を表示する
+     */
+    public function displayReadRecords(array $login_user, string $id_getting_read_record): array
+    {
+        $dbh = $this->dbConnect();
+
+        $stmt = $dbh->prepare('SELECT id, child_id, memo, read_date FROM read_records WHERE stored_picture_book_id = :stored_picture_book_id AND user_id = :login_user_id');
+
+        $stmt->bindValue(':stored_picture_book_id', (int)$id_getting_read_record, PDO::PARAM_INT);
+        $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $results = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $result;
+        }
+
+        return $results;
+        $dbh = null;
+    }
+
+    /**
+     * 一人のユーザーのよみきかせ記録の全情報を取得する
+     */
+    public function getReadRecords(array $login_user): array
+    {
+        $dbh = $this->dbConnect();
+
+        $stmt = $dbh->prepare('SELECT id, stored_picture_book_id, family_id, user_id, child_id, memo, read_date FROM read_records WHERE user_id = :login_user_id');
+
+        $stmt->bindValue(':login_user_id', (int)$login_user['id'], PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $results = [];
+        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = $result;
+        }
+
+        return $results;
+        $dbh = null;
+    }
 }

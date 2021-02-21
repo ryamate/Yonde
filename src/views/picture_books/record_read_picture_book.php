@@ -1,10 +1,10 @@
 <main>
-    <div class="container" style="margin-top: 90px; margin-bottom:60px;">
+    <div class="container" style="margin-top: 90px; margin-bottom:60px; max-width: 540px;">
         <h2>よみきかせの記録</h2>
         <section>
             <div class="container">
 
-                <div class="card-body bg-white">
+                <div class="card-body">
                     <?php if ($read_picture_book["thumbnail_uri"] !== '') : ?>
                         <img src="<?= escape($read_picture_book['thumbnail_uri']); ?>" alt="表紙イメージ" style="border-radius: 2px;">
                     <?php else : ?>
