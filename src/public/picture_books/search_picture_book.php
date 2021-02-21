@@ -3,6 +3,7 @@
 declare(strict_types=1); // 厳密な型付けを宣言
 
 require_once __DIR__ . '/../../lib/escape.php';
+require_once __DIR__ . '/../../lib/display_format.php';
 require_once __DIR__ . '/../../lib/user.php';
 require_once __DIR__ . '/../../lib/picture_book.php';
 
