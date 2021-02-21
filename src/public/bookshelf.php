@@ -40,6 +40,27 @@ $stored_picture_books = $picture_book_model->displayStoredPictureBooks($login_us
 $stored_picture_book_count = count($stored_picture_books);
 $max_page = ceil($stored_picture_book_count / $picture_book_model::MAX_DISPLAY_BOOKS);
 
+/**
+ * よみきかせ記録表示するための情報をread_recordsテーブルから取り出す
+ */
+// family_id （またはuser_idか）が一致するread_recordを取得する
+if ($stored_picture_book_count === 0) {
+    $read_records = [];
+} else {
+    foreach ($stored_picture_books as $stored_picture_book => $stored_picture_book_id) {
+        // $stored_picture_book_ids['id'][] = $stored_picture_book['id'];
+        $id_getting_read_record = $stored_picture_book_id['id'];
+        $read_records[] = $picture_book_model->displayReadRecords($login_user, $id_getting_read_record);
+    }
+}
+
+// $stored_picture_books の各絵本に読み聞かせ記録の配列をくっつける
+$display_read_records = array_replace_recursive($stored_picture_books, $read_records);
+
+$user_read_record_list =
+    $picture_book_model->getReadRecords($login_user);
+// $read_records_desc_date = array_multisort(array_map("strtotime", array_column($read_records, "read_date")), SORT_DESC, $read_records);
+// $display_read_records = array_replace_recursive($stored_picture_books, $read_records_desc_date);
 
 $title = '絵本棚-Yonde-よんで';
 $content = __DIR__ . '/../views/bookshelf.php';
