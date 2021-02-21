@@ -11,7 +11,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-left">
                 『<?= $display_read_record['title'] ?>』を本棚から削除してもよろしいですか？
             </div>
             <div class="modal-footer">
