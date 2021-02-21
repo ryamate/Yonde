@@ -55,7 +55,7 @@
                     <textarea type="text" name="summary" id="summary" rows="5" class="form-control" value="<?= escape($stored_picture_book['summary']); ?>"></textarea>
                 </div>
                 <input type="hidden" name="google_books_id" value="<?= escape($picture_book['google_books_id']); ?>" />
-                <button type="submit" class="btn btn-teal1 mb-4">登録する</button>
+                <button type="submit" class="btn btn-info mb-4">登録する</button>
             </form>
         </section>
     </div>
