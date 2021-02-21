@@ -1,8 +1,8 @@
 <!-- bookshelf.php で使用 -->
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-danger bg-white text-danger btn-sm" data-toggle="modal" data-target="#deleteId<?= $stored_picture_book['id'] ?>" title="絵本を本棚から削除する"><i class="far fa-trash-alt"></i></button>
+<button type="button" class="btn btn-outline-danger bg-white text-danger btn-sm" data-toggle="modal" data-target="#deleteId<?= $display_read_record['id'] ?>" title="絵本を本棚から削除する"><i class="far fa-trash-alt"></i></button>
 <!-- Modal -->
-<div class="modal fade" id="deleteId<?= $stored_picture_book['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteIdLabel" aria-hidden="true">
+<div class="modal fade" id="deleteId<?= $display_read_record['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="deleteIdLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,13 +12,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                『<?= $stored_picture_book['title'] ?>』を本棚から削除してもよろしいですか？
+                『<?= $display_read_record['title'] ?>』を本棚から削除してもよろしいですか？
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
                 <form action="../picture_books/delete_stored_picture_book.php" method="POST">
                     <button type="submit" class="btn btn-danger">OK</button>
-                    <input type="hidden" name="stored_picture_book_id" value="<?= $stored_picture_book['id'] ?>" />
+                    <input type="hidden" name="stored_picture_book_id" value="<?= $display_read_record['id'] ?>" />
                 </form>
             </div>
         </div>
