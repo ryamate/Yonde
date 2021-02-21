@@ -1,0 +1,8 @@
+.DS_Store
+
+src/.env
+src/vendor
+
+docker/db/db-variables.env
+docker/db/.DS_Store
+docker/db/.gitignore
