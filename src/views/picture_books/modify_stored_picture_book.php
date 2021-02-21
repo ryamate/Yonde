@@ -1,10 +1,10 @@
 <main>
-    <div class="container" style="margin-top: 90px; margin-bottom:60px;">
-        <h2>登録情報の編集</h2>
+    <div class="container" style="margin-top: 90px; margin-bottom:60px; max-width: 540px;">
+        <h2>レビューの編集</h2>
         <section>
-            <div class="container">
+            <div class=" container">
                 <div>
-                    <img src="<?= escape($stored_picture_book["thumbnail_uri"]); ?>" alt="表紙イメージ">
+                    <img src=" <?= escape($stored_picture_book["thumbnail_uri"]); ?>" alt="表紙イメージ">
                 </div>
                 <h4 class="card-title"><?= escape($stored_picture_book["title"]); ?></h4>
                 <div class="card-text">
@@ -24,7 +24,7 @@
 
                 <div class="form-group">
 
-                    <label for="read_status">読書状況</label>
+                    <label for="read_status">よみきかせ状況</label>
                     <div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="read_status" id="read_status1" value="よみたい" <?= ($stored_picture_book['read_status'] === 'よみたい') ? 'checked' : ''; ?>>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="five_star_rating">評価(5点満点)</label>
+                    <label for="five_star_rating">おすすめ度（５点満点）</label>
                     <select name="five_star_rating" id="five_star_rating" class="form-control">
                         <option value="0" <?= ($stored_picture_book['five_star_rating'] === '0') ? 'selected' : ''; ?>>まだ評価しない</option>
                         <option value="1" <?= ($stored_picture_book['five_star_rating'] === '1') ? 'selected' : ''; ?>>★☆☆☆☆</option>
@@ -56,12 +56,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="summary">感想</label>
+                    <label for="summary">感想・レビュー</label>
                     <textarea type="text" name="summary" id="summary" rows="5" class="form-control"><?= escape($stored_picture_book['summary']); ?></textarea>
                 </div>
 
                 <input type="hidden" name="stored_picture_book_id" value="<?= escape($stored_picture_book['id']); ?>" />
-                <button type="submit" class="btn btn-teal1 mb-4">編集する</button>
+                <button type="submit" class="btn btn-teal1 mb-4">レビューを編集する</button>
             </form>
         </section>
     </div>
