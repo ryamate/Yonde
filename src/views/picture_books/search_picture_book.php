@@ -36,7 +36,7 @@
                     <section class="card shadow-sm mb-4">
                         <!-- サムネイル -->
                         <div class="row no-gutters">
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <div class="card-body p-0">
                                     <!-- <h5 class="card-title">No.<?= $item_number + 1; ?></h5> -->
                                     <?php $thumbnail_uri = @$item["volumeInfo"]["imageLinks"]["thumbnail"]; ?>
@@ -51,30 +51,11 @@
                                     <?php endif; ?>
                                 </div>
 
-                                <!-- 登録ボタン -->
-                                <div class="card-body">
-                                    <?php $google_books_id = @$item["id"]; ?>
-                                    <?php if (in_array($google_books_id, array_column($stored_picture_books, 'google_books_id'))) : ?>
-                                        <form action="" method="POST">
-                                            <button type="submit" class="btn btn-secondary btn-block shadow mt-2 mb-2"><i class="far fa-check-square"></i> 本棚に登録済</button>
 
-                                        </form>
-                                    <?php else : ?>
-                                        <form action="store_picture_book.php" method="POST">
-                                            <button type="submit" class="btn btn-teal1 shadow btn-block mt-2 mb-2"><i class="fas fa-plus-square"></i> 本棚にいれる</button>
-                                            <input type="hidden" name="google_books_id" value="<?= $google_books_id ?>" />
-                                            <input type="hidden" name="title" value="<?= $book_title ?>" />
-                                            <input type="hidden" name="authors" value="<?= $authors ?>" />
-
-                                            <input type="hidden" name="published_date" value="<?= $published_date ?>" />
-                                            <input type="hidden" name="thumbnail_uri" value="<?= $thumbnail_uri ?>" />
-                                        </form>
-                                    <?php endif; ?>
-                                </div>
                             </div>
 
                             <!-- タイトル・作者・出版年月・説明 -->
-                            <div class="col-sm-7">
+                            <div class="col-sm-8">
                                 <div class="card-body">
                                     <h4 class="card-title"><?= $book_title; ?></h4>
                                     <div class="card-text">
@@ -88,11 +69,30 @@
                                         </p>
                                     </div>
                                     <div>
-
                                         <?php if ($description !== null) : ?>
                                             <p class="small">
                                                 <?= trimWord($description); ?>
                                             </p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <!-- 登録ボタン -->
+                                    <div class="card-body">
+                                        <?php $google_books_id = @$item["id"]; ?>
+                                        <?php if (in_array($google_books_id, array_column($stored_picture_books, 'google_books_id'))) : ?>
+                                            <form action="" method="POST">
+                                                <button type="submit" class="btn btn-secondary btn-block shadow mt-2 mb-2"><i class="far fa-check-square"></i> 本棚に登録済</button>
+
+                                            </form>
+                                        <?php else : ?>
+                                            <form action="store_picture_book.php" method="POST">
+                                                <button type="submit" class="btn btn-info shadow btn-block mt-2 mb-2"><i class="fas fa-plus-square"></i> 本棚にいれる</button>
+                                                <input type="hidden" name="google_books_id" value="<?= $google_books_id ?>" />
+                                                <input type="hidden" name="title" value="<?= $book_title ?>" />
+                                                <input type="hidden" name="authors" value="<?= $authors ?>" />
+
+                                                <input type="hidden" name="published_date" value="<?= $published_date ?>" />
+                                                <input type="hidden" name="thumbnail_uri" value="<?= $thumbnail_uri ?>" />
+                                            </form>
                                         <?php endif; ?>
                                     </div>
                                 </div>

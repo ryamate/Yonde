@@ -32,7 +32,7 @@
                     </form>
                 </li>
                 <li class="nav-item ml-1">
-                    <a href="" title="本棚" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
+                    <a href="../bookshelf.php" title="絵本棚" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
                 </li>
                 <li class="nav-item">
                     <a href="" title="タイムライン" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="far fa-clock fa-lg"></i></a>
