@@ -11,65 +11,119 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md fixed-top shadow-sm bg-teal1" style="height: 60px; vertical-align: middle;">
-        <div class="navbar-brand p-0">
-            <a href="../bookshelf.php"><img src="../assets/images/logo.png" alt="yonde" height="45"></a>
-        </div>
-        <div class="row collapse navbar-collapse mr-auto">
-            <a class="text-white text-decoration-none mb-0 ml-1 h2" href="../bookshelf.php">よんで</a>
-        </div>
+    <nav class="navbar navbar-expand-sm navbar-light bg-teal1 shadow-sm bd-navbar" style="vertical-align: middle; position: sticky; top: 0; z-index: 1071;">
+        <!-- navbar の左側: ロゴ -->
+        <a class="navbar-brand mt-1 mr-2" href="../bookshelf.php">
+            <img src="../assets/images/logo.png" height="35" class="d-inline-block align-top text-white text-decoration-none" alt=" yonde">
+        </a>
+        <!-- トグルボタン -->
+        <button class="navbar-toggler p-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="navbar-expand">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- navbar の左側: アプリ名 -->
+            <ul class="navbar-nav mr-auto d-none d-sm-block">
                 <li class="nav-item">
+                    <a class="nav-link text-white text-decoration-none mb-0 h4" href="../bookshelf.php">よんで</a>
+                </li>
+            </ul>
+
+            <!-- navbar の右側: 検索バー・絵本棚ボタン・タイムラインボタン・プロフィール設定ボタン・プロフィール画像（ホーム・ログアウト） -->
+            <ul class="navbar-nav">
+                <!-- 検索バー -->
+                <div class="d-none d-sm-block pt-2">
                     <form action="../picture_books/search_picture_book.php" method="POST" class="form-inline">
-                        <div class="input-group input-group-sm mt-2">
-                            <input type="text" id="search" name="search" class="form-control" placeholder="絵本をさがす">
+                        <div class="input-group input-group-sm">
+                            <input type="search" id="search" name="search" class="form-control" placeholder="絵本をさがす">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-teal1 bg-white text-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </form>
-                </li>
-                <li class="nav-item ml-1">
-                    <a href="../bookshelf.php" title="絵本棚" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
-                </li>
+                </div>
+                <!-- toggle -->
+                <div class="d-block d-sm-none pt-2">
+                    <form action="../picture_books/search_picture_book.php" method="POST" class="form-inline">
+                        <div class="input-group input-group-sm">
+                            <input type="search" id="search" name="search" class="form-control" placeholder="絵本をさがす">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-teal1 bg-white text-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
                 <li class="nav-item">
-                    <a href="" title="タイムライン" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="far fa-clock fa-lg"></i></a>
+                    <div class="d-none d-sm-block">
+                        <a href="../bookshelf.php" title="絵本棚" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center ml-3" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
+                    </div>
+                    <!-- toggle -->
+                    <div class="d-block d-sm-none">
+                        <a href="../bookshelf.php" title="絵本棚" class="nav-link">絵本棚</a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
-                    <a href="../users/profile_setting.php" title="プロフィール設定" class="btn btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
+                    <div class="d-none d-sm-block">
+                        <a href="" title="タイムライン" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="far fa-clock fa-lg"></i></a>
+                    </div>
+                    <!-- toggle -->
+                    <div class="d-block d-sm-none">
+                        <a href="" title="タイムライン" class="nav-link">タイムライン</a>
+                    </div>
                 </li>
-                <li class=" nav-item ml-1 d-flex align-items-center justify-content-center">
-                    <div class="dropdown drop-hover">
-                        <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="">
 
-                            <!-- <img src="../assets/images/user_icon/<?= $login_user['user_icon'] !== '' ? escape($login_user['user_icon']) : 'no_image_user_man.png'; ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;"> -->
+                <li class="nav-item">
+                    <div class="d-none d-sm-block">
+                        <a href="../users/profile_setting.php" title="プロフィール設定" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
+                    </div>
+                    <!-- toggle -->
+                    <div class="d-block d-sm-none">
+                        <a href="../users/profile_setting.php" title="プロフィール設定" class="nav-link">プロフィール設定</a>
+                    </div>
+                </li>
 
+                <li class="nav-item">
+                    <div class="d-none d-sm-block">
+                        <div class="mt-1 ml-1 mr-2">
+                            <div class="dropdown drop-hover">
+                                <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php if ($login_user['user_icon'] !== '') : ?>
+                                        <img src="../assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" class="rounded-circle bg-white border" width="35" height="35" style="background-position: center center; object-fit:cover;">
+                                    <?php else : ?>
+                                        <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
+                                    <?php endif; ?>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
+                                    <a class="dropdown-item small" href="../auth/logout.php">ログアウト</a>
+                                </div>
 
-                            <?php if ($login_user['user_icon'] !== '') : ?>
-                                <img src="../assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" class="rounded-circle" style="width: 45px; height:45px;background-position: center center; object-fit:cover;">
-                            <?php else : ?>
-                                <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
-                                <!-- <img src="assets/images/user_icon/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;"> -->
-                            <?php endif; ?>
-
-
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
-                            <a class="dropdown-item small" href="../auth/logout.php">ログアウト</a>
+                                <style>
+                                    .drop-hover:hover>.dropdown-menu {
+                                        display: block;
+                                    }
+                                </style>
+                            </div>
                         </div>
                     </div>
-                    <style>
-                        .drop-hover:hover>.dropdown-menu {
-                            display: block;
-                        }
-                    </style>
+                    <!-- toggle -->
+                    <div class="d-block d-sm-none">
+                        <a href="../bookshelf.php" title="ホーム" class="nav-link">ホーム</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!-- toggle -->
+                    <div class="d-block d-sm-none">
+                        <a href="../auth/logout.php" title="ログアウト" class="nav-link">ログアウト</a>
+                    </div>
                 </li>
             </ul>
         </div>
     </nav>
+
     <?php include $content; ?>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
