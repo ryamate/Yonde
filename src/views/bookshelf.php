@@ -1,13 +1,13 @@
 <header>
     <div style="margin-top: 60px;">
         <!-- プロフィール表示 -->
-        <section class="card-group p-4 container" style="max-width: 768px;">
+        <section class="card-group p-4 container" style="max-width: 1140px;">
 
             <div class="card border-0 text-center">
                 <div class="card-body">
                     <a href="">
                         <?php if ($login_user['user_icon'] !== '') : ?>
-                            <img src="assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
+                            <img src="assets/images/user_icon/<?= escape($login_user['user_icon']); ?>" alt="プロフィール画像" class="bg-white border" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;">
                         <?php else : ?>
                             <i class="far fa-user-circle fa-7x text-secondary"></i>
                             <!-- <img src="assets/images/user_icon/no_image_user_man.png" alt="プロフィール画像" style="width: 100px; height:100px;background-position: center center;border-radius: 50%;object-fit:cover;"> -->
@@ -76,7 +76,7 @@
     <div class="container" style="max-width: 540px;">
 
         <!-- 絵本の記録表示 -->
-        <h1 class="text-dark">絵本棚</h1>
+        <!-- <h1 class="text-secondary">えほんリスト</h1> -->
         <?php if (count($display_read_records) > 0) : ?>
             <?php foreach ($display_read_records as $display_read_record) : ?>
                 <section>
@@ -138,9 +138,9 @@
                                 <?php if (count($display_read_record) - 11 > 0) : ?>
                                     <?= count($display_read_record) - 11; ?>回よんだ
 
+                                    <!-- array_filter を使ってみる -->
                                     <!-- <ul class="small" style="list-style: none;">
                                 <i>
-
                                     <?php foreach (array_slice($display_read_record, 11) as $read_record) : ?>
                                         <li><?= date('Y年m月d日', strtotime($read_record['read_date'])); ?>、<?= $login_user['nickname']; ?>が<?= $read_record['child_id']; ?>によんだ。</li>
                                     <?php endforeach; ?>
