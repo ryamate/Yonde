@@ -23,9 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $searched_books_array = json_decode($json, true);
     $searched_books = $searched_books_array["items"];
 
+    // 登録状況の表示（登録済みか未登録か）のために、DBより登録状況を取得
     $picture_book_model = new PictureBook;
     $stored_picture_books = $picture_book_model->getStoredPictureBookGoogleBooksId($login_user);
 
+    // ページング
     if (isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])) {
         $page = $_REQUEST['page'];
     } else {
@@ -33,7 +35,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $start_no = ($page - 1) * $picture_book_model::MAX_DISPLAY_BOOKS;
-    $display_searched_books = array_slice($searched_books, $start_no, $picture_book_model::MAX_DISPLAY_BOOKS, true);
+
+    // $display_searched_books = array_slice($searched_books, $start_no, $picture_book_model::MAX_DISPLAY_BOOKS, true);
+    $transformation_searched_books = array_slice($searched_books, $start_no, $picture_book_model::MAX_DISPLAY_BOOKS, true);
+
+
+    foreach ($transformation_searched_books as $item_number => $item) {
+        $authors_array = @$item["volumeInfo"]["authors"];
+        if ($authors_array !== null) {
+            $authors = implode(",", $authors_array);
+        } else {
+            $authors = null;
+        }
+
+        $display_searched_books[] = [
+            'google_books_id' => @$item["id"],
+            'isbn_13' => @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"],
+            'title' =>  @$item["volumeInfo"]["title"],
+            'authors' =>  $authors,
+            'published_date' => @$item["volumeInfo"]["publishedDate"],
+            'thumbnail_uri' => @$item["volumeInfo"]["imageLinks"]["thumbnail"],
+            'description' => @$item["volumeInfo"]["description"],
+        ];
+    }
 
     $searched_books_count = count($searched_books);
     $max_page = ceil($searched_books_count / $picture_book_model::MAX_DISPLAY_BOOKS);
