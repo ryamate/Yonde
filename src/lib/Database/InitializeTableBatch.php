@@ -2,6 +2,7 @@
 
 /**
  * 「よんで」のアプリケーション開発する際に、テーブルを初期化するためのプログラムです。
+ * テーブルを全て順に削除し、順にテーブル作成することで、初期化します。
  *
  * 実行コマンド：
  * $ docker-compose exec app php lib/Database/InitializeTableBatch.php
@@ -17,6 +18,9 @@ require __DIR__ . '/../../lib/db_connect.php';
  */
 class InitializeTableBatch extends Dbc
 {
+    /**
+     * テーブル削除
+     */
     public static function dropTable($table_name)
     {
         $dbh = self::dbConnect();
@@ -30,6 +34,9 @@ class InitializeTableBatch extends Dbc
         $dbh = null;
     }
 
+    /**
+     * テーブル追加
+     */
     public static function createTable($table_name)
     {
         $dbh = self::dbConnect();
@@ -75,6 +82,7 @@ class InitializeTableBatch extends Dbc
             CREATE TABLE $table_name (
                 id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
                 google_books_id VARCHAR(100) UNIQUE,
+                isbn_13 VARCHAR(100) NULL,
                 title VARCHAR(255),
                 authors VARCHAR(255),
                 published_date VARCHAR(10),
