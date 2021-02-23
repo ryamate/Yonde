@@ -105,11 +105,12 @@ class PictureBook extends Dbc
     /**
      * 絵本を登録する
      */
-    public function createPictureBook($picture_book)
+    public function createPictureBook(array $picture_book)
     {
         $sql = <<<EOT
         INSERT INTO picture_books (
             google_books_id,
+            isbn_13,
             title,
             authors,
             published_date,
@@ -117,6 +118,7 @@ class PictureBook extends Dbc
             created_at
         )VALUES (
             :google_books_id,
+            :isbn_13,
             :title,
             :authors,
             :published_date,
@@ -132,6 +134,7 @@ class PictureBook extends Dbc
             $stmt = $dbh->prepare($sql);
 
             $stmt->bindValue(':google_books_id', $picture_book['google_books_id'], PDO::PARAM_STR);
+            $stmt->bindValue(':isbn_13', $picture_book['isbn_13'], PDO::PARAM_STR);
             $stmt->bindValue(':title', $picture_book['title'], PDO::PARAM_STR);
             $stmt->bindValue(':authors', $picture_book['authors'], PDO::PARAM_STR);
             $stmt->bindValue(':published_date', $picture_book['published_date'], PDO::PARAM_STR);
