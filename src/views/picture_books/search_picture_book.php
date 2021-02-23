@@ -20,29 +20,15 @@
         <div class="container" style="max-width: 540px;">
             <h2>検索結果</h2>
             <?php if (count($display_searched_books) > 0) : ?>
-                <?php foreach ($display_searched_books as $item_number => $item) : ?>
-                    <?php $book_title = @$item["volumeInfo"]["title"]; ?>
-
-                    <?php $authors_array = @$item["volumeInfo"]["authors"]; ?>
-                    <?php if ($authors_array !== null) : ?>
-                        <?php $authors = implode(",", $authors_array); ?>
-                    <?php else : ?>
-                        <?php $authors = null; ?>
-                    <?php endif; ?>
-
-                    <?php $published_date = @$item["volumeInfo"]["publishedDate"]; ?>
-                    <?php $description = @$item["volumeInfo"]["description"]; ?>
+                <?php foreach ($display_searched_books as $display_searched_book) : ?>
 
                     <section class="card shadow-sm mb-4">
                         <!-- サムネイル -->
                         <div class="row no-gutters">
                             <div class="col-sm-4">
                                 <div class="card-body p-0">
-                                    <!-- <h5 class="card-title">No.<?= $item_number + 1; ?></h5> -->
-                                    <?php $thumbnail_uri = @$item["volumeInfo"]["imageLinks"]["thumbnail"]; ?>
-                                    <?php if ($thumbnail_uri !== null) : ?>
-                                        <!-- <img src="<?= $thumbnail_uri; ?>" alt="表紙イメージ"> -->
-                                        <img src="<?= $thumbnail_uri; ?>" alt="表紙イメージ" class="border-right border-bottom" width="100%" height="100%" style="max-width: 280px; border-radius: 2px;">
+                                    <?php if ($display_searched_book['thumbnail_uri'] !== null) : ?>
+                                        <img src="<?= $display_searched_book['thumbnail_uri']; ?>" alt="表紙イメージ" class="border-right border-bottom" width="100%" height="100%" style="max-width: 280px; border-radius: 2px;">
                                     <?php else : ?>
                                         <svg class="bd-placeholder-img" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
                                             <title>表紙のイメージがありません</title>
@@ -51,47 +37,45 @@
                                     <?php endif; ?>
                                 </div>
 
-
                             </div>
 
                             <!-- タイトル・作者・出版年月・説明 -->
                             <div class="col-sm-8">
                                 <div class="card-body">
-                                    <h4 class="card-title"><?= $book_title; ?></h4>
+                                    <h4 class="card-title"><?= $display_searched_book['title']; ?></h4>
                                     <div class="card-text">
                                         <p>
-                                            <?php if ($authors !== null) : ?>
-                                                <?= $authors; ?>
+                                            <?php if ($display_searched_book['authors'] !== null) : ?>
+                                                <?= $display_searched_book['authors']; ?>
                                             <?php endif; ?>
-                                            <?php if ($published_date !== null) : ?>
-                                                /<?= $published_date; ?>出版
+                                            <?php if ($display_searched_book['published_date'] !== null) : ?>
+                                                /<?= $display_searched_book['published_date']; ?>出版
                                             <?php endif; ?>
                                         </p>
                                     </div>
                                     <div>
-                                        <?php if ($description !== null) : ?>
+                                        <?php if ($display_searched_book['description'] !== null) : ?>
                                             <p class="small">
-                                                <?= trimWord($description); ?>
+                                                <?= trimWord($display_searched_book['description']); ?>
                                             </p>
                                         <?php endif; ?>
                                     </div>
                                     <!-- 登録ボタン -->
                                     <div class="card-body">
-                                        <?php $google_books_id = @$item["id"]; ?>
-                                        <?php if (in_array($google_books_id, array_column($stored_picture_books, 'google_books_id'))) : ?>
+                                        <?php if (in_array($display_searched_book['google_books_id'], array_column($stored_picture_books, 'google_books_id'))) : ?>
                                             <form action="" method="POST">
                                                 <button type="submit" class="btn btn-secondary btn-block shadow mt-2 mb-2"><i class="far fa-check-square"></i> 本棚に登録済</button>
-
                                             </form>
+
                                         <?php else : ?>
                                             <form action="store_picture_book.php" method="POST">
                                                 <button type="submit" class="btn btn-info shadow btn-block mt-2 mb-2"><i class="fas fa-plus-square"></i> 本棚にいれる</button>
-                                                <input type="hidden" name="google_books_id" value="<?= $google_books_id ?>" />
-                                                <input type="hidden" name="title" value="<?= $book_title ?>" />
-                                                <input type="hidden" name="authors" value="<?= $authors ?>" />
-
-                                                <input type="hidden" name="published_date" value="<?= $published_date ?>" />
-                                                <input type="hidden" name="thumbnail_uri" value="<?= $thumbnail_uri ?>" />
+                                                <input type="hidden" name="google_books_id" value="<?= $display_searched_book['google_books_id'] ?>" />
+                                                <input type="hidden" name="isbn_13" value="<?= $display_searched_book['isbn_13'] ?>" />
+                                                <input type="hidden" name="title" value="<?= $display_searched_book['title'] ?>" />
+                                                <input type="hidden" name="authors" value="<?= $display_searched_book['authors'] ?>" />
+                                                <input type="hidden" name="published_date" value="<?= $display_searched_book['published_date'] ?>" />
+                                                <input type="hidden" name="thumbnail_uri" value="<?= $display_searched_book['thumbnail_uri'] ?>" />
                                             </form>
                                         <?php endif; ?>
                                     </div>
