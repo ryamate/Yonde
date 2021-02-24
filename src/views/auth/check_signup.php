@@ -20,9 +20,7 @@
                 </dd>
                 <dt>パスワード</dt>
                 <dd>
-                    <?php for ($i = 0; $i < mb_strlen($_SESSION['join']['password']); $i++) : ?>
-                        *
-                    <?php endfor; ?>
+                    非表示
                 </dd>
                 <dt>プロフィール画像</dt>
                 <dd>

@@ -13,18 +13,23 @@ session_start(); // 新しいセッションを開始、あるいは既存のセ
  * 初めて index.php から遷移してきた場合、新規でフォーム画面を表示する。
  * もしくは、
  * 新規登録確認画面から「修正する」ボタンで戻ってきた場合、値が残った状態でフォーム画面を表示する。
+ * (保持する値は、email, user_name のみ。password, image は保持しない)
  */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
         'email' => $_POST['email'],
         'user_name' => $_POST['user_name'],
-        'password' => $_POST['password']
+        'password' => $_POST['password'],
     ];
+
     $file_name = $_FILES['image']['name'];
     $user_model = new User;
     $errors = $user_model->validateUserSignup($user, $file_name);
     if (!count($errors)) {
+        $user['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $_POST['password'] = $user['password']; // パスワードを平文で保持しないために、ハッシュしたパスワードで上書きする
         $_SESSION['join'] = $_POST;
+
         // プロフィール画像選択ありの場合、名前をつけてアップロードする
         if (!empty($file_name)) {
             $image = date('Ymd') . $user['user_name'] . '_' . $_FILES['image']['name'];
@@ -34,13 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 新規登録確認画面へ遷移する
         header("Location: check_signup.php");
         exit();
+    } else {
+        $user = [
+            'password' => '',
+        ];
     }
 } elseif (!isset($_REQUEST['action'])) {
     // views/auth/signup.php での未定義エラー防止のため、$user、$errors のカラ配列を用意する
     $user = [
         'email' => '',
         'user_name' => '',
-        'password' => ''
+        'password' => '',
     ];
     $errors = [];
 } elseif ($_REQUEST['action'] === 'rewrite' && isset($_SESSION['join'])) {
@@ -48,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = [
         'email' => $_POST['email'],
         'user_name' => $_POST['user_name'],
-        'password' => $_POST['password']
+        'password' => '', //パスワードは再入力
     ];
 }
 
