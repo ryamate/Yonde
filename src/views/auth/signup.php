@@ -1,9 +1,9 @@
 <main>
-    <div class="container" style="margin-top: 90px;">
+    <div class="container" style="margin-top: 90px; max-width: 540px;">
         <h3>「よんで」の新規登録</h3>
         <h4>　ようこそ、「よんで」へ。</h4><br>
         <p>次のフォームに必要事項を記入してください。</p>
-        <div class="card container mt-4 p-4 bg-light">
+        <div class="card container mt-4 p-4 shadow-sm">
             <form action="signup.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="email"><span class="badge bg-warning text-white">必須</span> メールアドレス</label>
@@ -39,6 +39,9 @@
                             </ul>
                         <?php else : ?>
                             <ul class="text-dark small">
+                                <?php if (isset($_SESSION['join']['password'])) : ?>
+                                    <li class="text-danger">恐れ入りますが、パスワードを改めて入力してください</li>
+                                <?php endif; ?>
                                 <li>パスワードは半角英数字をそれぞれ１文字以上含んだ、８文字以上</p>
                             </ul>
                         <?php endif; ?>
@@ -81,13 +84,13 @@
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn bg-warning text-decoration-none text-white">新規登録する</button>
+                <button type="submit" class="btn btn-block bg-warning text-decoration-none text-white">新規登録する</button>
             </form>
         </div>
-        <div class="card container mt-4 p-4 bg-light">
+        <div class="card container mt-4 p-4 shadow-sm">
             <form action="login.php?action=guest_user_login" method="POST" enctype="multipart/form-data">
                 <p>新規登録せずに機能を試したい方はこちら</p>
-                <button type="submit" class="btn bg-white btn-outline-teal1 text-decoration-none text-teal1">ゲストユーザーログイン</button>
+                <button type="submit" class="btn btn-block btn-sm bg-white btn-outline-teal1 text-decoration-none text-teal1">ゲストユーザーログイン</button>
             </form>
         </div>
     </div>
